@@ -7,7 +7,7 @@ const UserDto = require('../dtos/user-dto')
 const ApiError = require('../exceptions/api-error')
 
 class UserService {
-    async registration(email, password) {
+    async registration(email, password, first_name = null, last_name = null, phone = null, age = null) {
         // check: if such a user is in the database
         const candidate = await UserModel.findOne({email})
         if (candidate) {
@@ -16,7 +16,7 @@ class UserService {
 
         const hashPassword = await bcrypt.hash(password, 4) // hash the password
         const activationLink = uuid.v4()
-        const user = await UserModel.create({email, password: hashPassword, activationLink, roles: ["USER"]}) // save user to database
+        const user = await UserModel.create({email, password: hashPassword, first_name, last_name, phone, age, activationLink, roles: ["USER"]}) // save user to database
         await mailService.sendActivationMail(email, `${process.env.API_URL}/api/activate/${activationLink}`) // sending an activation email
         const userDto = new UserDto(user) // (data to transfer) id, email, isActivated
         const tokens = tokenService.generateTokens({...userDto}) // token generation
