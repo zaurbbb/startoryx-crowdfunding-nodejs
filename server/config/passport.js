@@ -18,16 +18,17 @@ module.exports = function (passport, req, res){
         callbackURL: "http://localhost:5000/api/google/callback"
     },
         // TODO: Rewrite to user-controller
-        async(accessToken, refreshToken, profile, done)=>{
+        async(accessToken, refreshToken, profile, email, done)=>{
             User.findOne({googleId: profile.id}).then((currentUser) => {
                 if (currentUser){
-                    console.log(currentUser)
-                    console.log(profile)
+                    // console.log(email)
+                    // console.log(profile)
                     done(null, currentUser)
                 }
                 else {
+                    // console.log(email)
                     userService.registrationByGoogle(profile.id, profile.name.givenName,
-                        profile.name.familyName, accessToken)
+                        profile.name.familyName, email, accessToken)
                         .then((newUser)=>{
                         done(null, newUser)
                     });
