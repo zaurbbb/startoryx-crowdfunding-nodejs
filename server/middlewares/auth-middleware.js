@@ -1,27 +1,22 @@
 const ApiError = require('../exceptions/api-error')
-const tokenService = require('../services/token-service')
 
-module.exports = function (req, res, next){
-    try{
-        const authorizationHeader = req.headers.authorization
-        if (!authorizationHeader){
-            return next(ApiError.UnauthorizedError())
+module.exports = {
+    ensureAuth: function (req, res, next){
+        if (req.isAuthenticated()){
+            return next()
         }
-        const accessToken = authorizationHeader.split(' ')[1]
-
-        if (!accessToken){
-            return next(ApiError.UnauthorizedError())
+        else {
+            res.send(ApiError.UnauthorizedError().message)
         }
+    },
 
-        const userData = tokenService.validateAccessToken(accessToken)
-        if (!userData){
-            return next(ApiError.UnauthorizedError())
+    ensureGuest: function (req, res, next){
+        if (req.isAuthenticated()){
+            res.redirect('/api/dashboard')
         }
-
-        req.user = userData
-        next()
+        else{
+            return next()
+        }
     }
-    catch (e) {
-        return next(ApiError.UnauthorizedError())
-    }
+
 }
