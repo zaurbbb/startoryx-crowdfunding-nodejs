@@ -1,7 +1,7 @@
 const {Schema, model} = require('mongoose')
 
 const userSchema = new Schema({ // TODO: add required fields
-    email: {type: String},
+    email: {type: String, unique: true},
     password: {type: String},
     googleId: {type: String},
     first_name: {type: String},
