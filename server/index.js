@@ -7,6 +7,8 @@ const router = require('./router/index')
 const errorMiddleware = require('./middlewares/error-middleware')
 const passport = require('passport')
 const session = require('express-session')
+const bodyParser = require('body-parser');
+const MongoStore = require('connect-mongo')
 const dotenv = require('dotenv')
 const {engine} = require("express-handlebars")
 
@@ -21,19 +23,26 @@ const app = express()
 // middlewares
 app.use(express.json());
 app.use(cookieParser());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(session({
     secret:process.env.GOOGLE_CLIENT_SECRET,
+    store: MongoStore.create({
+        mongoUrl: process.env.DB_URL,
+        ttl: 7 * 24 *  60 * 60, // 7 Days
+    }),
     resave: false,
-    saveUninitialized: true
+    saveUninitialized: false
 }));
 app.use(cors());
-app.use(errorMiddleware);
 // handlebars
 app.engine('.handlebars', engine());
 app.set('view engine', '.handlebars');
 // passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.use(errorMiddleware);
 
 const start = async () => {
     try{
