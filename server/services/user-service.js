@@ -2,13 +2,12 @@ const UserModel = require('../models/user-model')
 const bcrypt = require('bcrypt')
 const uuid = require('uuid')
 const mailService = require('./mail-service')
-const tokenService = require('./token-service')
 const UserDto = require('../dtos/user-dto')
 const ApiError = require('../exceptions/api-error')
 
 class UserService {
     async registration(email, password, first_name = null, last_name = null, phone = null, age = null
-    , googleId = null) {
+        , googleId = null) {
         // check: if such a user is in the database
         const candidate = await UserModel.findOne({email})
         if (candidate) {
@@ -17,19 +16,36 @@ class UserService {
 
         const hashPassword = await bcrypt.hash(password, 4) // hash the password
         const activationLink = uuid.v4()
-        const user = await UserModel.create({email, password: hashPassword, googleId, first_name, last_name, phone, age, activationLink, roles: ["USER"]}) // save user to database
+        const user = await UserModel.create({
+            email,
+            password: hashPassword,
+            googleId,
+            first_name,
+            last_name,
+            phone,
+            age,
+            activationLink,
+            roles: ["USER"]
+        }) // save user to database
         await mailService.sendActivationMail(email, `${process.env.API_URL}/api/activate/${activationLink}`) // sending an activation email
         const userDto = new UserDto(user) // (data to transfer) id, email, isActivated, roles
-        const tokens = tokenService.generateTokens({...userDto}) // token generation
-        await tokenService.saveToken(userDto.id, tokens.refreshToken) // saving the token
 
-        return {...tokens, user: userDto}
+        return {user: userDto}
     }
 
-    async registrationByGoogle(googleId, first_name, last_name, email, accessToken){
-        const user = await UserModel.create({googleId, first_name, last_name, email, roles: ["USER"], isActivated: true})
-        const tokens = tokenService.generateTokens({...user}, accessToken)
-        await tokenService.saveToken(user._id, tokens.refreshToken)
+    async googleAuth(googleId, first_name, last_name, email, done) {
+        let user = await UserModel.findOne({googleId: googleId});
+        if (user) {
+            done(null, user)
+        }
+        else {
+            user = await UserModel.create({googleId, first_name, last_name, email: "", roles: ["USER"], isActivated: true})
+            done(null, user)
+        }
+        const userDto = new UserDto(user)
+
+        return {user: userDto}
+
     }
 
     async activate(activationLink) {
@@ -41,47 +57,26 @@ class UserService {
         await user.save();
     }
 
-    async login(email, password) {
+    async login(email, password, done) {
         const user = await UserModel.findOne({email})
-        if(!user){
+        if (!user) {
+            done(null, false)
             throw ApiError.BadRequest('User with this email address already exists')
         }
         const isPassEquals = await bcrypt.compare(password, user.password)
         if (!isPassEquals) {
+            done(null, false)
             throw ApiError.BadRequest('Wrong password')
         }
         const userDto = new UserDto(user)
-        const tokens = tokenService.generateTokens({...userDto})
-        await tokenService.saveToken(userDto.id, tokens.refreshToken) // saving the token
 
-        return {...tokens, user: userDto}
+        done(null, user)
+
+        return {user: userDto}
     }
 
-    async logout(refreshToken){
-        const token = await tokenService.removeToken(refreshToken)
-        return token
-    }
-
-    async refresh(refreshToken){
-        if (!refreshToken){
-            throw ApiError.UnauthorizedError()
-        }
-        const userData = tokenService.validateRefreshToken(refreshToken)
-        const tokenFromDb = await tokenService.findToken(refreshToken)
-        if (!userData || !tokenFromDb){
-            throw ApiError.UnauthorizedError()
-        }
-        const user = await UserModel.findById(userData.id)
-        const userDto = new UserDto(user)
-        const tokens = tokenService.generateTokens({...userDto})
-        await tokenService.saveToken(userDto.id, tokens.refreshToken) // saving the token
-
-        return {...tokens, user: userDto}
-    }
-
-    async getAllUsers(){
-        const users = await UserModel.find()
-        return users
+    async getAllUsers() {
+        return UserModel.find();
     }
 
 }
