@@ -1,39 +1,45 @@
 const GoogleStrategy = require('passport-google-oauth20').Strategy
+const LocalStrategy = require('passport-local').Strategy;
 const User = require('../models/user-model')
 const userService = require('../services/user-service')
 
-module.exports = function (passport, req, res){
-    passport.serializeUser((user, done) =>{
+module.exports = function (passport, req, res) {
+    passport.serializeUser((user, done) => {
         done(null, user.id)
     })
-    passport.deserializeUser((id, done) =>{
-        User.findById(id, function (err, user){
+    passport.deserializeUser((id, done) => {
+        User.findById(id, function (err, user) {
             done(err, user)
         })
     })
 
+    passport.use('local', new LocalStrategy({
+        usernameField: 'email',
+        passwordField: 'password'
+        },
+        async (username, password, done) => {
+            try {
+                const userData = await userService.login(username, password, done)
+                console.log(userData)
+            } catch (e) {
+                console.log(e)
+            }
+        }
+    ));
+
     passport.use(new GoogleStrategy({
-        clientID: process.env.GOOGLE_CLIENT_ID,
-        clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-        callbackURL: "http://localhost:5000/api/google/callback"
-    },
-        // TODO: Rewrite to user-controller
-        async(accessToken, refreshToken, profile, email, done)=>{
-            User.findOne({googleId: profile.id}).then((currentUser) => {
-                if (currentUser){
-                    // console.log(email)
-                    // console.log(profile)
-                    done(null, currentUser)
-                }
-                else {
-                    // console.log(email)
-                    userService.registrationByGoogle(profile.id, profile.name.givenName,
-                        profile.name.familyName, email, accessToken)
-                        .then((newUser)=>{
-                        done(null, newUser)
-                    });
+                clientID: process.env.GOOGLE_CLIENT_ID,
+                clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+                callbackURL: "http://localhost:5000/api/google/callback"
+            },
+            async (accessToken, refreshToken, profile, done) => {
+                try {
+                    const userData = await userService.googleAuth(profile.id, profile.name.givenName, profile.name.familyName,
+                        profile.emails[0].value, done)
+                    console.log(userData)
+                } catch (e) {
+                    console.log(e)
                 }
             })
-        })
-    )
+    );
 }
