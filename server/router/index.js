@@ -4,41 +4,56 @@ const router = new Router()
 const passport = require('passport')
 const {body} = require('express-validator')
 const roleMiddleware = require('../middlewares/role-middleware')
+const authMiddleware = require("../middlewares/auth-middleware");
 
-function isLoggedIn(req, res, next){
-    req.user ? next() : res.sendStatus(401)
-}
+
+// ---Local authorization---
 
 router.post('/registration',
     body('email').isEmail(),
     body('password').isLength({min: 3, max: 32}), // TODO: change min
-    userController.registration
-)
-router.post('/login', userController.login)
-router.post('/logout', userController.logout)
+    userController.registration, passport.authenticate('local', {
+        successRedirect: "/api/protected",
+        failureRedirect: "/api/dashboard"
+    }) );
+
+router.post('/login', passport.authenticate('local', {
+    successRedirect: "/api/protected",
+    failureRedirect: "/api/dashboard"}));
+
+router.get('/activate/:link', userController.activate)
 
 
-router.get('/googleLog', (req, res) =>{
-    res.render('login')
-})
-router.get('/dashboard', (req, res) =>{
-    res.render('dashboard')
-})
-router.get('/protected', isLoggedIn, (req, res) =>{
-    res.render('protected')
-})
+// ---Google authorization---
 
-router.get('/google', passport.authenticate('google', { scope: ['email', 'profile'] }))
+router.get('/google', authMiddleware.ensureGuest,
+    passport.authenticate('google', { scope: ['email', 'profile'] }));
 
 router.get('/google/callback', passport.authenticate('google', {
     successRedirect: "/api/protected",
-    failureRedirect: "/"}),
-    (req, res) => {
-        res.redirect('/api/dashboard')
-    });
+    failureRedirect: "/"}));
 
-router.get('/activate/:link', userController.activate)
-router.get('/refresh', userController.refresh)
-router.get('/users', roleMiddleware(['ADMIN']), userController.getUsers)
 
-module.exports = router
+// ---Logout---
+
+router.get('/logout', userController.logout);
+
+
+// ---Admin routers---
+
+router.get('/users', roleMiddleware(['ADMIN']), userController.getUsers);
+
+
+// ---Views---
+
+router.get('/dashboard', (req, res) =>{
+    res.render('dashboard')
+});
+
+router.get('/protected', authMiddleware.ensureAuth, (req, res) =>{
+    res.render('protected', {name: req.user.first_name})
+});
+
+
+
+module.exports = router;
