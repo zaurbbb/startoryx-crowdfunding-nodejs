@@ -34,8 +34,9 @@ module.exports = function (passport, req, res) {
             },
             async (accessToken, refreshToken, profile, done) => {
                 try {
+                    const email = (profile.email == null) ? profile.emails[0].value : profile.email
                     const userData = await userService.googleAuth(profile.id, profile.name.givenName, profile.name.familyName,
-                        profile.emails[0].value, done)
+                        email, done)
                     console.log(userData)
                 } catch (e) {
                     console.log(e)
