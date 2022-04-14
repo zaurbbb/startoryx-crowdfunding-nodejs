@@ -33,13 +33,13 @@ class UserService {
         return {user: userDto}
     }
 
-    async googleAuth(googleId, first_name, last_name, email, done) {
+    async googleAuth(googleId, first_name, last_name, email="", done) {
         let user = await UserModel.findOne({googleId: googleId});
         if (user) {
             done(null, user)
         }
         else {
-            user = await UserModel.create({googleId, first_name, last_name, email: "", roles: ["USER"], isActivated: true})
+            user = await UserModel.create({googleId, first_name, last_name, email, roles: ["USER"], isActivated: true})
             done(null, user)
         }
         const userDto = new UserDto(user)
@@ -73,10 +73,6 @@ class UserService {
         done(null, user)
 
         return {user: userDto}
-    }
-
-    async getAllUsers() {
-        return UserModel.find();
     }
 
 }
