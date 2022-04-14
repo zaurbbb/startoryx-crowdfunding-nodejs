@@ -3,11 +3,12 @@ const express = require('express')
 const cors = require('cors')
 const cookieParser = require('cookie-parser')
 const mongoose = require('mongoose')
-const router = require('./router/index')
+const router = require('./router/user-router')
+const adminRouter = require('./router/admin-router')
+const bodyParser = require('body-parser');
 const errorMiddleware = require('./middlewares/error-middleware')
 const passport = require('passport')
 const session = require('express-session')
-const bodyParser = require('body-parser');
 const MongoStore = require('connect-mongo')
 const dotenv = require('dotenv')
 const {engine} = require("express-handlebars")
@@ -23,8 +24,6 @@ const app = express()
 // middlewares
 app.use(express.json());
 app.use(cookieParser());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
 app.use(session({
     secret:process.env.GOOGLE_CLIENT_SECRET,
     store: MongoStore.create({
@@ -34,6 +33,9 @@ app.use(session({
     resave: false,
     saveUninitialized: false
 }));
+app.use('/admin', adminRouter);
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 // handlebars
 app.engine('.handlebars', engine());
@@ -43,6 +45,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(errorMiddleware);
+
 
 const start = async () => {
     try{
@@ -58,6 +61,6 @@ const start = async () => {
     }
 }
 
-app.use('/api', router);
+app.use('/api', router)
 
 start()
