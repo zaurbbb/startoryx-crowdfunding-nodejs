@@ -1,6 +1,6 @@
 const {Schema, model} = require('mongoose')
 
-const userSchema = new Schema({ // TODO: add required fields
+const userSchema = new Schema({
     email: {type: String, unique: true},
     password: {type: String},
     googleId: {type: String},
@@ -10,7 +10,7 @@ const userSchema = new Schema({ // TODO: add required fields
     age: {type: Number},
     isActivated: {type: Boolean, default: false},
     activationLink: {type: String},
-    roles: [{type: String, ref: 'Role'}]
+    roles: {type: []},
 })
 
 module.exports = model('User', userSchema)
