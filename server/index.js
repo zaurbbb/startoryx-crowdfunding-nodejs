@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser')
 const mongoose = require('mongoose')
 const router = require('./router/user-router')
 const adminRouter = require('./router/admin-router')
+const projectRouter = require('./router/project-router')
 const bodyParser = require('body-parser');
 const errorMiddleware = require('./middlewares/error-middleware')
 const passport = require('passport')
@@ -61,6 +62,7 @@ const start = async () => {
     }
 }
 
-app.use('/api', router)
+app.use('/api', router);
+app.use('/project', projectRouter);
 
 start()
