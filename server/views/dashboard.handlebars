@@ -5,12 +5,8 @@
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <div class="container mx-3">
-    <h1 class="display-5 mx-5">DASHBOARD</h1>
-    <button class="btn btn-info" onclick="location.href = '/api/dashboard'">DASHBOARD</button>
-    <button class="btn btn-primary" onclick="location.href = '/api/protected'">PROTECTED</button>
-    <button class="btn btn-success" onclick="location.href = '/admin'">ADMIN</button>
-    <button class="btn btn-info" onclick="location.href = '/api/google'">GOOGLE AUTH</button>
-    <button class="btn btn-danger" onclick="location.href = '/api/logout'">LOGOUT</button>
+
+    {{> _header}}
 
     <div class="row">
         <div class="col-2">
@@ -32,5 +28,31 @@
                 <br><br><input type="submit" value="Submit"></form>
         </div>
     </div>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Date</th>
+            <th></th>
+        </tr>
+        </thead>
+    <tbody>
+        {{#each projects}}
+        <tr>
+            <td><a href="projects/{{_id}}">{{title}}</a></td>
+            <td>{{dateCreated}} </td>
+            <td>
+                <a href="/projects/edit/{{_id}}">Edit page</a>
+                <form action="/projects/delete/{{_id}}" method="POST" >
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button type="submit">Delete note</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+        {{/each}}
+    </table>
+
 </div>
 </html>
