@@ -1,11 +1,12 @@
 const Router = require('express').Router
 const userController = require('../controllers/user-controller')
 const adminController = require('../controllers/admin-controller')
-const router = new Router()
 const passport = require('passport')
 const {body} = require('express-validator')
 const roleMiddleware = require('../middlewares/role-middleware')
 const authMiddleware = require("../middlewares/auth-middleware")
+const Project = require('../models/project-model')
+const router = new Router()
 
 
 // ---Local authorization---
@@ -51,12 +52,18 @@ router.get('/users', roleMiddleware(['ADMIN']), adminController.getUsers);
 
 // ---Views---
 
-router.get('/dashboard', (req, res) => {
-    res.render('dashboard')
+router.get('/dashboard', async (req, res) => {
+    try {
+        const projects = await Project.find({ }).lean()
+        res.render('dashboard', {email: req.user.email, projects})
+    }
+    catch (e) {
+        console.log(e)
+    }
 });
 
 router.get('/protected', authMiddleware.ensureAuth, (req, res) => {
-    res.render('protected', {name: req.user.first_name})
+    res.render('protected', {name: req.user.first_name, email: req.user.email})
 });
 
 module.exports = router;
