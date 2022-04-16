@@ -13,6 +13,7 @@ const session = require('express-session')
 const MongoStore = require('connect-mongo')
 const dotenv = require('dotenv')
 const {engine} = require("express-handlebars")
+const methodOverride = require('method-override')
 
 //load dotenv config.
 dotenv.config();
@@ -47,6 +48,13 @@ app.use(passport.session());
 
 app.use(errorMiddleware);
 
+app.use(methodOverride, (req, res) => {
+    if (req.body && typeof req.body === 'object' && '_method' in req.body) {
+        const method = req.body._method;
+        delete req.body._method
+        return method
+    }
+})
 
 const start = async () => {
     try{
@@ -63,6 +71,6 @@ const start = async () => {
 }
 
 app.use('/api', router);
-app.use('/project', projectRouter);
+app.use('/api/projects', projectRouter); // TODO: edit url (/api)
 
 start()
