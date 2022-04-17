@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+</head>
+<body class="container mx-3">
+
+<header>
+    <%- include('../partials/header'); %>
+</header>
+
+<main>
+<div class="row">
+    <div class="col-2">
+        <br>LOGIN
+        <form method="POST" action="/api/login">
+            Email:<br><input type="email" name="email">
+            <br>Password:<br><input type="password" name="password">
+            <br><br><input type="submit" value="Submit"></form>
+    </div>
+    <div class="col-9">
+        <br>REGISTRATION
+        <form method="POST" action="/api/registration">
+            First Name:<br><input type="text" name="first_name">
+            <br>Last Name:<br><input type="text" name="last_name">
+            <br>Email:<br><input type="email" name="email">
+            <br>Phone:<br><input type="text" name="phone">
+            <br>Age:<br><input type="number" name="age">
+            <br>Password:<br><input type="password" name="password">
+            <br><br><input type="submit" value="Submit"></form>
+        <button class="btn btn-secondary" onclick="location.href = '/api/google'">Sign in with Google</button>
+
+    </div>
+</div>
+
+<br><br>
+<div class="container">
+    <div class="row">
+        <% projects.forEach(function(project) { %>
+        <div class="col-3">
+            <div class="card" style="width: 15rem;">
+                <a href="projects/<%= project._id %>"><img class="card-img-top"
+                                                src="https://images.thdstatic.com/productImages/27453014-e0f3-406c-98f4-2c217ef3bda8/svn/nuwallpaper-wallpaper-samples-pls4208sam-64_400.jpg"
+                                                alt="Card image cap">
+                </a>
+                <div class="card-body">
+                    <h5 class="card-title text-center"><a href="projects/<%= project._id %>"><%= project.title %></a> | <%= project.type %></h5>
+                    <p class="card-text text-center"><%= date(project.dateCreated) %></p>
+                    <p class="card-text"><%= project.shortly %></p>
+                </div>
+            </div>
+            <br>
+        </div>
+            <% }); %>
+    </div>
+</div>
+
+</main>
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+</head>
+<body class="container mx-3">
+
+<header>
+    <%- include('../partials/header'); %>
+</header>
+
+<main>
+    <form action="/api/projects/<%= project._id %>" method="POST">
+        <input type="hidden" name="_method" value="PUT">
+        <div>
+            <textarea name="title"><%= project.title %> </textarea>
+
+        </div>
+        <div>
+            <textarea name="body"><%= project.body %> </textarea>
+        </div>
+        <div>
+            <button type="submit">Submit!</button>
+        </div>
+    </form>
+
+
+</main>
+
+
+</body>
+</html>

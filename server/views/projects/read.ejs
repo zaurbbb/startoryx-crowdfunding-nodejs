@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+</head>
+<body class="container mx-3">
+
+<header>
+    <%- include('../partials/header'); %>
+</header>
+
+<main>
+    <br>
+    <div class="container mx-5">
+        <fieldset class="border p-2 text-center">
+            <h1 class="display-4 text-center"><%= project.title %></h1>
+            <h3><%= project.body %></h3>
+
+            <br>
+            <p><%= date(project.dateCreated) %></p>
+        </fieldset>
+    </div>
+
+    <br>
+    <form action="/api/projects/delete/<%= project._id %>" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <button type="submit">Delete project</button>
+    </form>
+
+    <a href="/projects/edit/<%= project._id %>"> Edit project</a>
+</main>
+
+
+</body>
+</html>
