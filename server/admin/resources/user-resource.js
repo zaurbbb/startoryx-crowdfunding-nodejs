@@ -17,6 +17,14 @@ module.exports = {
                 filter: false
             }
         },
+        image: {
+            isVisible: {
+                show: true,
+                edit: true,
+                list: false,
+                filter: false
+            }
+        },
         _id: {
             isVisible: {
                 show: true,
@@ -71,6 +79,14 @@ module.exports = {
                 edit: true,
                 list: true,
                 filter: true
+            }
+        },
+        activationLink: {
+            isVisible: {
+                show: true,
+                edit: true,
+                list: false,
+                filter: false
             }
         },
         roles: {
