@@ -12,7 +12,6 @@ const passport = require('passport')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')
 const dotenv = require('dotenv')
-const {engine} = require("express-handlebars")
 const methodOverride = require('method-override')
 
 //load dotenv config.
@@ -40,21 +39,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 // handlebars
-app.engine('.handlebars', engine());
-app.set('view engine', '.handlebars');
+
+app.set('view engine', 'ejs')
 // passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(errorMiddleware);
 
-app.use(methodOverride, (req, res) => {
-    if (req.body && typeof req.body === 'object' && '_method' in req.body) {
-        const method = req.body._method;
-        delete req.body._method
-        return method
-    }
-})
+app.use(errorMiddleware);
 
 const start = async () => {
     try{
@@ -70,6 +62,15 @@ const start = async () => {
     }
 }
 
+app.get('/', (req, res) => {
+    let email = null
+    if (req.user != null) {
+        email = req.user.email
+    }
+    res.render('pages/index.ejs', {
+        email: email
+    })
+})
 app.use('/api', router);
 app.use('/api/projects', projectRouter); // TODO: edit url (/api)
 
