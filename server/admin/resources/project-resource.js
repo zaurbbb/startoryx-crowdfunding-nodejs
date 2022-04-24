@@ -88,5 +88,13 @@ module.exports = {
                 filter: true
             }
         },
+        image: {
+            isVisible: {
+                show: true,
+                edit: true,
+                list: false,
+                filter: false
+            }
+        },
     }
 }

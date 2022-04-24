@@ -17,7 +17,7 @@ const projectSchema = new Schema({ // TODO: add required fields
     days: {type: Number}, // number of days before the end of the collection
     goal: {type: Number},
     collected: {type: Number},
-    rate: {type: Number},
+    rate: {type: Number, default: 0.0},
     // Backers, Comments, Updates
 })
 

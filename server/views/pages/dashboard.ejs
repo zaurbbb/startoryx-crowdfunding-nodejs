@@ -38,8 +38,10 @@
     <p class="lead">Sort by:</p>
     <div class="btn-group" role="group" aria-label="Basic outlined example">
         <button type="button" class="btn btn-outline-primary" onclick="location.href = '/api/dashboard/0001'">By Title (ascending)</button>
-        <button type="button" class="btn btn-outline-primary">By Title (decreasing)</button>
-        <button type="button" class="btn btn-outline-primary">Right</button>
+        <button type="button" class="btn btn-outline-primary" onclick="location.href = '/api/dashboard/0002'">By Title (decreasing)</button>
+        <button type="button" class="btn btn-outline-primary" onclick="location.href = '/api/dashboard/0003'">Newest</button>
+        <button type="button" class="btn btn-outline-primary" onclick="location.href = '/api/dashboard/0004'">Oldest</button>
+
     </div> <br><br>
     <div class="row">
         <% projects.forEach(function(project) { %>
@@ -49,7 +51,9 @@
                     <img class="card-img-top" src="<%= project.image %>" alt="Card image cap">
                 </a>
                 <div class="card-body">
-                    <h5 class="card-title text-center"><a href="projects/<%= project._id %>"><%= project.title %></a> | <%= project.type %></h5>
+                    <h5 class="card-title text-center"><a href="projects/<%= project._id %>"><%= project.title %></a></h5>
+                    <h5 class="card-text text-center lead"><%= project.type %></h5>
+                    <p class="card-text text-center"><%= project.rate %> / 10 &#9733;</p>
                     <p class="card-text text-center"><%= date(project.dateCreated) %></p>
                     <p class="card-text"><%= project.shortly %></p>
                 </div>

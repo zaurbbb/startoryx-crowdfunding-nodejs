@@ -12,12 +12,11 @@ const passport = require('passport')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')
 const dotenv = require('dotenv')
-const methodOverride = require('method-override')
 
 //load dotenv config.
 dotenv.config();
 
-require('./config/passport')(passport)
+require('./controllers/passport')(passport)
 
 const PORT = process.env.PORT || 5000;
 const app = express()
