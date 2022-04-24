@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
     <%- include('../partials/head'); %>
+
+    <%- include('../partials/tinymc'); %>
 </head>
 <body class="container mx-3">
 
@@ -10,20 +12,32 @@
 </header>
 
 <main>
-    <form action="/api/projects/<%= project._id %>" method="POST">
-        <input type="hidden" name="_method" value="PUT">
-        <div>
-            <textarea name="title"><%= project.title %> </textarea>
 
-        </div>
-        <div>
-            <textarea name="body"><%= project.body %> </textarea>
-        </div>
-        <div>
-            <button type="submit">Submit!</button>
-        </div>
-    </form>
+    <div>
+        <form action="/api/projects/<%= project._id %>" method="POST">
+            <input type="hidden" name="_method" value="PUT">
+            <label for="title" class="text-white"></label>
+            <input type="text" class="form-control" placeholder="Title" name="title" value="<%= project.title %>" required>
 
+            <label for="type" class="text-white"></label>
+            <input type="text" class="form-control" placeholder="Type" name="type" value="<%= project.type %>" required>
+
+            <label for="shortly" class="text-white"></label>
+            <input type="text" class="form-control" placeholder="Shortly Description" name="shortly" value="<%= project.shortly %>" required>
+
+            <label for="days" class="text-white"></label>
+            <input type="number" class="form-control" placeholder="Days" name="days" value="<%= project.days %>" required>
+
+            <label for="goal" class="text-white"></label>
+            <input type="number" class="form-control" placeholder="Goal" name="goal" value="<%= project.goal %>" required>
+            <br>
+            <textarea id="mytextarea" name="body" value="body"><%= project.body %></textarea>
+            <br>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary"> Save</button>
+            </div>
+        </form>
+    </div>
 
 </main>
 

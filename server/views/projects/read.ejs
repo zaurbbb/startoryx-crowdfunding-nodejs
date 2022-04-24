@@ -12,12 +12,18 @@
 <main>
     <br>
     <div class="container mx-5">
-        <fieldset class="border p-2 text-center">
-            <h1 class="display-4 text-center"><%= project.title %></h1>
-            <h3><%= project.body %></h3>
+        <fieldset class="border p-2">
+            <div class="text-center">
+                <h1 class="display-4"><%= project.title %> </h1>
+                <h3><%= project.rate%>&#9733;</h3>
+                <p><%= date(project.dateCreated) %></p>
+                <p><%= project.collected %>$ / <%= project.goal %>$</p>
+                <p><%= project.days %> days left</p>
+            </div>
+
+            <h3><%- project.body %></h3>
 
             <br>
-            <p><%= date(project.dateCreated) %></p>
         </fieldset>
     </div>
 
@@ -27,7 +33,7 @@
         <button type="submit">Delete project</button>
     </form>
 
-    <a href="/projects/edit/<%= project._id %>"> Edit project</a>
+    <a href="/api/projects/edit/<%= project._id %>"> Edit project</a>
 </main>
 
 

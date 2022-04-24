@@ -35,13 +35,18 @@
 
 <br><br>
 <div class="container">
+    <p class="lead">Sort by:</p>
+    <div class="btn-group" role="group" aria-label="Basic outlined example">
+        <button type="button" class="btn btn-outline-primary" onclick="location.href = '/api/dashboard/0001'">By Title (ascending)</button>
+        <button type="button" class="btn btn-outline-primary">By Title (decreasing)</button>
+        <button type="button" class="btn btn-outline-primary">Right</button>
+    </div> <br><br>
     <div class="row">
         <% projects.forEach(function(project) { %>
         <div class="col-3">
             <div class="card" style="width: 15rem;">
-                <a href="projects/<%= project._id %>"><img class="card-img-top"
-                                                src="https://images.thdstatic.com/productImages/27453014-e0f3-406c-98f4-2c217ef3bda8/svn/nuwallpaper-wallpaper-samples-pls4208sam-64_400.jpg"
-                                                alt="Card image cap">
+                <a href="projects/<%= project._id %>">
+                    <img class="card-img-top" src="<%= project.image %>" alt="Card image cap">
                 </a>
                 <div class="card-body">
                     <h5 class="card-title text-center"><a href="projects/<%= project._id %>"><%= project.title %></a> | <%= project.type %></h5>
@@ -56,6 +61,5 @@
 </div>
 
 </main>
-
 </body>
 </html>
