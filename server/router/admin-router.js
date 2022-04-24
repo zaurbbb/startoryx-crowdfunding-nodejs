@@ -2,8 +2,10 @@ const AdminBro = require('admin-bro')
 const AdminBroExpress = require('admin-bro-expressjs')
 const AdminBroMongoose = require('admin-bro-mongoose')
 const User = require('../models/user-model')
+const Project = require('../models/project-model')
 const bcrypt = require('bcrypt')
 const userResource = require('../admin/resources/user-resource')
+const projectResource = require('../admin/resources/project-resource')
 const panelLocale = require('../admin/resources/panel-locale')
 
 const mongoose = require('mongoose')
@@ -18,12 +20,18 @@ const adminBro = new AdminBro({
         softwareBrothers: false,
         logo: '',
     },
-    resources:[{
+    resources: [{
         resource: User,
         options: {
             ...userResource
-        }
-    }]
+        },
+    },
+        {
+            resource: Project,
+            options: {
+                ...projectResource
+            }
+        }]
 })
 
 const router = AdminBroExpress.buildAuthenticatedRouter(adminBro, {
@@ -42,8 +50,7 @@ const router = AdminBroExpress.buildAuthenticatedRouter(adminBro, {
                 if (matched) return user
             }
             return false
-        }
-        catch (e) {
+        } catch (e) {
             console.log(e)
         }
     }

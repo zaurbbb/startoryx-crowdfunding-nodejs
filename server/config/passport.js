@@ -3,6 +3,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const User = require('../models/user-model')
 const userService = require('../services/user-service')
 
+// TODO: replace to controllers
 module.exports = function (passport, req, res) {
     passport.serializeUser((user, done) => {
         done(null, user.id)
@@ -35,8 +36,8 @@ module.exports = function (passport, req, res) {
             async (accessToken, refreshToken, profile, done) => {
                 try {
                     const email = (profile.email == null) ? profile.emails[0].value : profile.email
-                    const userData = await userService.googleAuth(profile.id, profile.name.givenName, profile.name.familyName,
-                        email, done)
+                    const userData = await userService.googleAuth(profile.id, profile.name.givenName,
+                        profile.name.familyName, email, profile.photos[0].value, done)
                     console.log(userData)
                 } catch (e) {
                     console.log(e)
