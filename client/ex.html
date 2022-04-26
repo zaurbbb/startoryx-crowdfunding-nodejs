@@ -6,21 +6,35 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+
     <style>
-
-
-
+        body {
+            background: white }
+        section {
+             }
     </style>
+
+    <script src="jquery-3.6.0.min.js"></script>
 </head>
 <body>
 
-<video src="" poster width height="">textettxtxtete</video>
+<button onclick="myFunction()">Try it</button>
+
+<div id="myDIV">
+    This is my DIV element.
+</div>
 
 
-
-
-
-
+<script>
+    function myFunction() {
+        var x = document.getElementById("myDIV");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+</script>
 
 </body>
 </html>

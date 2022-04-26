@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Startoryx Project</title>
-
+    <style>
+    </style>
     <!--BOOTSTRAP-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
@@ -13,17 +14,20 @@
     <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="./style.css">
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Brawler&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Arvo&family=Brawler&family=Zilla+Slab:wght@300&display=swap');
+        p{
+            text-align: center;
+        }
     </style>
 </head>
 <body>
 
 <!--MAIN BLOCK -->
 <section id="video_section">
-
     <!--VIDEO BACKGROUND-->
     <video src="clip.mp4" muted id="video_background" poster="img/pic.png"></video>
 
@@ -39,26 +43,101 @@
     </header>
 
     <!--STARTORYX TEXT-->
-    <div id="video_text">
-        <div id="video__title">
+    <div id="video_text" class="container">
+        <div class="row">
+        <div id="video__title" class="col-12">
             Star<span style="color: #87CEEB">Toryx</span>
         </div>
-        <div class="" id="video__slogan">
+        <div class="" id="video__slogan"  class="col-12">
             Create your start-up!
+            <div id="video__line"></div>
         </div>
-        <div id="video__line">
+        <div id="video_buttons_div" class="row">
+            <div class="col-6 video__buttons">I am a Creator</div>
+            <div class="col-6 video__buttons" >I am an Investor</div>
         </div>
-
-        <div id="video_button">
-            <button>I am a Creator</button>
-            <button>I am an Investor</button>
         </div>
     </div>
-
-    <button>I am creator</button>
-    <button>I am investor</button>
-
 </section>
+
+<!--NAVBAR-->
+<div class="container-fluid bg-danger">
+    <div class="row text-center">
+        <div class="col-25">Arts</div>
+        <div class="col-25">Painting</div>
+        <div class="col-25">Technology</div>
+        <div class="col-25">Music</div>
+        <div class="col-25">Games</div>
+    </div>
+</div>
+
+<!--GENERAL BENEFITS BLOCK-->
+<div class="container-fluid py-5 " style="border-bottom: 1px solid gray">
+    <div class="about_us_section row">
+        <div class="col-6 my-auto mx-auto text-center">
+            <div class="col-12" style="font-size: 60px">
+                    <span style="color: #00B4D8">General </span><span style="color: #03045E">Benefits</span>
+            </div>
+            <div class="col-12" style="font-size: 35px">
+                Why investors choose us:
+            </div>
+            <div class="col-12" style="color:#00B4D8; font-size: 35px" onclick="showHiddenDiv1()">
+                → Professional Team
+            </div>
+            <div id="showHiddenDiv1" style="display: none; font-size: 20px" class="px-3">
+                StarToryx consists of international industry experts, with vast experience in managing capital raising for startups, and expertise in the different aspects required - from business to technology.
+            </div>
+                    <br>
+            <div class="col-12" style="color:#00B4D8; font-size: 35px" onclick="showHiddenDiv2()">
+                → Confidence and Security
+            </div>
+            <div id="showHiddenDiv2" style="display: none; font-size: 20px" class="px-3">
+                Our platform is built on top of blockchain technology which enables a high level of data security and transparency.
+            </div>
+
+        </div>
+        <div class="col-6 px-0 py-0 mx-0 d-none d-xxl-block">
+            <div class="row">
+                <div class="col-12 py-auto">
+                    <img src="https://cdn11.bigcommerce.com/s-5w1jy93scp/images/stencil/789x789/uploaded_images/istock-511917030-1-min.jpg?t=1491001766" id="video_ackground">
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid py-5 " style="border-bottom: 1px solid gray">
+    <div class="about_us_section row">
+        <div class="col-12 my-auto mx-auto text-center">
+            <div class="col-6" style="font-size: 60px">
+                <span style="color: #00B4D8">Startup </span><span style="color: #03045E">Success</span> <span style="color: #00B4D8">Stories </span>
+            </div>
+
+            <div class="col-12 text-center">
+                <div class="row">
+                    <div class="col-4 text-center">
+                        <div class="card">
+                            <img src="/w3images/team2.jpg" alt="John" style="width:100%">
+                            <h1>John Doe</h1>
+                            <p>Harvard University</p>
+                            <button>Contact</button>
+                        </div>
+                    </div>
+                    <div class="col-4 text-center">
+                       ффф
+                    </div>
+                    <div class="col-4 text-center">
+                       ффф
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
     <script src="script.js"></script>
 </body>
