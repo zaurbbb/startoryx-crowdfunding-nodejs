@@ -16,10 +16,13 @@ const projectSchema = new Schema({ // TODO: add required fields
     dateCreated: {type: Date, default: Date.now},
     days: {type: Number}, // number of days before the end of the collection
     goal: {type: Number},
-    collected: {type: Number},
-    rate: {type: Number, default: 0.0},
-    // Backers, Comments, Updates
+    collected: {type: Number, default: 0},
+    rate: {type: [], default: 0},
+    comments: [{type: Schema.Types.ObjectId, ref: 'Comment'}]
+    // Backers, Updates
 })
+
+projectSchema.index({'title': 'text'})
 
 projectSchema.pre('validate', function (next){
     if (this.body){
