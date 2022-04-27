@@ -1,11 +1,13 @@
 const Router = require('express').Router
 const Project = require('../models/project-model')
+const Comment = require('../models/comment-model')
 const {ensureAuth} = require('../middlewares/auth-middleware')
 const router = new Router()
 const formatDate = require('../helpers/formatDate')
 const multer = require('multer')
 const cloudinary = require('cloudinary').v2
-const { CloudinaryStorage } = require("multer-storage-cloudinary");
+const {CloudinaryStorage} = require("multer-storage-cloudinary")
+const authMiddleware = require("../middlewares/auth-middleware")
 
 
 cloudinary.config({
@@ -21,13 +23,13 @@ const storage = new CloudinaryStorage({
     },
 });
 
-const upload = multer({ storage: storage });
+const upload = multer({storage: storage});
 
 router.get('/add', ensureAuth, (req, res) => {
     res.render('projects/add.ejs', {email: req.user.email})
 })
 
-router.post('/add', ensureAuth, upload.single('image', { width: 305, height: 305, crop: "fill"}), async (req, res) => {
+router.post('/add', ensureAuth, upload.single('image', {width: 305, height: 305, crop: "fill"}), async (req, res) => {
     try {
         req.body.user = req.user._id
         req.body.image = req.file.path
@@ -55,8 +57,10 @@ router.put('/:id', async (req, res) => {
     try {
         await Project.findOneAndUpdate(
             {_id: req.params.id},
-            {title: req.body.title, body: req.body.body, shortly: req.body.shortly, days: req.body.days,
-            type: req.body.type, goal: req.body.goal})
+            {
+                title: req.body.title, body: req.body.body, shortly: req.body.shortly, days: req.body.days,
+                type: req.body.type, goal: req.body.goal
+            })
         res.redirect('/api/dashboard')
     } catch (e) {
         console.log(e)
@@ -65,23 +69,49 @@ router.put('/:id', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
     try {
-        const project = await Project.findById(req.params.id).lean()
-        res.render('projects/read.ejs', {email: req.user.email, date: formatDate, project: project})
+
+        const results = await Project.find({$text: {$search: ""}})
+        console.log(results)
+
+        let email = null
+        if (req.user != null) email = req.user.email
+        await Project.findById(req.params.id).populate({path: 'comments', model: 'Comment',
+        populate: {path: 'user', model: 'User'}}).populate('user').
+        exec(function(err, project) {
+            if (err) {
+                console.log(err)
+            }
+            res.render('projects/read.ejs', {email: email, date: formatDate, project: project})
+        })
+
     } catch (e) {
         console.log(e)
     }
 })
 
-router.delete('/delete/:id', async (req, res) => {
-    try {
-        const project = await Project.findById(req.params.id).lean()
-        if (project.user.equals(req.user._id))
-            await Project.deleteOne({_id: req.params.id})
+router.post('/:id/comment', authMiddleware.ensureAuth, async (req, res) => {
+    req.body.project = req.params.id
+    req.body.user = req.user._id
+    const comment = await Comment.create(req.body)
+    await Project.findOneAndUpdate(
+        {_id: req.params.id},
+        {$push: {comments: comment}})
 
-        res.redirect('/api/dashboard')
-    } catch (e) {
-        console.log(e)
-    }
+    console.log(comment)
+    res.redirect('back')
 })
+
+
+// router.delete('/delete/:id', async (req, res) => {
+//     try {
+//         const project = await Project.findById(req.params.id).lean()
+//         if (project.user.equals(req.user._id))
+//             await Project.deleteOne({_id: req.params.id})
+//
+//         res.redirect('/api/dashboard')
+//     } catch (e) {
+//         console.log(e)
+//     }
+// })
 
 module.exports = router
