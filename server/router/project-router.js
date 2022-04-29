@@ -69,10 +69,6 @@ router.put('/:id', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
     try {
-
-        const results = await Project.find({$text: {$search: ""}})
-        console.log(results)
-
         let email = null
         if (req.user != null) email = req.user.email
         await Project.findById(req.params.id).populate({path: 'comments', model: 'Comment',

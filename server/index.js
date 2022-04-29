@@ -1,19 +1,18 @@
 require('dotenv').config()
+const dotenv = require('dotenv')
 const express = require('express')
+const session = require('express-session')
+const mongoose = require('mongoose')
+const MongoStore = require('connect-mongo')
 const cors = require('cors')
 const cookieParser = require('cookie-parser')
-const mongoose = require('mongoose')
+const bodyParser = require('body-parser');
+const passport = require('passport')
 const router = require('./router/user-router')
 const adminRouter = require('./router/admin-router')
 const projectRouter = require('./router/project-router')
-const bodyParser = require('body-parser');
 const errorMiddleware = require('./middlewares/error-middleware')
-const passport = require('passport')
-const session = require('express-session')
-const MongoStore = require('connect-mongo')
-const dotenv = require('dotenv')
 
-//load dotenv config.
 dotenv.config();
 
 require('./controllers/passport')(passport)
