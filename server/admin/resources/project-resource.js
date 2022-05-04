@@ -80,7 +80,15 @@ module.exports = {
                 filter: true
             }
         },
-        rate: {
+        rates: {
+            isVisible: {
+                show: true,
+                edit: true,
+                list: false,
+                filter: false
+            }
+        },
+        avgRate: {
             isVisible: {
                 show: true,
                 edit: true,

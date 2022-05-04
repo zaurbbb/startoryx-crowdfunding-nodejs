@@ -1,18 +1,18 @@
 const AdminBro = require('admin-bro')
 const AdminBroExpress = require('admin-bro-expressjs')
 const AdminBroMongoose = require('admin-bro-mongoose')
+const bcrypt = require('bcrypt')
 const User = require('../models/user-model')
 const Project = require('../models/project-model')
 const Comment = require('../models/comment-model')
-const bcrypt = require('bcrypt')
+const Rate = require('../models/rate-model')
 const userResource = require('../admin/resources/user-resource')
 const projectResource = require('../admin/resources/project-resource')
 const commentResource = require('../admin/resources/comment-resource')
+const rateResource = require('../admin/resources/rate-resource')
 const panelLocale = require('../admin/resources/panel-locale')
 
 const mongoose = require('mongoose')
-const roleMiddleware = require("../middlewares/role-middleware");
-const adminController = require("../controllers/admin-controller");
 
 AdminBro.registerAdapter(AdminBroMongoose)
 
@@ -40,6 +40,12 @@ const adminBro = new AdminBro({
             resource: Comment,
             options: {
                 ...commentResource
+            }
+        },
+        {
+            resource: Rate,
+            options: {
+                ...rateResource
             }
         }
     ]

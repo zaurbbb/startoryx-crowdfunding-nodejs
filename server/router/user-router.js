@@ -3,13 +3,8 @@ const router = new Router()
 const {body} = require('express-validator')
 const passport = require('passport')
 const userController = require('../controllers/user-controller')
-const adminController = require('../controllers/admin-controller')
-const projectController = require('../controllers/project-controller')
 const viewController = require('../controllers/view-controller')
-const roleMiddleware = require('../middlewares/role-middleware')
 const authMiddleware = require("../middlewares/auth-middleware")
-const formatDate = require('../helpers/formatDate')
-const Project = require("../models/project-model");
 
 // ---Local authorization---
 

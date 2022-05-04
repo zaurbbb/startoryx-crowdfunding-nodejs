@@ -1,9 +1,11 @@
 const Router = require('express').Router
 const Project = require('../models/project-model')
 const Comment = require('../models/comment-model')
+const Rate = require('../models/rate-model')
 const {ensureAuth} = require('../middlewares/auth-middleware')
 const router = new Router()
 const formatDate = require('../helpers/formatDate')
+const averageRate = require('../helpers/averageRate')
 const multer = require('multer')
 const cloudinary = require('cloudinary').v2
 const {CloudinaryStorage} = require("multer-storage-cloudinary")
@@ -86,15 +88,42 @@ router.get('/:id', async (req, res) => {
 })
 
 router.post('/:id/comment', authMiddleware.ensureAuth, async (req, res) => {
-    req.body.project = req.params.id
-    req.body.user = req.user._id
-    const comment = await Comment.create(req.body)
-    await Project.findOneAndUpdate(
-        {_id: req.params.id},
-        {$push: {comments: comment}})
+    try {
+        req.body.project = req.params.id
+        req.body.user = req.user._id
+        const comment = await Comment.create(req.body)
+        await Project.findOneAndUpdate(
+            {_id: req.params.id},
+            {$push: {comments: comment}})
 
-    console.log(comment)
-    res.redirect('back')
+        console.log(comment)
+        res.redirect('back')
+    }
+    catch (e) {
+        console.log(e)
+    }
+})
+
+router.post('/:id/rate', authMiddleware.ensureAuth, authMiddleware.alreadyRated, async (req, res) => {
+    try {
+        req.body.rate = parseInt(req.body.rate)
+        req.body.project = req.params.id
+        req.body.user = req.user._id
+        const rate = await Rate.create(req.body)
+        await Project.findOneAndUpdate(
+            {_id: req.params.id},
+            {$push: {rates: rate}})
+
+        await Project.findOneAndUpdate({
+            _id: req.params.id}, {
+            avgRate: await averageRate(req.params.id)
+        })
+        console.log(rate)
+        res.redirect('back')
+    }
+    catch (e) {
+        console.log(e)
+    }
 })
 
 

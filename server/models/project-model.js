@@ -17,12 +17,13 @@ const projectSchema = new Schema({ // TODO: add required fields
     days: {type: Number}, // number of days before the end of the collection
     goal: {type: Number},
     collected: {type: Number, default: 0},
-    rate: {type: [], default: 0},
+    rates: [{type: Schema.Types.ObjectId, ref: 'Rate'}],
+    avgRate: {type: Number, default: 0},
     comments: [{type: Schema.Types.ObjectId, ref: 'Comment'}]
     // Backers, Updates
 })
 
-projectSchema.index({'title': 'text'})
+projectSchema.index({name: 'text', 'title': 'text'})
 
 projectSchema.pre('validate', function (next){
     if (this.body){

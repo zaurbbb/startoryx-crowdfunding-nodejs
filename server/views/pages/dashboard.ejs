@@ -10,60 +10,83 @@
 </header>
 
 <main>
-<div class="row">
-    <div class="col-2">
-        <br>LOGIN
-        <form method="POST" action="/api/login">
-            Email:<br><input type="email" name="email">
-            <br>Password:<br><input type="password" name="password">
-            <br><br><input type="submit" value="Submit"></form>
-    </div>
-    <div class="col-9">
-        <br>REGISTRATION
-        <form method="POST" action="/api/registration">
-            First Name:<br><input type="text" name="first_name">
-            <br>Last Name:<br><input type="text" name="last_name">
-            <br>Email:<br><input type="email" name="email">
-            <br>Phone:<br><input type="text" name="phone">
-            <br>Age:<br><input type="number" name="age">
-            <br>Password:<br><input type="password" name="password">
-            <br><br><input type="submit" value="Submit"></form>
-        <button class="btn btn-secondary" onclick="location.href = '/api/google'">Sign in with Google</button>
-
-    </div>
-</div>
-
-<br><br>
-<div class="container">
-    <p class="lead">Sort by:</p>
-    <div class="btn-group" role="group" aria-label="Basic outlined example">
-        <button type="button" class="btn btn-outline-primary" onclick="location.href = '/api/dashboard/0001'">By Title (ascending)</button>
-        <button type="button" class="btn btn-outline-primary" onclick="location.href = '/api/dashboard/0002'">By Title (decreasing)</button>
-        <button type="button" class="btn btn-outline-primary" onclick="location.href = '/api/dashboard/0003'">Newest</button>
-        <button type="button" class="btn btn-outline-primary" onclick="location.href = '/api/dashboard/0004'">Oldest</button>
-
-    </div> <br><br>
     <div class="row">
-        <% projects.forEach(function(project) { %>
-        <div class="col-3">
-            <div class="card" style="width: 15rem;">
-                <a href="projects/<%= project._id %>">
-                    <img class="card-img-top" src="<%= project.image %>" alt="Card image cap">
-                </a>
-                <div class="card-body">
-                    <h5 class="card-title text-center"><a href="projects/<%= project._id %>"><%= project.title %></a></h5>
-                    <h5 class="card-text text-center lead"><%= project.type %></h5>
-                    <p class="card-text text-center"><%= project.rate %> / 10 &#9733;</p>
-                    <p class="card-text text-center"><%= date(project.dateCreated) %></p>
-                    <p class="card-text"><%= project.shortly %></p>
-                </div>
-            </div>
-            <br>
+        <div class="col-2">
+            <br>LOGIN
+            <form method="POST" action="/api/login">
+                Email:<br><input type="email" name="email">
+                <br>Password:<br><input type="password" name="password">
+                <br><br><input type="submit" value="Submit"></form>
         </div>
-            <% }); %>
+        <div class="col-9">
+            <br>REGISTRATION
+            <form method="POST" action="/api/registration">
+                First Name:<br><input type="text" name="first_name">
+                <br>Last Name:<br><input type="text" name="last_name">
+                <br>Email:<br><input type="email" name="email">
+                <br>Phone:<br><input type="text" name="phone">
+                <br>Age:<br><input type="number" name="age">
+                <br>Password:<br><input type="password" name="password">
+                <br><br><input type="submit" value="Submit"></form>
+            <button class="btn btn-secondary" onclick="location.href = '/api/google'">Sign in with Google</button>
+
+        </div>
     </div>
-</div>
+
+    <br><br>
+    <div class="container">
+        <p class="lead">Sort by:</p>
+        <div class="btn-group" role="group" aria-label="Basic outlined example">
+            <button type="button" class="btn btn-outline-primary"
+                    onclick="location.href = '/api/dashboard/01/?<%= search %>'">By Title (ascending)
+            </button>
+            <button type="button" class="btn btn-outline-primary"
+                    onclick="location.href = '/api/dashboard/02/?<%= search %>'">By Title (decreasing)
+            </button>
+            <button type="button" class="btn btn-outline-primary"
+                    onclick="location.href = '/api/dashboard/03/?<%= search %>'">Newest
+            </button>
+            <button type="button" class="btn btn-outline-primary"
+                    onclick="location.href = '/api/dashboard/04/?<%= search %>'">Oldest
+            </button>
+            <button type="button" class="btn btn-outline-primary"
+                    onclick="location.href = '/api/dashboard/05/?<%= search %>'">Most Rated
+            </button>
+            <form class="mx-3">
+                <div class="input-group mb-1">
+                    <input type="text" name="search" class="form-control form-control" placeholder="Search Here">
+                    <button type="submit" onclick="document.pressed=this.value" class="input-group-text btn-primary"><i
+                                class="bi bi-search me-2"></i> Search </button>
+                </div>
+            </form>
+        </div>
+        <br><br>
+        <div class="row">
+            <% projects.forEach(function(project) { %>
+                <div class="col-3">
+                    <div class="card" style="width: 15rem;">
+                        <a href="http://localhost:5000/api/projects/<%= project._id %>">
+                            <img class="card-img-top" src="<%= project.image %>" alt="Card image cap">
+                        </a>
+                        <div class="card-body">
+                            <h5 class="card-title text-center"><a
+                                        href="http://localhost:5000/api/projects/<%= project._id %>"><%= project.title %></a>
+                            </h5>
+                            <h5 class="card-text text-center lead"><%= project.type %></h5>
+                            <p class="card-text text-center"><%= project.avgRate %> / 10 &#9733;
+                                %>
+                            </p>
+                            <p class="card-text text-center"><%= date(project.dateCreated) %></p>
+                            <p class="card-text"><%= project.shortly %></p>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+            <% }); %>
+        </div>
+    </div>
 
 </main>
+
 </body>
 </html>
