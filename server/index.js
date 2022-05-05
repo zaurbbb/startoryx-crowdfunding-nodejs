@@ -16,6 +16,7 @@ const errorMiddleware = require('./middlewares/error-middleware')
 dotenv.config();
 
 require('./controllers/passport')(passport)
+require('./cron/days-update')
 
 const PORT = process.env.PORT || 5000;
 const app = express()
