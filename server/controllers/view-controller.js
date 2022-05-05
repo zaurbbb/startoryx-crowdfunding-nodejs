@@ -17,8 +17,10 @@ class ViewController{
             }
             const sortedProjects = await projectController.ProjectSort(projects, parseInt(req.params.sort) || 0)
             let email = null
+            let searchUrl = "search="
+            if (req._parsedUrl.query != null) searchUrl = req._parsedUrl.query
             if (req.user != null) email = req.user.email
-            res.render('pages/dashboard.ejs', {email: email, date: formatDate, projects: sortedProjects, search: req._parsedUrl.query})
+            res.render('pages/dashboard.ejs', {email: email, date: formatDate, projects: sortedProjects, search: searchUrl})
         }
         catch (e) {
             next(e)
