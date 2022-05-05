@@ -9,6 +9,7 @@ class ProjectController{
                 case 2: return await projectService.decreasingByTitle(projects)
                 case 3: return await projectService.ascendingByDate(projects)
                 case 4: return await projectService.decreasingByDate(projects)
+                case 5: return await projectService.ascendingByRate(projects)
             }
         }
         catch (e) {
