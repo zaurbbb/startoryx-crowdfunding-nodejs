@@ -26,6 +26,17 @@ class UserController{
             next(e)
         }
     }
+    async activationMail(req, res, next){
+        try{
+            const id = req.user._id
+            console.log(id)
+            await userService.activationMail(id)
+            return res.redirect('back')
+        }
+        catch (e) {
+            next(e)
+        }
+    }
     async activate(req, res, next){
         try{
             const activationLink = req.params.link;

@@ -38,15 +38,28 @@ class UserService {
         let user = await UserModel.findOne({googleId: googleId});
         if (user) {
             done(null, user)
-        }
-        else {
-            user = await UserModel.create({googleId, image, first_name, last_name, email, roles: ["USER"], isActivated: true})
+        } else {
+            user = await UserModel.create({
+                googleId,
+                image,
+                first_name,
+                last_name,
+                email,
+                roles: ["USER"],
+                isActivated: true
+            })
             done(null, user)
         }
         const userDto = new UserDto(user)
 
         return {user: userDto}
 
+    }
+
+    async activationMail(id) {
+        const user = await UserModel.findOne({_id: id})
+        const activationLink = user.activationLink
+        await mailService.sendActivationMail(user.email, `${process.env.API_URL}/api/activate/${activationLink}`)
     }
 
     async activate(activationLink) {

@@ -3,7 +3,6 @@ const LocalStrategy = require('passport-local').Strategy;
 const User = require('../models/user-model')
 const userService = require('../services/user-service')
 
-// TODO: replace to controllers
 module.exports = function (passport, req, res) {
     passport.serializeUser((user, done) => {
         done(null, user.id)

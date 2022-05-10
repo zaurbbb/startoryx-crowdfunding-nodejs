@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+</head>
+<body class="container mx-3">
+
+<header>
+    <%- include('../partials/header'); %>
+</header>
+
+<main>
+    <br>
+    <% if(user.isActivated === false){ %>
+        <p class="fw-normal" style="color: red">Your account is not activated! <a style="text-decoration: none" class="fw-bold" href="http://localhost:5000/api/activation">Activate by Email</a></p>
+<% } %>
+    <hr>
+    <div class="row">
+        <div class="col-3">
+            <fieldset class="border border-3 p-3">
+                <div class="text-center">
+                    <img src="<%= user.image %>" height="200" width="200">
+                    <button class="btn">Upload Image</button>
+                    <hr>
+                    <h2 class="display-5"><%= user.last_name %> <%= user.first_name %> </h2>
+                    <p class="lead"><%= user.email %> </p>
+                    <p> Activated Email: <%= user.isActivated %></p>
+                    <p> Phone: <%= user.phone %></p>
+                    <p> Age: <%= user.age %></p>
+                    <p> Roles: <%= user.roles %></p>
+
+                </div>
+            </fieldset>
+        </div>
+        <div class="col-6">
+            <fieldset>
+                <legend>My Projects</legend>
+                <div class="row">
+                    <% projects.forEach(function(project) { %>
+                        <div class="col-4">
+                            <div class="card" style="width: 12rem;">
+                                <a href="http://localhost:5000/api/projects/<%= project._id %>">
+                                    <img class="card-img-top" src="<%= project.image %>" alt="Card image cap">
+                                </a>
+                                <div class="card-body">
+                                    <h5 class="card-title text-center"><a style="text-decoration: none"
+                                                href="http://localhost:5000/api/projects/<%= project._id %>"><%= project.title %></a>
+                                    </h5>
+                                    <p class="card-text text-center">Published: <%= project.published %></p>
+                                    <p class="card-text text-center">Collected <%= project.collected %>$</p>
+                                </div>
+                                <button onclick="Confirm()" class="btn btn-outline-primary">Edit</button>
+                                <button class="btn btn-outline-danger">Delete</button>
+                            </div>
+                            <br>
+                        </div>
+                        <script>
+                            function Confirm(){
+                                if (confirm("If any data is changed, your project will be processed by moderation again and will become private")){
+                                    location.href='http://localhost:5000/api/projects/edit/<%= project._id %>'
+                                }
+                            }
+                        </script>
+                    <% }); %>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</main>
+
+
+</body>
+</html>

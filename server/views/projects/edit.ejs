@@ -14,7 +14,7 @@
 <main>
 
     <div>
-        <form action="/api/projects/<%= project._id %>" method="POST">
+        <form action="/api/projects/edit/<%= project._id %>" method="POST">
             <input type="hidden" name="_method" value="PUT">
             <label for="title" class="text-white"></label>
             <input type="text" class="form-control" placeholder="Title" name="title" value="<%= project.title %>" required>
@@ -26,7 +26,7 @@
             <input type="text" class="form-control" placeholder="Shortly Description" name="shortly" value="<%= project.shortly %>" required>
 
             <label for="days" class="text-white"></label>
-            <input type="number" class="form-control" placeholder="Days" name="days" value="<%= project.days %>" required>
+            <input type="number" class="form-control" placeholder="Days" name="days" value="<%= project.days %>" disabled>
 
             <label for="goal" class="text-white"></label>
             <input type="number" class="form-control" placeholder="Goal" name="goal" value="<%= project.goal %>" required>
