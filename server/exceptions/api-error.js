@@ -23,4 +23,12 @@ module.exports = class ApiError extends Error{
     static NoAccess(){
         return new ApiError(403, "You don't have access")
     }
+
+    static NotUploaded(){
+        return new ApiError(404, "File not uploaded")
+    }
+
+    static NotExist(){
+        return new ApiError(404, "User does not exist")
+    }
 }
