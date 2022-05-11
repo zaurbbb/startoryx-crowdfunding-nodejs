@@ -6,7 +6,7 @@ const UserDto = require('../dtos/user-dto')
 const ApiError = require('../exceptions/api-error')
 
 class UserService {
-    async registration(email, password, first_name = null, last_name = null, phone = null, age = null
+    async registration(email, nickname, password, first_name = null, last_name = null, phone = null, age = null
         , googleId = null, image = null) {
         // check: if such a user is in the database
         const candidate = await UserModel.findOne({email})
@@ -18,6 +18,7 @@ class UserService {
         const activationLink = uuid.v4()
         const user = await UserModel.create({
             email,
+            nickname,
             password: hashPassword,
             googleId,
             image,
@@ -34,7 +35,7 @@ class UserService {
         return {user: userDto}
     }
 
-    async googleAuth(googleId, first_name, last_name, email = null, image = null, done) {
+    async googleAuth(googleId, first_name, last_name, email, nickname, image = null, done) {
         let user = await UserModel.findOne({googleId: googleId});
         if (user) {
             done(null, user)
@@ -45,6 +46,7 @@ class UserService {
                 first_name,
                 last_name,
                 email,
+                nickname,
                 roles: ["USER"],
                 isActivated: true
             })
