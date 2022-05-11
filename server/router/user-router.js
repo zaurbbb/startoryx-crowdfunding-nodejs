@@ -24,12 +24,14 @@ const storage = new CloudinaryStorage({
 
 const upload = multer({storage: storage});
 
-router
+router.post('/files/profile', upload.single('ava', {width: 305, height: 305, crop: "fill"}),
+    userController.updateImage)
 
 // ---Local authorization---
 
 router.post('/registration',
     body('email').isEmail(),
+    // body('phone').isMobilePhone(),
     body('password').isLength({min: 3, max: 32}), // TODO: change min
     ensureGuest, userController.registration,
     passport.authenticate('local', {
@@ -70,7 +72,7 @@ router.get('/dashboard/:sort?/:search?', viewController.dashboard);
 
 router.get('/protected', ensureAuth, (req, res) => {
     res.render('pages/protected.ejs', {email: req.user.email, name: req.user.first_name, imgSrc: req.user.image,
-        id: req.user._id})
+        nickname: req.user.nickname})
 });
 
 router.get('/profile/:id?', ensureAuth, viewController.profile);

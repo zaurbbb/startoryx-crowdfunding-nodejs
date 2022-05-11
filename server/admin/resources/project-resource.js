@@ -28,7 +28,7 @@ module.exports = {
             isVisible: {
                 show: true,
                 edit: true,
-                list: true,
+                list: false,
                 filter: false
             }
         },
@@ -68,7 +68,7 @@ module.exports = {
             isVisible: {
                 show: true,
                 edit: true,
-                list: true,
+                list: false,
                 filter: true
             }
         },
@@ -80,14 +80,6 @@ module.exports = {
                 filter: true
             }
         },
-        rates: {
-            isVisible: {
-                show: true,
-                edit: true,
-                list: false,
-                filter: false
-            }
-        },
         avgRate: {
             isVisible: {
                 show: true,
@@ -97,6 +89,30 @@ module.exports = {
             }
         },
         image: {
+            isVisible: {
+                show: true,
+                edit: true,
+                list: false,
+                filter: false
+            }
+        },
+        published: {
+            isVisible: {
+                show: true,
+                edit: true,
+                list: true,
+                filter: true
+            }
+        },
+        comments: {
+            isVisible: {
+                show: true,
+                edit: true,
+                list: false,
+                filter: false
+            }
+        },
+        rates: {
             isVisible: {
                 show: true,
                 edit: true,

@@ -11,16 +11,29 @@
 
 <main>
     <br>
+    <% if(user.isActivated === false){ %>
+        <p class="fw-normal" style="color: red">Your account is not activated! <a style="text-decoration: none"
+                                                                                  class="fw-bold"
+                                                                                  href="http://localhost:5000/api/activation">Activate
+                by Email</a></p>
+    <% } %>
     <hr>
     <div class="row">
         <div class="col-3">
             <fieldset class="border border-3 p-3">
                 <div class="text-center">
                     <img src="<%= user.image %>" height="200" width="200">
+                    <form action="/api/files/profile" method="POST" enctype="multipart/form-data">
+                        <label for="ava" class="text-white"></label>
+                        <input type="file" name="ava" accept="image/*">
+                        <button type="submit" class="btn">Upload Image</button>
+                        <br>
+                    </form>
                     <hr>
                     <h2 class="display-5"><%= user.last_name %> <%= user.first_name %> </h2>
                     <p class="lead"><%= user.nickname %> </p>
                     <p class="lead"><%= user.email %> </p>
+                    <p> Activated Email: <%= user.isActivated %></p>
                     <p> Phone: <%= user.phone %></p>
                     <p> Age: <%= user.age %></p>
                     <p> Roles: <%= user.roles %></p>
@@ -30,7 +43,7 @@
         </div>
         <div class="col-6">
             <fieldset>
-                <legend><%= user.nickname %>'s Projects</legend>
+                <legend>My Projects</legend>
                 <div class="row">
                     <% projects.forEach(function(project) { %>
                         <div class="col-4">
@@ -45,9 +58,18 @@
                                     <p class="card-text text-center">Published: <%= project.published %></p>
                                     <p class="card-text text-center">Collected <%= project.collected %>$</p>
                                 </div>
+                                <button onclick="Confirm()" class="btn btn-outline-primary">Edit</button>
+                                <button class="btn btn-outline-danger">Delete</button>
                             </div>
                             <br>
                         </div>
+                        <script>
+                            function Confirm() {
+                                if (confirm("If any data is changed, your project will be processed by moderation again and will become private")) {
+                                    location.href = 'http://localhost:5000/api/projects/edit/<%= project._id %>'
+                                }
+                            }
+                        </script>
                     <% }); %>
                 </div>
             </fieldset>

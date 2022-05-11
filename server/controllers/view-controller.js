@@ -1,7 +1,9 @@
 const Project = require("../models/project-model");
+const User = require("../models/user-model")
 const Comment = require("../models/comment-model");
 const Rate = require("../models/rate-model");
 const projectController = require("./project-controller");
+const ApiError = require('../exceptions/api-error')
 const formatDate = require("../helpers/formatDate");
 const averageRate = require("../helpers/averageRate");
 
@@ -19,17 +21,17 @@ class ViewController {
                 projects = await Project.find({published: true}).lean()
             }
             const sortedProjects = await projectController.ProjectSort(projects, parseInt(req.params.sort) || 0)
-            let email, userId = null
+            let email, nickname = null
             if (req.user != null) {
                 email = req.user.email
-                userId = req.user._id
+                nickname = req.user.nickname
             }
 
             let searchUrl = "search="
             if (req._parsedUrl.query != null) searchUrl = req._parsedUrl.query
             res.render('pages/dashboard.ejs', {
                 email: email, date: formatDate, projects: sortedProjects, search: searchUrl,
-                id: userId
+                nickname: nickname
             })
         } catch (e) {
             next(e)
@@ -38,10 +40,10 @@ class ViewController {
 
     async getProject(req, res, next) {
         try {
-            let email, userId = null
+            let email, nickname = null
             if (req.user != null) {
                 email = req.user.email
-                userId = req.user._id
+                nickname = req.user.nickname
             }
             await Project.findById(req.params.id).populate({
                 path: 'comments', model: 'Comment',
@@ -50,7 +52,7 @@ class ViewController {
                 if (err) {
                     console.log(err)
                 }
-                res.render('projects/read.ejs', {email: email, date: formatDate, project: project, id: userId})
+                res.render('projects/read.ejs', {email: email, date: formatDate, project: project, id: nickname})
             })
         } catch (e) {
             next(e)
@@ -137,9 +139,24 @@ class ViewController {
 
     async profile(req, res, next) {
         try {
-            let projects = await Project.find({user: req.user._id}).lean()
-            res.render('pages/profile.ejs', {email: req.user.email, id: req.user._id, user: req.user,
-            projects: projects, date: formatDate})
+            const user = await User.findOne({nickname: req.params.id})
+            if (user == null) {
+                return next(ApiError.NotExist())
+            }
+
+            let projects = await Project.find({user: user._id}).lean()
+
+            if (user._id.equals(req.user._id)) {
+                res.render('pages/personal_profile.ejs', {
+                    email: req.user.email, user: user, nickname: req.user.nickname,
+                    projects: projects, date: formatDate
+                })
+            } else {
+                res.render('pages/profile.ejs', {
+                    email: req.user.email, user: user, nickname: req.user.nickname,
+                    projects: projects, date: formatDate
+                })
+            }
         } catch (e) {
             next(e)
         }

@@ -9,6 +9,14 @@ module.exports = {
                 filter: true
             }
         },
+        nickname: {
+            isVisible: {
+                show: true,
+                edit: true,
+                list: true,
+                filter: true
+            }
+        },
         password: {
             isVisible: {
                 show: true,
