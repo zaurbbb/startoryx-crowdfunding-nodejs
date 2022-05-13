@@ -6,5 +6,5 @@ module.exports = async (id) => {
     project.rates.forEach(function (oneRate) {
         avRate += oneRate.rate
     })
-    return avRate / project.rates.length;
+    return (avRate / project.rates.length).toFixed(1);
 }
