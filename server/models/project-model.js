@@ -17,7 +17,8 @@ const projectSchema = new Schema({ // TODO: add required fields
     collected: {type: Number, default: 0},
     rates: [{type: Schema.Types.ObjectId, ref: 'Rate'}],
     avgRate: {type: Number, default: 0},
-    comments: [{type: Schema.Types.ObjectId, ref: 'Comment'}]
+    comments: [{type: Schema.Types.ObjectId, ref: 'Comment'}],
+    published: {type: Boolean, default: false}
     // Backers, Updates
 })
 
