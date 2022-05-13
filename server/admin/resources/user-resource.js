@@ -25,6 +25,14 @@ module.exports = {
                 filter: false
             }
         },
+        balance: {
+            isVisible: {
+                show: true,
+                edit: true,
+                list: true,
+                filter: true
+            }
+        },
         image: {
             isVisible: {
                 show: true,

@@ -62,6 +62,17 @@ class UserController {
             next(e)
         }
     }
+
+    async deposit(req, res, next) {
+        try {
+            const user = await User.findOne({_id: req.user.id})
+            await User.updateOne({_id: user.id}, {balance: user.balance + 10})
+            res.redirect('back')
+        }
+        catch (e) {
+            next(e)
+        }
+    }
 }
 
 module.exports = new UserController()

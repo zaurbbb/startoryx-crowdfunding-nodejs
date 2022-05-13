@@ -10,6 +10,7 @@ const userSchema = new Schema({
     last_name: {type: String},
     phone: {type: String},
     age: {type: Number},
+    balance: {type: Number, default: 0},
     isActivated: {type: Boolean, default: false},
     activationLink: {type: String},
     roles: {type: []},
