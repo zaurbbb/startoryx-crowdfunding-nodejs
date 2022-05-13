@@ -77,5 +77,7 @@ router.get('/protected', ensureAuth, (req, res) => {
 
 router.get('/profile/:id?', ensureAuth, viewController.profile);
 
+router.get('/profile/:id?/balance', userController.deposit);
+
 
 module.exports = router;
