@@ -37,7 +37,6 @@ app.use('/admin', adminRouter);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
-// handlebars
 
 app.set('view engine', 'ejs')
 // passport middleware
@@ -62,12 +61,14 @@ const start = async () => {
 }
 
 app.get('/', (req, res) => {
-    let email = null
+    let email, nickname = null
     if (req.user != null) {
         email = req.user.email
+        nickname = req.user.nickname
     }
     res.render('pages/index.ejs', {
-        email: email
+        email: email,
+        nickname: nickname
     })
 })
 app.use('/api', router);

@@ -24,14 +24,14 @@ const upload = multer({storage: storage});
 
 
 router.get('/add', ensureAuth, (req, res) => {
-    res.render('projects/add.ejs', {email: req.user.email})
+    res.render('projects/add.ejs', {email: req.user.email, nickname: req.user.nickname})
 })
 
 router.post('/add', ensureAuth, upload.single('image', {width: 305, height: 305, crop: "fill"}), viewController.postProject)
 
 router.get('/edit/:id', viewController.getEditProject)
 
-router.put('/:id', viewController.putProject)
+router.post('/edit/:id', viewController.putProject)
 
 router.get('/:id', viewController.getProject)
 
