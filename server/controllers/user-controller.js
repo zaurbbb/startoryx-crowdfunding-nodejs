@@ -53,12 +53,23 @@ class UserController {
             if (req.file == null){
                 return next(ApiError.NotUploaded())
             }
-            const user = await User.findOneAndUpdate(
+            await User.findOneAndUpdate(
                 {_id: req.user.id},
                 {image: req.file.path}
             )
             res.redirect('back')
         } catch (e) {
+            next(e)
+        }
+    }
+
+    async updateProfile(req, res, next) {
+        try {
+            const {nickname, first_name, last_name, phone, age} = req.body
+            await userService.updateProfile(req.user.email, nickname, first_name, last_name, age, phone)
+            res.redirect('/api/profile/' + req.user.nickname)
+        }
+        catch (e) {
             next(e)
         }
     }

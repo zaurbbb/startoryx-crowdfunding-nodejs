@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+</head>
+<body class="container mx-3">
+
+<header>
+    <%- include('../partials/header'); %>
+</header>
+
+<main>
+    <br>
+    <hr>
+    <div class="row">
+        <div class="col-3">
+            <fieldset class="border border-3 p-3">
+                <div class="text-center">
+                    <img src="<%= user.image %>" height="200" width="200">
+                    <hr>
+                    <h2 class="display-5"><%= user.first_name %> <%= user.last_name %></h2>
+                    <p class="lead"><%= user.nickname %> </p>
+                    <p class="lead"><%= user.email %> </p>
+                    <p> Phone: <%= user.phone %></p>
+                    <p> Age: <%= user.age %></p>
+                    <p> Roles: <%= user.roles %></p>
+
+                </div>
+            </fieldset>
+        </div>
+        <div class="col-6">
+            <legend>Settings</legend>
+            <fieldset class="border border-3 p-3">
+
+                <div class="row">
+                    <div class="col-4">
+                        <form action="/api/files/profile/settings" method="POST">
+                            <label> First Name
+                                <input type="text" class="form-control" placeholder="First Name"
+                                       value="<%= user.first_name %>" name="first_name" required><br>
+                            </label>
+
+                            <label> Last Name
+                                <input type="text" class="form-control" placeholder="Last Name"
+                                       value="<%= user.last_name %>" name="last_name" required><br>
+                            </label>
+
+                            <label> Nickname
+                                <input type="text" class="form-control" placeholder="Nickname"
+                                       value="<%= user.nickname %>" name="nickname" required><br>
+                            </label>
+
+                            <label> Phone
+                                <input type="number" class="form-control" placeholder="Phone"
+                                       name="phone" value="<%= user.phone %>"><br>
+                            </label>
+
+                            <label> Age
+                                <input type="number" class="form-control" placeholder="Age" value="<%= user.age %>"
+                                       required name="age"><br>
+                            </label>
+                            <br>
+                            <input type="submit">
+                        </form>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+    <br>
+</main>
+
+
+</body>
+</html>

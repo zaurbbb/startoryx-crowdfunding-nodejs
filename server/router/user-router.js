@@ -24,9 +24,6 @@ const storage = new CloudinaryStorage({
 
 const upload = multer({storage: storage});
 
-router.post('/files/profile', upload.single('ava', {width: 305, height: 305, crop: "fill"}),
-    userController.updateImage)
-
 // ---Local authorization---
 
 router.post('/registration',
@@ -35,13 +32,13 @@ router.post('/registration',
     body('password').isLength({min: 3, max: 32}), // TODO: change min
     ensureGuest, userController.registration,
     passport.authenticate('local', {
-        successRedirect: "/api/protected",
+        successRedirect: "/api/dashboard",
         failureRedirect: "/api/dashboard"
     }));
 
 router.post('/login', ensureGuest,
     passport.authenticate('local', {
-        successRedirect: "/api/protected",
+        successRedirect: "/api/dashboard",
         failureRedirect: "/api/dashboard"
     }));
 
@@ -56,8 +53,8 @@ router.get('/google', ensureGuest,
     passport.authenticate('google', {scope: ['email', 'profile']}));
 
 router.get('/google/callback', passport.authenticate('google', {
-    successRedirect: "/api/protected",
-    failureRedirect: "/"
+    successRedirect: "/api/dashboard",
+    failureRedirect: "/api/dashboard"
 }));
 
 
@@ -75,9 +72,16 @@ router.get('/protected', ensureAuth, (req, res) => {
         nickname: req.user.nickname})
 });
 
-router.get('/profile/:id?', ensureAuth, viewController.profile);
+router.get('/profile/:id?', viewController.profile);
 
 router.get('/profile/:id?/balance', userController.deposit);
+
+router.get('/profile/:id?/settings', viewController.profileSettings)
+
+router.post('/files/profile', upload.single('ava', {width: 305, height: 305, crop: "fill"}),
+    userController.updateImage)
+
+router.post('/files/profile/settings', userController.updateProfile)
 
 
 module.exports = router;

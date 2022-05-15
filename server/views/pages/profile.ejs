@@ -18,7 +18,7 @@
                 <div class="text-center">
                     <img src="<%= user.image %>" height="200" width="200">
                     <hr>
-                    <h2 class="display-5"><%= user.last_name %> <%= user.first_name %> </h2>
+                    <h2 class="display-5"><%= user.first_name %> <%= user.last_name %></h2>
                     <p class="lead"><%= user.nickname %> </p>
                     <p class="lead"><%= user.email %> </p>
                     <p> Phone: <%= user.phone %></p>
@@ -42,8 +42,6 @@
                                     <h5 class="card-title text-center"><a style="text-decoration: none"
                                                                           href="http://localhost:5000/api/projects/<%= project._id %>"><%= project.title %></a>
                                     </h5>
-                                    <p class="card-text text-center">Published: <%= project.published %></p>
-                                    <p class="card-text text-center">Collected <%= project.collected %>$</p>
                                 </div>
                             </div>
                             <br>

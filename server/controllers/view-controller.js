@@ -7,12 +7,15 @@ const ApiError = require('../exceptions/api-error')
 const formatDate = require("../helpers/formatDate");
 const averageRate = require("../helpers/averageRate");
 
-
+// TODO: Redirect and create view-service
 class ViewController {
     async dashboard(req, res, next) {
         try {
             let search = null
             let projects
+            if (req._parsedUrl.query === "search=") {
+                req._parsedUrl.query = null
+            }
             if (req._parsedUrl.query != null) {
                 const str = req._parsedUrl.query
                 search = str.split('=', 2)[1]
@@ -52,7 +55,7 @@ class ViewController {
                 if (err) {
                     console.log(err)
                 }
-                res.render('projects/read.ejs', {email: email, date: formatDate, project: project, id: nickname})
+                res.render('projects/read.ejs', {email: email, date: formatDate, project: project, nickname: nickname})
             })
         } catch (e) {
             next(e)
@@ -77,7 +80,7 @@ class ViewController {
         try {
             const project = await Project.findById(req.params.id).lean()
             if (project.user.equals(req.user._id))
-                res.render('projects/edit.ejs', {email: req.user.email, project: project, id: req.user._id})
+                res.render('projects/edit.ejs', {email: req.user.email, project: project, nickname: req.user.nickname})
             else
                 res.redirect('/api/dashboard')
 
@@ -139,24 +142,59 @@ class ViewController {
 
     async profile(req, res, next) {
         try {
+            if (req.params.id == null) {
+                req.params.id = req.user.nickname
+            }
             const user = await User.findOne({nickname: req.params.id})
             if (user == null) {
                 return next(ApiError.NotExist())
             }
+            let email, nickname
+            if (req.user == null) {
+                email = null
+                nickname = null
+            } else {
+                email = req.user.email
+                nickname = req.user.nickname
+            }
 
             let projects = await Project.find({user: user._id}).lean()
 
-            if (user._id.equals(req.user._id)) {
+            if (req.user != null && user._id.equals(req.user._id)) {
                 res.render('pages/personal_profile.ejs', {
                     email: req.user.email, user: user, nickname: req.user.nickname,
                     projects: projects, date: formatDate
                 })
             } else {
                 res.render('pages/profile.ejs', {
-                    email: req.user.email, user: user, nickname: req.user.nickname,
+                    email: email, user: user, nickname: nickname,
                     projects: projects, date: formatDate
                 })
             }
+        } catch (e) {
+            next(e)
+        }
+    }
+
+    async profileSettings(req, res, next) {
+        try {
+            const user = await User.findOne({nickname: req.params.id})
+            if (user == null) {
+                return next(ApiError.NotExist())
+            }
+            let email, nickname
+            if (req.user == null) {
+                email = null
+                nickname = null
+            } else {
+                email = req.user.email
+                nickname = req.user.nickname
+            }
+
+            res.render('pages/settings.ejs', {
+                email: email, user: user, nickname: nickname,
+                date: formatDate
+            })
         } catch (e) {
             next(e)
         }

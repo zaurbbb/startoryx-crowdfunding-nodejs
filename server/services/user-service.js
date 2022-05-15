@@ -4,6 +4,7 @@ const uuid = require('uuid')
 const mailService = require('./mail-service')
 const UserDto = require('../dtos/user-dto')
 const ApiError = require('../exceptions/api-error')
+const User = require("../models/user-model");
 
 class UserService {
     async registration(email, nickname, password, first_name = null, last_name = null, phone = null, age = null
@@ -89,6 +90,14 @@ class UserService {
         done(null, user)
 
         return {user: userDto}
+    }
+
+    async updateProfile(email, nickname, first_name, last_name, age, phone = null){
+        await User.findOneAndUpdate(
+            {email: email},
+            {nickname: nickname, first_name: first_name, last_name: last_name,
+            age: age, phone: phone}
+        )
     }
 
 }

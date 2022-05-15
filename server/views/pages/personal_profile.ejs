@@ -26,13 +26,17 @@
                     <form action="/api/files/profile" method="POST" enctype="multipart/form-data">
                         <label for="ava" class="text-white"></label>
                         <input type="file" name="ava" accept="image/*">
-                        <button type="submit" class="btn">Upload Image</button>
+                        <button type="submit" class="btn border">Upload Image</button>
                         <br>
                     </form>
+                    <button class="btn border" onclick="location.href='http://localhost:5000/api/profile/<%= nickname %>/settings'">Settings</button>
                     <hr>
-                    <h2 class="display-5"><%= user.last_name %> <%= user.first_name %> </h2>
+                    <h2 class="display-5"><%= user.first_name %> <%= user.last_name %></h2>
                     <p class="lead"><%= user.nickname %> </p>
                     <p class="lead"><%= user.email %> </p>
+                    <p> Balance: <%= user.balance %>$</p>
+                    <p><a class="p-1" style="text-decoration: none; border: 1px solid gray" href="http://localhost:5000/api/profile/<%= nickname %>/balance">Top up balance</a></p>
+                    <hr>
                     <p> Activated Email: <%= user.isActivated %></p>
                     <p> Phone: <%= user.phone %></p>
                     <p> Age: <%= user.age %></p>
