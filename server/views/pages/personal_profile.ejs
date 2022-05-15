@@ -30,6 +30,10 @@
                         <br>
                     </form>
                     <button class="btn border" onclick="location.href='http://localhost:5000/api/profile/<%= nickname %>/settings'">Settings</button>
+                    <br>
+                    <% if(user.googleId == null){ %>
+                    <a href="http://localhost:5000/api/password-reset" style="text-decoration: none">Change Password</a>
+                    <% } %>
                     <hr>
                     <h2 class="display-5"><%= user.first_name %> <%= user.last_name %></h2>
                     <p class="lead"><%= user.nickname %> </p>
