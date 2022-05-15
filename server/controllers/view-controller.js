@@ -3,6 +3,7 @@ const User = require("../models/user-model")
 const Comment = require("../models/comment-model");
 const Rate = require("../models/rate-model");
 const projectController = require("./project-controller");
+const viewService = require('../services/view-service')
 const ApiError = require('../exceptions/api-error')
 const formatDate = require("../helpers/formatDate");
 const averageRate = require("../helpers/averageRate");
@@ -11,29 +12,14 @@ const averageRate = require("../helpers/averageRate");
 class ViewController {
     async dashboard(req, res, next) {
         try {
-            let search = null
-            let projects
-            if (req._parsedUrl.query === "search=") {
-                req._parsedUrl.query = null
-            }
-            if (req._parsedUrl.query != null) {
-                const str = req._parsedUrl.query
-                search = str.split('=', 2)[1]
-                projects = await Project.find({published: true, $text: {$search: search}}).lean()
-            } else {
-                projects = await Project.find({published: true}).lean()
-            }
-            const sortedProjects = await projectController.ProjectSort(projects, parseInt(req.params.sort) || 0)
-            let email, nickname = null
+            let email, nickname
             if (req.user != null) {
                 email = req.user.email
                 nickname = req.user.nickname
             }
-
-            let searchUrl = "search="
-            if (req._parsedUrl.query != null) searchUrl = req._parsedUrl.query
+            const board = await viewService.projectBoard(req._parsedUrl.query, req.params.sort)
             res.render('pages/dashboard.ejs', {
-                email: email, date: formatDate, projects: sortedProjects, search: searchUrl,
+                email: email, date: formatDate, projects: board.projects, search: board.search,
                 nickname: nickname
             })
         } catch (e) {
@@ -43,20 +29,18 @@ class ViewController {
 
     async getProject(req, res, next) {
         try {
-            let email, nickname = null
+            let email, nickname
             if (req.user != null) {
                 email = req.user.email
                 nickname = req.user.nickname
             }
-            await Project.findById(req.params.id).populate({
+
+            const project = await Project.findById(req.params.id).populate({
                 path: 'comments', model: 'Comment',
                 populate: {path: 'user', model: 'User'}
-            }).populate('user').exec(function (err, project) {
-                if (err) {
-                    console.log(err)
-                }
-                res.render('projects/read.ejs', {email: email, date: formatDate, project: project, nickname: nickname})
-            })
+            }).populate('user')
+
+            res.render('projects/read.ejs', {email: email, date: formatDate, project: project, nickname: nickname})
         } catch (e) {
             next(e)
         }
@@ -92,10 +76,8 @@ class ViewController {
     async postProject(req, res, next) {
         try {
             req.body.user = req.user._id
-            if (req.file != null)
-                req.body.image = req.file.path
-            const project = await Project.create(req.body)
-            console.log(project)
+            if (req.file != null) req.body.image = req.file.path
+            await Project.create(req.body)
             res.send('Submitted for approval by moderation')
         } catch (e) {
             next(e)
@@ -106,12 +88,8 @@ class ViewController {
         try {
             req.body.project = req.params.id
             req.body.user = req.user._id
-            const comment = await Comment.create(req.body)
-            await Project.findOneAndUpdate(
-                {_id: req.params.id},
-                {$push: {comments: comment}})
 
-            console.log(comment)
+            await viewService.postComment(req.body)
             res.redirect('back')
         } catch (e) {
             next(e)
@@ -123,17 +101,8 @@ class ViewController {
             req.body.rate = parseInt(req.body.rate)
             req.body.project = req.params.id
             req.body.user = req.user._id
-            const rate = await Rate.create(req.body)
-            await Project.findOneAndUpdate(
-                {_id: req.params.id},
-                {$push: {rates: rate}})
 
-            await Project.findOneAndUpdate({
-                _id: req.params.id
-            }, {
-                avgRate: await averageRate(req.params.id)
-            })
-            console.log(rate)
+            await viewService.postRate(req.body)
             res.redirect('back')
         } catch (e) {
             next(e)
@@ -142,33 +111,26 @@ class ViewController {
 
     async profile(req, res, next) {
         try {
-            if (req.params.id == null) {
-                req.params.id = req.user.nickname
-            }
-            const user = await User.findOne({nickname: req.params.id})
-            if (user == null) {
-                return next(ApiError.NotExist())
-            }
             let email, nickname
-            if (req.user == null) {
-                email = null
-                nickname = null
-            } else {
+            if (req.user != null) {
                 email = req.user.email
                 nickname = req.user.nickname
             }
+            if (req.params.id == null) {
+                req.params.id = nickname
+            }
 
-            let projects = await Project.find({user: user._id}).lean()
+            const profile = await viewService.profile(req.params.id)
 
-            if (req.user != null && user._id.equals(req.user._id)) {
+            if (req.user != null && profile.user._id.equals(req.user._id)) {
                 res.render('pages/personal_profile.ejs', {
-                    email: req.user.email, user: user, nickname: req.user.nickname,
-                    projects: projects, date: formatDate
+                    email: req.user.email, user: profile.user, nickname: req.user.nickname,
+                    projects: profile.projects, date: formatDate
                 })
             } else {
                 res.render('pages/profile.ejs', {
-                    email: email, user: user, nickname: nickname,
-                    projects: projects, date: formatDate
+                    email: email, user: profile.user, nickname: nickname,
+                    projects: profile.projects, date: formatDate
                 })
             }
         } catch (e) {
@@ -178,19 +140,13 @@ class ViewController {
 
     async profileSettings(req, res, next) {
         try {
-            const user = await User.findOne({nickname: req.params.id})
-            if (user == null) {
-                return next(ApiError.NotExist())
-            }
             let email, nickname
-            if (req.user == null) {
-                email = null
-                nickname = null
-            } else {
+            if (req.user != null) {
                 email = req.user.email
                 nickname = req.user.nickname
             }
-
+            const user = await User.findOne({nickname: req.params.id})
+            if (user == null) return next(ApiError.NotExist())
             res.render('pages/settings.ejs', {
                 email: email, user: user, nickname: nickname,
                 date: formatDate
