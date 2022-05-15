@@ -13,6 +13,7 @@ const userSchema = new Schema({
     balance: {type: Number, default: 0},
     isActivated: {type: Boolean, default: false},
     activationLink: {type: String},
+    resetLink: {type: String},
     roles: {type: []},
 })
 

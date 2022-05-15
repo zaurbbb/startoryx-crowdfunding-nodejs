@@ -46,6 +46,13 @@ router.get('/activation', userController.activationMail)
 
 router.get('/activate/:link', userController.activate)
 
+router.get('/password-reset', userController.passwordReset)
+
+router.get('/reset/:link', userController.reset)
+
+router.post('/reset/:link', body('password').isLength({min: 7, max: 32}), userController.updatePassword)
+
+
 
 // ---Google authorization---
 
@@ -82,6 +89,7 @@ router.post('/files/profile', upload.single('ava', {width: 305, height: 305, cro
     userController.updateImage)
 
 router.post('/files/profile/settings', userController.updateProfile)
+
 
 
 module.exports = router;

@@ -2,6 +2,7 @@ const userService = require('../services/user-service')
 const {validationResult} = require('express-validator')
 const ApiError = require('../exceptions/api-error')
 const User = require("../models/user-model");
+const bcrypt = require("bcrypt");
 
 class UserController {
     async registration(req, res, next) {
@@ -29,10 +30,8 @@ class UserController {
 
     async activationMail(req, res, next) {
         try {
-            const id = req.user._id
-            console.log(id)
-            await userService.activationMail(id)
-            return res.redirect('back')
+            await userService.activationMail(req.user._id)
+            res.redirect('back')
         } catch (e) {
             next(e)
         }
@@ -42,7 +41,41 @@ class UserController {
         try {
             const activationLink = req.params.link;
             await userService.activate(activationLink);
-            return res.redirect(process.env.CLIENT_URL);
+            res.redirect(process.env.CLIENT_URL);
+        } catch (e) {
+            next(e)
+        }
+    }
+
+    async passwordReset(req, res, next) {
+        try {
+            await userService.passwordReset(req.user._id)
+            res.send('A confirmation link has been sent to your email')
+        } catch (e) {
+            next(e)
+        }
+    }
+
+    async reset(req, res, next) {
+        try {
+            const resetLink = req.params.link;
+            await userService.reset(resetLink);
+            res.render('pages/password_change.ejs', {
+                link: resetLink
+            });
+        } catch (e) {
+            next(e)
+        }
+    }
+
+    async updatePassword(req, res, next) {
+        try {
+            const errors = validationResult(req);
+            if (!errors.isEmpty() || req.body.password !== req.body.confirm_pass) {
+                return next(ApiError.BadRequest('Validation error', errors.array()))
+            }
+            await userService.updatePassword(req.params.link, req.body.password)
+            res.redirect('/api/profile')
         } catch (e) {
             next(e)
         }

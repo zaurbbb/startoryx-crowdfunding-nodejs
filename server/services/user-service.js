@@ -59,6 +59,13 @@ class UserService {
 
     }
 
+    async passwordReset(id) {
+        const user = await UserModel.findOne({_id: id})
+        const resetLink = uuid.v4()
+        await UserModel.findOneAndUpdate({email: user.email}, {resetLink: resetLink})
+        await mailService.sendResetLink(user.email, `${process.env.API_URL}/api/reset/${resetLink}`)
+    }
+
     async activationMail(id) {
         const user = await UserModel.findOne({_id: id})
         const activationLink = user.activationLink
@@ -72,6 +79,15 @@ class UserService {
         }
         user.isActivated = true;
         await user.save();
+    }
+
+    async reset(resetLink) {
+        const user = await UserModel.findOne({resetLink})
+        if (!user) {
+            throw ApiError.BadRequest('Incorrect reset link')
+        }
+        // user.resetLink = null;
+        // await user.save();
     }
 
     async login(email, password, done) {
@@ -90,6 +106,12 @@ class UserService {
         done(null, user)
 
         return {user: userDto}
+    }
+
+    async updatePassword(resetLink, password){
+
+        const hashPassword = await bcrypt.hash(password, 4)
+        await User.findOneAndUpdate({resetLink: resetLink}, {password: hashPassword})
     }
 
     async updateProfile(email, nickname, first_name, last_name, age, phone = null){
