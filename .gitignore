@@ -1,4 +1,3 @@
-/server/node_modules/
+/node_modules/
 .idea
-/server/.env
-/client
+/.env
