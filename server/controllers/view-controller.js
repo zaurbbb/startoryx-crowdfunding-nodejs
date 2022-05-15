@@ -1,14 +1,9 @@
 const Project = require("../models/project-model");
 const User = require("../models/user-model")
-const Comment = require("../models/comment-model");
-const Rate = require("../models/rate-model");
-const projectController = require("./project-controller");
 const viewService = require('../services/view-service')
 const ApiError = require('../exceptions/api-error')
 const formatDate = require("../helpers/formatDate");
-const averageRate = require("../helpers/averageRate");
 
-// TODO: Redirect and create view-service
 class ViewController {
     async dashboard(req, res, next) {
         try {
