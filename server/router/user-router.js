@@ -46,6 +46,8 @@ router.get('/activation', userController.activationMail)
 
 router.get('/activate/:link', userController.activate)
 
+router.post('/password-reset', userController.passwordReset)
+
 router.get('/password-reset', userController.passwordReset)
 
 router.get('/reset/:link', userController.reset)

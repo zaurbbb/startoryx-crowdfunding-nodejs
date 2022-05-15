@@ -2,7 +2,6 @@ const userService = require('../services/user-service')
 const {validationResult} = require('express-validator')
 const ApiError = require('../exceptions/api-error')
 const User = require("../models/user-model");
-const bcrypt = require("bcrypt");
 
 class UserController {
     async registration(req, res, next) {
@@ -49,7 +48,10 @@ class UserController {
 
     async passwordReset(req, res, next) {
         try {
-            await userService.passwordReset(req.user._id)
+            if (req.user != null)
+                await userService.passwordReset(req.user._id, null)
+            else
+                await userService.passwordReset(null, req.body.email)
             res.send('A confirmation link has been sent to your email')
         } catch (e) {
             next(e)
@@ -75,7 +77,7 @@ class UserController {
                 return next(ApiError.BadRequest('Validation error', errors.array()))
             }
             await userService.updatePassword(req.params.link, req.body.password)
-            res.redirect('/api/profile')
+            res.redirect('/api/dashboard')
         } catch (e) {
             next(e)
         }

@@ -59,8 +59,16 @@ class UserService {
 
     }
 
-    async passwordReset(id) {
-        const user = await UserModel.findOne({_id: id})
+    async passwordReset(id, email) {
+        let user
+        if (id != null)
+            user = await UserModel.findOne({_id: id})
+        else
+            user = await UserModel.findOne({email: email})
+        if (!user) {
+            throw ApiError.BadRequest('User with this email address already exists')
+        }
+
         const resetLink = uuid.v4()
         await UserModel.findOneAndUpdate({email: user.email}, {resetLink: resetLink})
         await mailService.sendResetLink(user.email, `${process.env.API_URL}/api/reset/${resetLink}`)
@@ -86,8 +94,6 @@ class UserService {
         if (!user) {
             throw ApiError.BadRequest('Incorrect reset link')
         }
-        // user.resetLink = null;
-        // await user.save();
     }
 
     async login(email, password, done) {
@@ -109,9 +115,8 @@ class UserService {
     }
 
     async updatePassword(resetLink, password){
-
         const hashPassword = await bcrypt.hash(password, 4)
-        await User.findOneAndUpdate({resetLink: resetLink}, {password: hashPassword})
+        await User.findOneAndUpdate({resetLink: resetLink}, {password: hashPassword, resetLink: null})
     }
 
     async updateProfile(email, nickname, first_name, last_name, age, phone = null){
