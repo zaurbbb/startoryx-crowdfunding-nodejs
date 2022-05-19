@@ -36,7 +36,11 @@
             </fieldset>
             <br>
         <% }); %>
-        <br>
+        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Back this project</button>
+
+
+        <br><br>
         <form action="/api/projects/<%= project._id %>/rate" method="post">
             <div class="form-check form-check-inline">
                 <input class="form-check-input" name="rate" type="radio" value="1">1
@@ -81,7 +85,29 @@
         <br>
     </div>
 </main>
-
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="post" action="/api/donate/<%= project._id %>">
+            <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="message-text" class="col-form-label">Donation amount:</label>
+                        <input type="number" class="form-control" name="amount">
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-success">Donate</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>

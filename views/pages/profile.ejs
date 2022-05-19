@@ -35,12 +35,12 @@
                     <% projects.forEach(function(project) { %>
                         <div class="col-4">
                             <div class="card" style="width: 12rem;">
-                                <a href="http://localhost:5000/api/projects/<%= project._id %>">
+                                <a href="<%= url %>/api/projects/<%= project._id %>">
                                     <img class="card-img-top" src="<%= project.image %>" alt="Card image cap">
                                 </a>
                                 <div class="card-body">
                                     <h5 class="card-title text-center"><a style="text-decoration: none"
-                                                                          href="http://localhost:5000/api/projects/<%= project._id %>"><%= project.title %></a>
+                                                                          href="<%= url %>/api/projects/<%= project._id %>"><%= project.title %></a>
                                     </h5>
                                 </div>
                             </div>

@@ -1,7 +1,8 @@
 const userService = require('../services/user-service')
 const {validationResult} = require('express-validator')
 const ApiError = require('../exceptions/api-error')
-const User = require("../models/user-model");
+const User = require('../models/user-model')
+const Project = require('../models/project-model')
 
 class UserController {
     async registration(req, res, next) {
@@ -114,6 +115,26 @@ class UserController {
             const user = await User.findOne({_id: req.user.id})
             await User.updateOne({_id: user.id}, {balance: user.balance + 10})
             res.redirect('back')
+        }
+        catch (e) {
+            next(e)
+        }
+    }
+
+    async donate(req, res, next) {
+        try {
+            const amount = req.body.amount
+            const user = await User.findOne({id: req.user._id})
+            console.log(user.balance)
+            if (user.balance < amount) {
+                console.log("Less")
+                return next(ApiError.NotEnough())
+            } else {
+                console.log("OK")
+            }
+
+            const project = await Project.findOne({id: req.params.id})
+            console.log(project.collected)
         }
         catch (e) {
             next(e)

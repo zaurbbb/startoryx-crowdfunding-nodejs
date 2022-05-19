@@ -14,7 +14,7 @@
     <% if(user.isActivated === false){ %>
         <p class="fw-normal" style="color: red">Your account is not activated! <a style="text-decoration: none"
                                                                                   class="fw-bold"
-                                                                                  href="http://localhost:5000/api/activation">Activate
+                                                                                  href="<%= url %>/api/activation">Activate
                 by Email</a></p>
     <% } %>
     <hr>
@@ -29,17 +29,17 @@
                         <button type="submit" class="btn border">Upload Image</button>
                         <br>
                     </form>
-                    <button class="btn border" onclick="location.href='http://localhost:5000/api/profile/<%= nickname %>/settings'">Settings</button>
+                    <button class="btn border" onclick="location.href='<%= url %>/api/profile/<%= nickname %>/settings'">Settings</button>
                     <br>
                     <% if(user.googleId == null){ %>
-                    <a href="http://localhost:5000/api/password-reset" style="text-decoration: none">Change Password</a>
+                    <a href="<%= url %>/api/password-reset" style="text-decoration: none">Change Password</a>
                     <% } %>
                     <hr>
                     <h2 class="display-5"><%= user.first_name %> <%= user.last_name %></h2>
                     <p class="lead"><%= user.nickname %> </p>
                     <p class="lead"><%= user.email %> </p>
                     <p> Balance: <%= user.balance %>$</p>
-                    <p><a class="p-1" style="text-decoration: none; border: 1px solid gray" href="http://localhost:5000/api/profile/<%= nickname %>/balance">Top up balance</a></p>
+                    <p><a class="p-1" style="text-decoration: none; border: 1px solid gray" href="<%= url %>/api/profile/<%= nickname %>/balance">Top up balance</a></p>
                     <hr>
                     <p> Activated Email: <%= user.isActivated %></p>
                     <p> Phone: <%= user.phone %></p>
@@ -56,12 +56,12 @@
                     <% projects.forEach(function(project) { %>
                         <div class="col-4">
                             <div class="card" style="width: 12rem;">
-                                <a href="http://localhost:5000/api/projects/<%= project._id %>">
+                                <a href="<%= url %>/api/projects/<%= project._id %>">
                                     <img class="card-img-top" src="<%= project.image %>" alt="Card image cap">
                                 </a>
                                 <div class="card-body">
                                     <h5 class="card-title text-center"><a style="text-decoration: none"
-                                                                          href="http://localhost:5000/api/projects/<%= project._id %>"><%= project.title %></a>
+                                                                          href="<%= url %>/api/projects/<%= project._id %>"><%= project.title %></a>
                                     </h5>
                                     <p class="card-text text-center">Published: <%= project.published %></p>
                                     <p class="card-text text-center">Collected <%= project.collected %>$</p>
@@ -74,7 +74,7 @@
                         <script>
                             function Confirm() {
                                 if (confirm("If any data is changed, your project will be processed by moderation again and will become private")) {
-                                    location.href = 'http://localhost:5000/api/projects/edit/<%= project._id %>'
+                                    location.href = '<%= url %>/api/projects/edit/<%= project._id %>'
                                 }
                             }
                         </script>

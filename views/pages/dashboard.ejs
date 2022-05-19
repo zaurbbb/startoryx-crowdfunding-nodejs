@@ -73,12 +73,12 @@
             <% projects.forEach(function(project) { %>
                 <div class="col-3">
                     <div class="card" style="width: 15rem;">
-                        <a href="http://localhost:5000/api/projects/<%= project._id %>">
+                        <a href="<%= url %>/api/projects/<%= project._id %>">
                             <img class="card-img-top" src="<%= project.image %>" alt="Card image cap">
                         </a>
                         <div class="card-body">
                             <h5 class="card-title text-center"><a style="text-decoration: none"
-                                        href="http://localhost:5000/api/projects/<%= project._id %>"><%= project.title %></a>
+                                        href="<%= url %>/api/projects/<%= project._id %>"><%= project.title %></a>
                             </h5>
                             <h5 class="card-text text-center lead"><%= project.type %></h5>
                             <p class="card-text text-center"><%= project.avgRate %> / 10 &#9733;

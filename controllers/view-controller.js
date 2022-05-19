@@ -15,7 +15,7 @@ class ViewController {
             const board = await viewService.projectBoard(req._parsedUrl.query, req.params.sort)
             res.render('pages/dashboard.ejs', {
                 email: email, date: formatDate, projects: board.projects, search: board.search,
-                nickname: nickname
+                nickname: nickname, url: process.env.CLIENT_URL
             })
         } catch (e) {
             next(e)
@@ -120,12 +120,12 @@ class ViewController {
             if (req.user != null && profile.user._id.equals(req.user._id)) {
                 res.render('pages/personal_profile.ejs', {
                     email: req.user.email, user: profile.user, nickname: req.user.nickname,
-                    projects: profile.projects, date: formatDate
+                    projects: profile.projects, date: formatDate, url: process.env.CLIENT_URL
                 })
             } else {
                 res.render('pages/profile.ejs', {
                     email: email, user: profile.user, nickname: nickname,
-                    projects: profile.projects, date: formatDate
+                    projects: profile.projects, date: formatDate, url: process.env.CLIENT_URL
                 })
             }
         } catch (e) {

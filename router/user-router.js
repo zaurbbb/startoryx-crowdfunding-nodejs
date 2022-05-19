@@ -81,6 +81,8 @@ router.get('/protected', ensureAuth, (req, res) => {
         nickname: req.user.nickname})
 });
 
+router.post('/donate/:id', userController.donate)
+
 router.get('/profile/:id?', viewController.profile);
 
 router.get('/profile/:id?/balance', userController.deposit);
