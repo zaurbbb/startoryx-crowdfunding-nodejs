@@ -31,4 +31,8 @@ module.exports = class ApiError extends Error{
     static NotExist(){
         return new ApiError(404, "User does not exist")
     }
+
+    static NotEnough(){
+        return new ApiError(404, "User does not have enough balance")
+    }
 }
