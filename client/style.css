@@ -398,3 +398,155 @@ section {
 #sec{
     background-color: white;
 }
+
+.inter{
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 65px;
+    text-align: center;
+    letter-spacing: 0.05em;
+}
+
+.contact-us-line{
+    background: #03045E;
+    width: 100%;
+    height: 5px;
+}
+
+.nav-link.active {
+    background-color: #03045E !important;
+    border-radius: 0;
+}
+.nav-link {
+    color: #03045E;
+    font-size: 25px;
+}
+.accordion-button{
+    background: #CAF0F8C7;
+
+    font-family: 'Inter', serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 30px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.05em;
+}
+.accordion-item{
+    margin: 20px 50px;
+}
+.accordion{
+    width: 80%!important;
+}
+.accordion-collapse{
+    transition: all 0.3s ease-in-out;
+}
+/* width of webkit */
+::-webkit-scrollbar {
+    opacity: 0.5;
+    width: 5px;
+}
+
+/* background of weblit's place */
+::-webkit-scrollbar-track{
+    opacity: 0.5;
+    background: #f1f1f1;
+}
+
+/* if don't mouse on to webkit */
+::-webkit-scrollbar-thumb {
+    background: #C0C0C0;
+}
+
+/* hover effect*/
+::-webkit-scrollbar-thumb:hover {
+    opacity: 1;
+    background: #6495ED;
+}
+
+.login_reg {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+}
+.btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    margin: 5px 0;
+    opacity: 0.85;
+    display: inline-block;
+    font-size: 17px;
+    line-height: 20px;
+    text-decoration: none; /* remove underline from anchors */
+    background-color: #00B4D8;
+    color: white;
+    transition: ease .25s;
+}
+.btn:hover {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    margin: 5px 0;
+    opacity: 0.85;
+    display: inline-block;
+    font-size: 17px;
+    line-height: 20px;
+    text-decoration: none; /* remove underline from anchors */
+    background-color: white;
+    color: #00B4D8;
+    transition: ease .25s;
+}
+.btn i{
+    position: relative;
+    top: 2px ;
+    vertical-align: middle;
+}
+
+
+fieldset{
+    border-bottom:none;
+    border-top:1px solid black;
+    border-left: none;
+    border-right:none;
+    border-radius: 5px;
+}
+legend{
+    width:inherit;
+    padding:0 10px;
+    border-bottom: none;
+    float: none;
+    margin-bottom: -10px;
+    font-size: 14px;
+    border-right: 5px;
+    color:black;
+    font-family: 'Montserrat', sans-serif;
+}
+.form-control{
+    font-family: 'Brawler', serif;
+    font-style: normal;
+    font-weight: 100;
+    height: 44px;
+}
+.form-check-input{
+    width: 15px;
+    height: 15px;
+}
+.submit{
+    float: right;
+    height: 25px;
+    vertical-align: center;
+    font-size: 15px;
+    border-radius: 20px;
+    background: #00B4D8;
+    border: 1px solid #00B4D8;
+    color: white;
+    padding: 0 30px;
+}

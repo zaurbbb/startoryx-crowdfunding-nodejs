@@ -25,3 +25,12 @@ function showHiddenDiv2() {
         x.style.display = "none";
     }
 }
+
+function func(){
+    var a = document.getElementById('text');
+    if (a.style.display == "none") {
+        a.style.display = "block";
+    } else {
+        a.style.display = "none";
+    }
+}
