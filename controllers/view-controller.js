@@ -40,16 +40,15 @@ class ViewController {
     async getProject(req, res, next) {
         try {
             let email, nickname
-            if (req.user != null) {
-                email = req.user.email
-                nickname = req.user.nickname
-            }
-
             const project = await Project.findById(req.params.id).populate({
                 path: 'comments', model: 'Comment',
                 populate: {path: 'user', model: 'User'}
             }).populate('user')
-
+            if (req.user != null) {
+                email = req.user.email
+                nickname = req.user.nickname
+                await Project.findOneAndUpdate({_id: req.params.id}, {visits: project.visits + 1})
+            }
             res.render('projects/read.ejs', {email: email, date: formatDate, project: project, nickname: nickname})
         } catch (e) {
             next(e)

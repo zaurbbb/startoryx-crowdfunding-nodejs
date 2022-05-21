@@ -88,6 +88,14 @@ module.exports = {
                 filter: true
             }
         },
+        visits: {
+            isVisible: {
+                show: true,
+                edit: true,
+                list: true,
+                filter: true
+            }
+        },
         image: {
             isVisible: {
                 show: true,

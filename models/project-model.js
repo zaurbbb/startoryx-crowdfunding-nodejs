@@ -18,8 +18,8 @@ const projectSchema = new Schema({ // TODO: add required fields
     rates: [{type: Schema.Types.ObjectId, ref: 'Rate'}],
     avgRate: {type: Number, default: 0},
     comments: [{type: Schema.Types.ObjectId, ref: 'Comment'}],
-    published: {type: Boolean, default: false}
-    // Backers, Updates
+    published: {type: Boolean, default: false},
+    visits: {type: Number, default: 0}
 })
 
 projectSchema.index({name: 'text', 'title': 'text'})

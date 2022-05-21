@@ -6,7 +6,7 @@
 <body class="container mx-3">
 
 <header>
-    <%- include('../partials/header'); %>
+    <%- include('../partials/header_'); %>
 </header>
 
 <main>
@@ -20,6 +20,7 @@
                 <p><%= date(project.dateCreated) %></p>
                 <p><%= project.collected %> / <%= project.goal %>$</p>
                 <p><%= project.days %> days left</p>
+                <p><%= project.visits %></p>
             </div>
 
             <h3><%- project.body %></h3>
