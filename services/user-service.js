@@ -5,6 +5,7 @@ const mailService = require('./mail-service')
 const UserDto = require('../dtos/user-dto')
 const ApiError = require('../exceptions/api-error')
 const User = require("../models/user-model");
+const Project = require("../models/project-model");
 
 class UserService {
     async registration(email, nickname, password, first_name = null, last_name = null, phone = null, age = null
@@ -125,6 +126,17 @@ class UserService {
             {nickname: nickname, first_name: first_name, last_name: last_name,
             age: age, phone: phone}
         )
+    }
+
+    async donate(userId, projectId, amount){
+        const user = await User.findOne({_id: userId})
+        if (user.balance < amount) {
+            throw ApiError.NotEnough()
+        }
+        const project = await Project.findOne({_id: projectId})
+
+        await Project.findOneAndUpdate({_id: projectId}, {collected: project.collected + parseInt(amount)})
+        await User.findOneAndUpdate({_id: userId}, {balance: user.balance - parseInt(amount)})
     }
 
 }

@@ -123,18 +123,8 @@ class UserController {
 
     async donate(req, res, next) {
         try {
-            const amount = req.body.amount
-            const user = await User.findOne({id: req.user._id})
-            console.log(user.balance)
-            if (user.balance < amount) {
-                console.log("Less")
-                return next(ApiError.NotEnough())
-            } else {
-                console.log("OK")
-            }
-
-            const project = await Project.findOne({id: req.params.id})
-            console.log(project.collected)
+            await userService.donate(req.user._id, req.params.id, req.body.amount)
+            res.redirect('back')
         }
         catch (e) {
             next(e)
