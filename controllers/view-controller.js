@@ -1,5 +1,8 @@
 const Project = require("../models/project-model");
 const User = require("../models/user-model")
+const Definition = require('../models/definition-model')
+const Payment = require('../models/payment-model')
+const Miscellaneous = require('../models/miscellaneous-model')
 const viewService = require('../services/view-service')
 const ApiError = require('../exceptions/api-error')
 const formatDate = require("../helpers/formatDate");
@@ -18,6 +21,18 @@ class ViewController {
                 nickname: nickname, url: process.env.CLIENT_URL
             })
         } catch (e) {
+            next(e)
+        }
+    }
+
+    async faq(req, res, next) {
+        try {
+            const definitions = await Definition.find()
+            const payments = await Payment.find()
+            const miscellaneous = await Miscellaneous.find()
+            res.render('pages/faq.ejs', {defs: definitions, pays: payments, misc: miscellaneous})
+        }
+        catch (e) {
             next(e)
         }
     }

@@ -8,7 +8,8 @@ const cors = require('cors')
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser');
 const passport = require('passport')
-const router = require('./router/user-router')
+const router = require('./router/main-router')
+const router2 = require('./router/user-router2')
 const adminRouter = require('./router/admin-router')
 const projectRouter = require('./router/project-router')
 const errorMiddleware = require('./middlewares/error-middleware')
@@ -21,6 +22,7 @@ require('./cron/days-update')
 const PORT = process.env.PORT || 5000;
 const app = express()
 
+app.use(express.static('public'))
 // middlewares
 app.use(express.json());
 app.use(cookieParser());
@@ -71,7 +73,8 @@ app.get('/', (req, res) => {
         nickname: nickname
     })
 })
-app.use('/api', router);
+app.use(router);
+app.use('/api', router2);
 app.use('/api/projects', projectRouter); // TODO: edit url (/api)
 
 start()

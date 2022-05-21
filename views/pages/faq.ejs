@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+    <link rel="stylesheet" href="./style.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Brawler&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Arvo&family=Brawler&family=Zilla+Slab:wght@300&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap');
+        @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap');
+
+        .nav-link {
+            background-color: aqua;
+        }
+    </style>
+</head>
+<body>
+
+<%- include('../partials/header'); %>
+
+<br><br><br>
+<div class="container  text-center " style="font-family: 'Inter', sans-serif; font-size: 20px; text-align:right;">
+    <div class="row">
+        <div class="col-12 inter text-center" style="font-weight: 600; font-size: 40px">Frequently Asked Questions</div>
+        <div class="col-12 inter" style="font-weight: 200; font-size: 20px; color: #A9A9A9">Need answers? We got them!
+        </div>
+    </div>
+    <div class="row"></div>
+    <div class="row"></div>
+</div>
+<!--NAVIGATION BUTTONS-->
+<div class="container-fluid">
+    <center>
+        <ul class="nav nav-pills mx-3 mt-4 justify-content-center row w-75" role="tablist">
+            <li class="nav-item col-4 " role="presentation">
+                <button class="nav-link active " data-bs-toggle="pill" data-bs-target="#pills-home" type="button"
+                        role="tab" aria-controls="pills-home" aria-selected="true">
+                    Definitions
+                </button>
+            </li>
+            <li class="nav-item col-4" role="presentation">
+                <button class="nav-link " data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab"
+                        aria-controls="pills-profile" aria-selected="false">
+                    Payment & Subscriptions
+                </button>
+            </li>
+            <li class="nav-item col-4" role="presentation">
+                <button class="nav-link" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab"
+                        aria-controls="pills-contact" aria-selected="false">
+                    Miscellaneous
+                </button>
+            </li>
+        </ul>
+        <div class="contact-us-line  mb-3"></div>
+    </center>
+</div>
+
+
+<!--CONTENT OF NAV BUTTONS-->
+<div class="tab-content mb-3" id="pills-tabContent">
+
+    <!--DEFINITIONS-->
+    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+        <div id="" class="container-fluid d-print-block ">
+            <center>
+                <div class="accordion accordion-flush w-75 " id="accordionFlushExample">
+                    <% defs.forEach(function(def) { %>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="<%= def.id %>">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#flush-<%= def.id %>" aria-expanded="false"
+                                        aria-controls="flush-<%= def.id %>">
+                                    <%= def.question %>
+                                </button>
+                            </h2>
+                            <div id="flush-<%= def.id %>" class="accordion-collapse collapse"
+                                 aria-labelledby="<%= def.id %>" data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body"><%= def.answer %></div>
+                            </div>
+                        </div>
+                    <% }); %>
+                </div>
+            </center>
+        </div>
+    </div>
+
+    <!--Payment & Subscriptions-->
+    <div class="tab-pane fade show active" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+        <div id="page" class="container-fluid d-print-block">
+            <center>
+                <div class="accordion accordion-flush w-75 " id="accordionFlushExample">
+                    <% pays.forEach(function(pay) { %>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="<%= pay.id %>">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#flush-<%= pay.id %>" aria-expanded="false"
+                                        aria-controls="flush-<%= pay.id %>">
+                                    <%= pay.question %>
+                                </button>
+                            </h2>
+                            <div id="flush-<%= pay.id %>" class="accordion-collapse collapse"
+                                 aria-labelledby="<%= pay.id %>"
+                                 data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body"><%= pay.answer %></div>
+                            </div>
+                        </div>
+                    <% }); %>
+                </div>
+            </center>
+
+        </div>
+    </div>
+
+    <!--Miscellaneous-->
+    <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+        <div id="page" class="fff container-fluid d-print-block">
+            <center>
+                <div class="accordion accordion-flush w-75 " id="accordionFlushExample">
+                    <% misc.forEach(function(mis) { %>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="<%= mis.id %>">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#flush-<%= mis.id %>" aria-expanded="false"
+                                        aria-controls="flush-<%= mis.id %>">
+                                    <%= mis.question %>
+                                </button>
+                            </h2>
+                            <div id="flush-<%= mis.id %>" class="accordion-collapse collapse"
+                                 aria-labelledby="<%= mis.id %>" data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body"><%= mis.answer %></div>
+                            </div>
+                        </div>
+                    <% }); %>
+                </div>
+            </center>
+        </div>
+    </div>
+</div>
+<%- include('../partials/footer') %>
+</body>
+</html>

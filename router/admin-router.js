@@ -6,10 +6,16 @@ const User = require('../models/user-model')
 const Project = require('../models/project-model')
 const Comment = require('../models/comment-model')
 const Rate = require('../models/rate-model')
+const Definition = require('../models/definition-model')
+const Payment = require('../models/payment-model')
+const Miscellaneous = require('../models/miscellaneous-model')
 const userResource = require('../admin/resources/user-resource')
 const projectResource = require('../admin/resources/project-resource')
 const commentResource = require('../admin/resources/comment-resource')
 const rateResource = require('../admin/resources/rate-resource')
+const definitionResource = require('../admin/resources/definition-resource')
+const paymentResource = require('../admin/resources/payment-resource')
+const miscellaneousResource = require('../admin/resources/miscellaneous-resource')
 const panelLocale = require('../admin/resources/panel-locale')
 
 const mongoose = require('mongoose')
@@ -47,6 +53,24 @@ const adminBro = new AdminBro({
             options: {
                 ...rateResource
             }
+        },
+        {
+            resource: Definition,
+            options: {
+                ...definitionResource
+            }
+        },
+        {
+            resource: Payment,
+            options: {
+                ...paymentResource
+            }
+        },
+        {
+            resource: Miscellaneous,
+            options: {
+                ...miscellaneousResource
+            }
         }
     ]
 })
@@ -74,4 +98,3 @@ const router = AdminBroExpress.buildAuthenticatedRouter(adminBro, {
 })
 
 module.exports = router
-
