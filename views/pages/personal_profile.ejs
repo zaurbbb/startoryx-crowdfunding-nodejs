@@ -29,17 +29,20 @@
                         <button type="submit" class="btn border">Upload Image</button>
                         <br>
                     </form>
-                    <button class="btn border" onclick="location.href='<%= url %>/api/profile/<%= nickname %>/settings'">Settings</button>
+                    <button class="btn border"
+                            onclick="location.href='<%= url %>/api/profile/<%= nickname %>/settings'">Settings
+                    </button>
                     <br>
                     <% if(user.googleId == null){ %>
-                    <a href="<%= url %>/api/password-reset" style="text-decoration: none">Change Password</a>
+                        <a href="<%= url %>/api/password-reset" style="text-decoration: none">Change Password</a>
                     <% } %>
                     <hr>
                     <h2 class="display-5"><%= user.first_name %> <%= user.last_name %></h2>
                     <p class="lead"><%= user.nickname %> </p>
                     <p class="lead"><%= user.email %> </p>
                     <p> Balance: <%= user.balance %>$</p>
-                    <p><a class="p-1" style="text-decoration: none; border: 1px solid gray" href="<%= url %>/api/profile/<%= nickname %>/balance">Top up balance</a></p>
+                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        PayPal</button>
                     <hr>
                     <p> Activated Email: <%= user.isActivated %></p>
                     <p> Phone: <%= user.phone %></p>
@@ -86,6 +89,28 @@
     </div>
 </main>
 
-
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="post" action="/pay">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="message-text" class="col-form-label">Donation amount:</label>
+                        <input type="number" class="form-control" name="amount">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success">Donate</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 </body>
 </html>

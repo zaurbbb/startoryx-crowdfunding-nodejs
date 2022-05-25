@@ -103,7 +103,8 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-success">Donate</button>
+                <button type="submit" class="btn btn-success">Donate via Balance</button>
+                <button type="submit" formaction="/donate_paypal/<%= project._id %>" class="btn btn-success">Donate via PayPal</button>
             </div>
             </form>
         </div>
