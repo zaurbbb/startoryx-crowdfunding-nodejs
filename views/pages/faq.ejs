@@ -3,6 +3,7 @@
 <head>
     <%- include('../partials/head'); %>
     <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Brawler&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Arvo&family=Brawler&family=Zilla+Slab:wght@300&display=swap');
@@ -64,7 +65,7 @@
     <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
         <div id="" class="container-fluid d-print-block ">
             <center>
-                <div class="accordion accordion-flush w-75 " id="accordionFlushExample">
+                <div class="accordion accordion-flush w-75 " id="def">
                     <% defs.forEach(function(def) { %>
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="<%= def.id %>">
@@ -75,7 +76,7 @@
                                 </button>
                             </h2>
                             <div id="flush-<%= def.id %>" class="accordion-collapse collapse"
-                                 aria-labelledby="<%= def.id %>" data-bs-parent="#accordionFlushExample">
+                                 aria-labelledby="<%= def.id %>" data-bs-parent="#def">
                                 <div class="accordion-body"><%= def.answer %></div>
                             </div>
                         </div>
@@ -89,7 +90,7 @@
     <div class="tab-pane fade show active" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
         <div id="page" class="container-fluid d-print-block">
             <center>
-                <div class="accordion accordion-flush w-75 " id="accordionFlushExample">
+                <div class="accordion accordion-flush w-75 " id="pay">
                     <% pays.forEach(function(pay) { %>
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="<%= pay.id %>">
@@ -101,7 +102,7 @@
                             </h2>
                             <div id="flush-<%= pay.id %>" class="accordion-collapse collapse"
                                  aria-labelledby="<%= pay.id %>"
-                                 data-bs-parent="#accordionFlushExample">
+                                 data-bs-parent="#pay">
                                 <div class="accordion-body"><%= pay.answer %></div>
                             </div>
                         </div>
@@ -116,7 +117,7 @@
     <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
         <div id="page" class="fff container-fluid d-print-block">
             <center>
-                <div class="accordion accordion-flush w-75 " id="accordionFlushExample">
+                <div class="accordion accordion-flush w-75 " id="mis">
                     <% misc.forEach(function(mis) { %>
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="<%= mis.id %>">
@@ -127,7 +128,7 @@
                                 </button>
                             </h2>
                             <div id="flush-<%= mis.id %>" class="accordion-collapse collapse"
-                                 aria-labelledby="<%= mis.id %>" data-bs-parent="#accordionFlushExample">
+                                 aria-labelledby="<%= mis.id %>" data-bs-parent="#mis">
                                 <div class="accordion-body"><%= mis.answer %></div>
                             </div>
                         </div>

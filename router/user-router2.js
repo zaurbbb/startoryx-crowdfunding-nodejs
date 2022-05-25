@@ -85,8 +85,6 @@ router.post('/donate/:id', userController.donate)
 
 router.get('/profile/:id?', viewController.profile);
 
-router.get('/profile/:id?/balance', userController.deposit);
-
 router.get('/profile/:id?/settings', viewController.profileSettings)
 
 router.post('/files/profile', upload.single('ava', {width: 305, height: 305, crop: "fill"}),
