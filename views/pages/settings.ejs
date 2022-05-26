@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile Page</title>
+
+    <%- include('../partials/head'); %>
+    <!-- FONT AWESOME-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="/style.css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Brawler&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Arvo&family=Brawler&family=Zilla+Slab:wght@300&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap');
+        @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
+
+    </style>
+</head>
+<body>
+
+<header id="other_header">
+    <%- include('../partials/header'); %>
+</header>
+
+<div class="container profile_div text-center">
+    <div class="row">
+        <div class="col-4 text-center profile_photo_div">
+            <img data-bs-toggle="modal" data-bs-target="#changePhoto" src="<%= user.image %>" class="rounded-3 profile_photo">
+            <div>
+                <h4>Change photo</h4>
+            </div>
+        </div>
+        <div class="col-8 py-auto">
+            <form action="/api/files/profile/settings" method="POST">
+                <div class="row">
+                    <div class="col-6  text-center my-1">
+                        <div class="row text-xl-start text-center">
+                            <div class="col-12 profile_type">Name</div>
+                            <div class="col-12 profile_content ">
+                                <input class="profile_input disabled" disabled
+                                       value="<%= user.first_name %> <%= user.last_name %>">
+                            </div>
+                        </div>
+                        <div class="row text-xl-start text-center">
+                            <div class="col-12 profile_type">Nickname</div>
+                            <div class="col-12 profile_content"><input name="nickname" class="profile_input" value="<%= user.nickname %>">
+                            </div>
+                        </div>
+                        <div class="row text-xl-start text-center">
+                            <div class="col-12 profile_type">Age</div>
+                            <div class="col-12 profile_content"><input class="profile_input disabled" disabled
+                                                                       value="<%= user.age %>"></div>
+                        </div>
+                        <div class="row text-xl-start text-center">
+                            <div class="col-12 profile_type">Specialist</div>
+                            <div class="col-12 profile_content"><input class="profile_input" name="specialist"
+                                                                       value="<%= user.specialist %>">
+                            </div>
+                            <button class="submit" type="submit" style="width: 45%; height: 35px!important; margin: 12px">Confirm Changes</button>
+                        </div>
+                    </div>
+                    <div class="col-6  text-center my-1">
+                        <div class="row text-xl-start text-center">
+                            <div class="col-12 profile_type">Phone</div>
+                            <div class="col-12 profile_content"><input name="phone" class="profile_input" value="<%= user.phone %>">
+                            </div>
+                        </div>
+                        <div class="row text-xl-start text-center">
+                            <div class="col-12 profile_type">Email</div>
+                            <div class="col-12 profile_content "><input class="profile_input disabled" disabled
+                                                                        value="<%= user.email %>"></div>
+                        </div>
+                        <div class="row text-xl-start text-center">
+                            <div class="col-12 profile_type">Activation Status</div>
+                            <div class="col-12 profile_content"><input class="profile_input disabled" disabled
+                                                                       value="<%= user.isActivated %>"></div>
+                        </div>
+                        <div class="row text-xl-start text-center">
+                            <div class="col-12 profile_type">Password</div>
+                            <div class="col-12 profile_content"><input class="profile_input disabled" disabled
+                                                                       value="**********">
+                            </div>
+                            <span data-bs-toggle="modal" data-bs-target="#confirm_email"
+                                  style="margin-top: -10px; cursor: pointer;">Change Password</span>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<br><br><br><br><br><br><br><br><br><br>
+<!-- Modal -->
+<div class="modal fade" id="changePhoto" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content p-3">
+            <div class="modal-header">
+                <h5 class="modal-title">Change profile image</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <br>
+            <form action="/api/files/profile" method="POST" enctype="multipart/form-data">
+                <label for="ava" class="text-white"></label>
+                <input type="file" name="ava" accept="image/*">
+                <button type="submit" class="btn border">Upload Image</button>
+                <br>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="confirm_email" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Confirm action</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="get" action="/api/password-reset">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <span>After clicking the button, a confirmation link will be sent to your email, by clicking on which you can change your password</span>
+                        <br><br>
+                        <button type="submit" class="btn btn-success">Confirm</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<%- include('../partials/footer') %>
+
+</body>
+</html>

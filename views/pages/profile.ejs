@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile Page</title>
+
+    <%- include('../partials/head'); %>
+    <!-- FONT AWESOME-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="/style.css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Brawler&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Arvo&family=Brawler&family=Zilla+Slab:wght@300&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap');
+        @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
+
+    </style>
+</head>
+<body>
+
+<header id="other_header">
+    <%- include('../partials/header'); %>
+</header>
+
+<!--PRIVATE-->
+<div class="container profile_div text-center ">
+    <div class="row">
+        <div class="col-4 text-center profile_photo_div">
+            <img data-bs-toggle="modal" data-bs-target="#changePhoto" src="<%= user.image %>"
+                 class="rounded-3 profile_photo">
+            <% if (isOwner) { %>
+                <div>
+                    <h4>Change photo</h4>
+                </div>
+            <% } %>
+        </div>
+        <div class="col-8 py-auto">
+            <div class="row ">
+                <div class="col-6 my-1">
+                    <div class="row text-xl-start text-center">
+                        <div class="col-12 profile_type">Name <%= isOwner %></div>
+                        <div class="col-12 profile_content"><%= user.first_name %> <%= user.last_name %></div>
+                    </div>
+                    <div class="row text-xl-start text-center">
+                        <div class="col-12 profile_type">Specialist</div>
+                        <div class="col-12 profile_content"><%= user.specialist %></div>
+                    </div>
+                    <div class="row text-xl-start text-center">
+                        <div class="col-12 profile_type">Age</div>
+                        <div class="col-12 profile_content"><%= user.age %></div>
+                    </div>
+                    <div class="row text-xl-start text-center">
+                        <div class="col-12 profile_type">Nickname</div>
+                        <div class="col-12 profile_content"><%= user.nickname %></div>
+                    </div>
+                </div>
+                <% if (isOwner) { %>
+                    <div class="col-5 my-1">
+                        <div class="row text-xl-start text-center">
+                            <div class="row text-xl-start text-center">
+                                <div class="col-12 profile_type">Phone</div>
+                                <div class="col-12 profile_content"><%= user.phone %></div>
+                            </div>
+
+                        </div>
+                        <div class="row text-xl-start text-center">
+                            <div class="col-12 profile_type">Email</div>
+                            <div class="col-12 profile_content"><%= user.email %></div>
+                        </div>
+                        <div class="row text-xl-start text-center">
+                            <div class="col-12 profile_type">Activation Status</div>
+                            <% if(user.isActivated === false){ %>
+                                <div style="color: red; cursor: pointer;" onclick="location.href='/api/activation'"
+                                     class="col-12 profile_content">Activate
+                                </div>
+                            <% } else { %>
+                                <div class="col-12 profile_content">Activated</div>
+                            <% } %>
+                        </div>
+                        <div class="row text-xl-start text-center">
+                            <div class="col-12 profile_type">Balance</div>
+                            <div class="col-12 profile_content"><%= user.balance %>$
+                                <button data-bs-toggle="modal" data-bs-target="#paypal" class="profile_balance_button">
+                                    <span style="position: relative; top: -2px">+</span></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-1"><i class="fa fa-solid fa-pencil" style="cursor: pointer"
+                                          onclick="location.href='/profile/settings/<%= user.id %>'"></i></div>
+                <% } %>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<hr>
+<div class="container-fluid container-for-projects mb-4">
+    <% projects.forEach(function(project) { %>
+        <div class="card">
+            <div class="card-header" onclick="location.href='/api/projects/<%= project._id %>'"
+                 style="background-image: url('<%= project.image %>'); cursor: pointer;  ">
+                <div class="hidden_blocks row" style="">
+                    <div class="col-12 ">
+                        <button class="hidden_blocks_button">
+                            <i class="fa fa-star"></i> <span class="hidden_text"><%= project.avgRate %>/10</span>
+                        </button>
+                    </div>
+                    <div class="col-12">
+                        <button class="hidden_blocks_button">
+                            <i class="fa fa-dollar "></i> <span class="hidden_text"><%= project.collected %>/<%= project.goal%></span>
+                        </button>
+                    </div>
+                    <div class="col-12">
+                        <button class="hidden_blocks_button">
+                            <i class="fa fa-comment "></i> <span class="hidden_text">0</span>
+                        </button>
+                    </div>
+
+                    <div class="col-12 ">
+                        <button class="hidden_blocks_button">
+                            <i class="fa fa-eye"></i> <span class="hidden_text"><%= project.visits %></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <span class="tag category_<%= project.type %>"><%= project.type %></span>
+                <h5 onclick="location.href='/api/projects/<%= project._id %>'" style="cursor: pointer">
+                    <%= project.title %>
+                </h5>
+                <p>
+                    <%= project.shortly %>
+                </p>
+                <div class="user">
+                    <div class="user-info">
+                        <h5>Posted: <%= project.published %></h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <% }); %>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="changePhoto" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content p-3">
+            <div class="modal-header">
+                <h5 class="modal-title">Change profile image</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <br>
+            <form action="/api/files/profile" method="POST" enctype="multipart/form-data">
+                <label for="ava" class="text-white"></label>
+                <input type="file" name="ava" accept="image/*">
+                <button type="submit" class="btn border">Upload Image</button>
+                <br>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="paypal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Top Up</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="post" action="/pay">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="message-text" class="col-form-label">Amount:</label>
+                        <input type="number" class="profile_input" name="amount">
+                        <button type="submit" class="btn btn-success">Confirm</button>
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<%- include('../partials/footer') %>
+
+</body>
+</html>
