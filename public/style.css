@@ -596,20 +596,26 @@ legend{
 }
 
 .profile_balance_button{
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    padding-left: 5px;
-    margin-left: 5px;
-    color: blue;
-    background: url('img/plus.png');
-    background-size: 100%;
-    padding-top: -50px;
-    cursor: pointer;
-    border-radius: 50%;
-    background-color: transparent;
-    filter: hue-rotate(180deg);
+
+    background: white;
+    width: 25px!important;
+    height: 25px;
+    padding: 0;
+    color: #007bff;
+    border-radius: 100px;
+    transition: background-color .2s;
+    border: none;
 }
+.profile_balance_button:hover{
+    background: #007bff;
+    width: 25px!important;
+    height: 25px;
+    padding: 0;
+    color: white;
+    border-radius: 100px;
+    transition: background-color .2s;
+}
+
 .profile_input{
     height: 25px;
     outline:none;
