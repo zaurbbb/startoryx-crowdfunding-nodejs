@@ -12,59 +12,44 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 
     <style>
-        body {
-            background-color:#eee;
-        }
-
-        .bx-controls {
+        .effects  {
             position: relative;
+            overflow: hidden;
+            max-height: 200px;
+            width: 500px;
         }
-        .bx-wrapper .bx-pager {
+
+
+        .effects  div {
+            height: 100%;
+            position: absolute;
+            overflow: hidden;
+            top: 50%;
+            left: 0;
+            padding: 10px;
             text-align: center;
-            padding-top: 30px;
-        }
-        .bx-wrapper .bx-pager .bx-pager-item, .bx-wrapper .bx-controls-auto .bx-controls-auto-item {
-            display: inline-block;
-            *zoom: 1;
-            *display: inline;
-        }
-        .bx-wrapper .bx-pager.bx-default-pager a {
-            background: #666;
-            text-indent: -9999px;
-            display: block;
-            width: 10px;
-            height: 10px;
-            margin: 0 5px;
-            outline: 0;
-            -moz-border-radius: 5px;
-            -webkit-border-radius: 5px;
-            border-radius: 5px;
         }
 
-
+        .effects div {
+            opacity: 0;
+            transition: all 0.4s ease-in-out;
+            color: #fff;
+            transform: translate(0px, 90px) rotate(0deg);
+        }
+        .effects:hover div {
+            opacity: 1;
+            transform: translate(0px, 0px) rotate(0deg);
+        }
     </style>
 
     <script src="jquery-3.6.0.min.js"></script>
 </head>
 <body>
-<section class="client">
-    <div class="container">
-        <div class="row">
-
-            <div class="section-title">
-                <h2> Nos références clients : </h2>
-            </div>
-
-            <div class="carousel-client">
-                <div class="slide"><img src="https://mariongrandvincent.github.io/HTML-Personal-website/img-codePen/slider-logo1.png"></div>
-                <div class="slide"><img src="https://mariongrandvincent.github.io/HTML-Personal-website/img-codePen/slider-logo2.png"></div>
-                <div class="slide"><img src="https://mariongrandvincent.github.io/HTML-Personal-website/img-codePen/slider-logo3.png"></div>
-                <div class="slide"><img src="https://mariongrandvincent.github.io/HTML-Personal-website/img-codePen/slider-logo1.png"></div>
-                <div class="slide"><img src="https://mariongrandvincent.github.io/HTML-Personal-website/img-codePen/slider-logo2.png"></div>
-                <div class="slide"><img src="https://mariongrandvincent.github.io/HTML-Personal-website/img-codePen/slider-logo3.png"></div>
-            </div>
-        </div>
+<div class="effects">
+    <img src="img/photo.png" alt="">
+    <div>
+        <h2>Текст</h2>
     </div>
-</section>
+</div>
 </body>
 </html>
