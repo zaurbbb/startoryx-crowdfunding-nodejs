@@ -2,7 +2,7 @@ const cron = require('node-cron')
 const Project = require('../models/project-model')
 
 module.exports =
-    cron.schedule('* 00 00 1 * *', async () => {
+    cron.schedule('00 00 1 * * *', async () => {
         const projects = await Project.find()
         for (const project of projects) {
             await Project.findOneAndUpdate(
