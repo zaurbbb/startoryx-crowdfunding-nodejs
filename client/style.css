@@ -761,36 +761,7 @@ legend{
     opacity: 0;
     transition: opacity .5s;
 }
-.card-header:hover .hidden_blocks{
-    opacity: 1;
-    transition: opacity .5s;
-}
-.rating_button{
-    background-color: transparent;
-    color: black;
-    border: none;
-    border-radius: 100px;
-    font-family: 'Kanit', sans-serif;
-    transition: background-color .5s;
-}
-.rating_button:hover{
-    background-color: yellow;
-    color: black;
-    transition: background-color .5s;
-}
-.dollar_button{
-    background-color: transparent;
-    color: black;
-    border: none;
-    border-radius: 100px;
-    font-family: 'Kanit', sans-serif;
-    transition: background-color .5s;
-}
-.dollar_button:hover{
-    background-color: #90EE90;
-    color: black;
-    transition: background-color .5s;
-}
+
 .category_arts{
     background-color:#cd5b9f;
 }
@@ -805,4 +776,27 @@ legend{
 }
 .category_games{
     background-color: #5e76bf;
+}
+.card-header:hover .hidden_blocks{
+    opacity: 1;
+    transition: all .5s;
+}
+.hidden_blocks_button{
+    background: #03045E;
+    color: white;
+    border: none;
+    border-radius: 100px;
+    font-family: 'Kanit', sans-serif;
+    transition: all .5s;
+
+}
+.hidden_blocks_button:nth-child(odd){
+    float: left;
+}
+.hidden_blocks_button:nth-child(even){
+    float: right;
+}
+.card-header:hover .rating_button{
+    opacity: 1;
+    transition: opacity .5s;
 }
