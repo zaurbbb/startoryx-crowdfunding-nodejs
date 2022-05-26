@@ -760,8 +760,11 @@ legend{
 .hidden_blocks{
     opacity: 0;
     transition: opacity .5s;
+    padding-top: 5px;
 }
-
+.fa{
+    width: 20px;
+}
 .category_arts{
     background-color:#cd5b9f;
 }
@@ -788,15 +791,27 @@ legend{
     border-radius: 100px;
     font-family: 'Kanit', sans-serif;
     transition: all .5s;
-
+    margin-bottom: 22px;
 }
+.hidden_text{
+    display:none;
+
+    opacity: 0;
+    transition: display .5s;
+}
+/*
 .hidden_blocks_button:nth-child(odd){
     float: left;
 }
 .hidden_blocks_button:nth-child(even){
     float: right;
-}
-.card-header:hover .rating_button{
+}*/
+.card-header:hover .hidden_blocks_button {
     opacity: 1;
     transition: opacity .5s;
+}
+.hidden_blocks_button:hover .hidden_text{
+    display:    inline-block;
+    opacity: 1;
+    transition: display 5s;
 }
