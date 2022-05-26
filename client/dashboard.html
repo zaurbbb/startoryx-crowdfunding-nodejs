@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>START UPS page</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+  <!-- FONT AWESOME-->
+  <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!--HEADER-->
+<header id="header" style="background: #03045E;">
+  <div style="float: left; font-size: 25px;">
+
+  </div>
+  <div class="my-auto" style="text-align: right;">
+    <img style="filter: invert(100%); width: 20px; height: 20px; color: white" src="img/avatar-icon.png" alt="">
+    <img style="filter: invert(100%); width: 20px; height: 20px; color: white" src="img/search-icon.png" alt="">
+  </div>
+</header>
+<br><br><br>
+<div class="container  text-center " style="font-family: 'Inter', sans-serif; font-size: 20px; text-align:right;">
+  <div class="row" >
+    <div class="col-12 inter text-center" style="font-weight: 600; font-size: 40px">Start-up list</div>
+    <div class="col-12 inter dashboard_text"> Tap <a class="dashboard_add_project" href="#">here</a> to add new project</div>
+  </div>
+</div>
+<!--NAVIGATION BUTTONS-->
+<div class="container-fluid"><center>
+  <ul class="nav nav-pills mx-3 mt-4 justify-content-center row "  role="tablist">
+    <li class="nav-item col-2 ">
+      <button class="nav-link active " data-bs-toggle="pill">
+        All
+      </button>
+    </li>
+    <li class="nav-item col-2 ">
+      <button class="nav-link  " data-bs-toggle="pill">
+        Arts
+      </button>
+    </li>
+    <li class="nav-item col-2 ">
+      <button class="nav-link  " data-bs-toggle="pill">
+        Paiting
+      </button>
+    </li>
+    <li class="nav-item col-2 ">
+      <button class="nav-link  " data-bs-toggle="pill">
+        Technology
+      </button>
+    </li>
+    <li class="nav-item col-2 ">
+      <button class="nav-link  " data-bs-toggle="pill">
+        Music
+      </button>
+    </li>
+    <li class="nav-item col-2 ">
+      <button class="nav-link  " data-bs-toggle="pill">
+        Games
+      </button>
+    </li>
+  </ul>
+  <div class="contact-us-line  mb-3"></div></center>
+</div>
+
+
+
+<center>
+<div class="container-fluid">
+
+    <div class="btn-group ">
+          <button class="" style="width: 150px; background-color: transparent; border: none"
+                  onclick="location.href = '/api/dashboard/01/?<%= search %>'">Sort by:
+          </button>
+          <button class="dashboard_button"
+                  onclick="location.href = '/api/dashboard/01/?<%= search %>'">Title (ascending)
+          </button>
+          <button type="button" class="dashboard_button"
+                  onclick="location.href = '/api/dashboard/02/?<%= search %>'">Title (decreasing)
+          </button>
+          <button type="button" class="dashboard_button"
+                  onclick="location.href = '/api/dashboard/03/?<%= search %>'">Newest
+          </button>
+          <button type="button" class="dashboard_button"
+                  onclick="location.href = '/api/dashboard/04/?<%= search %>'">Oldest
+          </button>
+          <button type="button" class="dashboard_button"
+                  onclick="location.href = '/api/dashboard/05/?<%= search %>'">Most Rated
+          </button>
+      <form class="mx-3">
+        <div class="input-group mb-1">
+          <input type="text" name="search" class="form-control form-control" placeholder="Search Here">
+          <button type="submit" onclick="document.pressed=this.value" class="input-group-text btn-primary"><i
+                  class="fa fa-search me-2"></i> Search </button>
+        </div>
+      </form>
+
+        </div>
+
+
+</div>
+</center>
+
+<div class="container-fluid container-for-projects mb-4">
+  <div class="card">
+    <div class="card-header" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Tesla_Model_3_parked%2C_front_driver_side.jpg/1200px-Tesla_Model_3_parked%2C_front_driver_side.jpg');  ">
+      <div class="hidden_blocks row" style="">
+        <div class="col-12 ">
+          <button class="hidden_blocks_button">
+            <i class="fa fa-star"></i> <span class="hidden_text">8/10</span>
+          </button>
+        </div>
+        <div class="col-12">
+          <button class="hidden_blocks_button">
+            <i class="fa fa-dollar "></i> <span class="hidden_text">2M/5M</span>
+          </button>
+        </div>
+        <div class="col-12">
+          <button class="hidden_blocks_button">
+            <i class="fa fa-comment "></i> <span class="hidden_text">2K</span>
+          </button>
+        </div>
+
+        <div class="col-12 ">
+          <button class="hidden_blocks_button">
+            <i class="fa fa-eye"></i> <span class="hidden_text">10M</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <span class="tag tag-teal category_technology">Technology</span>
+      <h4>
+        ElectroCar TESLA
+      </h4>
+      <p>
+        An exploration into the truck's polarising design! By Elon Mask uahahahah
+      </p>
+      <div class="user">
+        <img src="https://yt3.ggpht.com/a/AGF-l7-0J1G0Ue0mcZMw-99kMeVuBmRxiPjyvIYONg=s900-c-k-c0xffffffff-no-rj-mo" alt="user" />
+        <div class="user-info">
+          <h5>Elona Maskova</h5>
+          <small>24th April 2021</small>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" style="background-image: url('https://naked-science.ru/wp-content/uploads/2016/04/article_mona-lisa-1-1200x799.jpg');  ">
+      <div class="hidden_blocks row" style="">
+        <div class="col-12 ">
+          <button class="hidden_blocks_button">
+            <i class="fa fa-star"></i> <span class="hidden_text">8/10</span>
+          </button>
+        </div>
+        <div class="col-12">
+          <button class="hidden_blocks_button">
+            <i class="fa fa-dollar "></i> <span class="hidden_text">2M/5M</span>
+          </button>
+        </div>
+        <div class="col-12">
+          <button class="hidden_blocks_button">
+            <i class="fa fa-comment "></i> <span class="hidden_text">2K</span>
+          </button>
+        </div>
+
+        <div class="col-12 ">
+          <button class="hidden_blocks_button">
+            <i class="fa fa-eye"></i> <span class="hidden_text">10M</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <span class="tag tag-teal category_arts">Arts</span>
+      <h4>
+        Refactoring Mono Lisa
+      </h4>
+      <p>
+        We want to remake this picture with the best quality
+      </p>
+      <div class="user">
+        <img src="data:image/jpeg;base64,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" alt="user" />
+        <div class="user-info">
+          <h5>Kianu Reves</h5>
+          <small>4th November 2021</small>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" style="background-image: url('https://i.ytimg.com/vi/w-QzL-qjEYY/hqdefault.jpg');  ">
+      <div class="hidden_blocks row" style="">
+        <div class="col-12 ">
+          <button class="hidden_blocks_button">
+            <i class="fa fa-star"></i> <span class="hidden_text">8/10</span>
+          </button>
+        </div>
+        <div class="col-12">
+          <button class="hidden_blocks_button">
+            <i class="fa fa-dollar "></i> <span class="hidden_text">2M/5M</span>
+          </button>
+        </div>
+        <div class="col-12">
+          <button class="hidden_blocks_button">
+            <i class="fa fa-comment "></i> <span class="hidden_text">2K</span>
+          </button>
+        </div>
+
+        <div class="col-12 ">
+          <button class="hidden_blocks_button">
+            <i class="fa fa-eye"></i> <span class="hidden_text">10M</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <span class="tag tag-teal category_games">Games</span>
+      <h4>
+        S.T.A.L.K.E.R.2
+      </h4>
+      <p>
+        The great series is back with new horrors of Chernobyl!
+      </p>
+      <div class="user">
+        <img src="https://perfecto-web.com/uploads/uifaces/ui-90.jpg" alt="user" />
+        <div class="user-info">
+          <h5>Dmitry Karmyshev</h5>
+          <small>7th April 2019</small>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" style="background-image: url('https://img.stereo.ru/v3/news/2020/6/3dc66a24cb6003899d8d25c73740b4ee.jpg');  ">
+      <div class="hidden_blocks row" style="">
+        <div class="col-12 ">
+          <button class="hidden_blocks_button">
+            <i class="fa fa-star"></i> <span class="hidden_text">8/10</span>
+          </button>
+        </div>
+        <div class="col-12">
+          <button class="hidden_blocks_button">
+            <i class="fa fa-dollar "></i> <span class="hidden_text">2M/5M</span>
+          </button>
+        </div>
+        <div class="col-12">
+          <button class="hidden_blocks_button">
+            <i class="fa fa-comment "></i> <span class="hidden_text">2K</span>
+          </button>
+        </div>
+
+        <div class="col-12 ">
+          <button class="hidden_blocks_button">
+            <i class="fa fa-eye"></i> <span class="hidden_text">10M</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <span class="tag category_music">Music</span>
+      <h4>
+        Guitar from TLOU2
+      </h4>
+      <p>
+        We're big fans of this game and want to print the guitar on the 3D printer!
+      </p>
+      <div class="user">
+        <img src="http://foodika.ru/wp-content/uploads/2018/01/oooo.plus_341-2.png" alt="user" />
+        <div class="user-info">
+          <h5>Adina Kairatova</h5>
+          <small>5th May 2021</small>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" style="background-image: url('https://www.gmirk.kz/images/slider2/slider-1000x667-001.jpg');  ">
+      <div class="hidden_blocks row" style="">
+        <div class="col-12 ">
+          <button class="hidden_blocks_button">
+            <i class="fa fa-star"></i> <span class="hidden_text">8/10</span>
+          </button>
+        </div>
+        <div class="col-12">
+          <button class="hidden_blocks_button">
+            <i class="fa fa-dollar "></i> <span class="hidden_text">2M/5M</span>
+          </button>
+        </div>
+        <div class="col-12">
+          <button class="hidden_blocks_button">
+            <i class="fa fa-comment "></i> <span class="hidden_text">2K</span>
+          </button>
+        </div>
+
+        <div class="col-12 ">
+          <button class="hidden_blocks_button">
+            <i class="fa fa-eye"></i> <span class="hidden_text">10M</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <span class="tag tag-teal category_painting">Painting</span>
+      <h4>
+        Museum ancient art!
+      </h4>
+      <p>
+        Our goal is to show people how art was looked at the ancieent times! Join to us!
+      </p>
+      <div class="user">
+        <img src="data:image/jpeg;base64,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" alt="user" />
+        <div class="user-info">
+          <h5>Elizabet Smith</h5>
+          <small>30th September 2020</small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" style="background-image: url('https://igromagnit.net/uploads/posts/2022-02/1644828273_1644540030_cover.jpg');  ">
+      <div class="hidden_blocks row" style="">
+        <div class="col-12 ">
+          <button class="hidden_blocks_button">
+            <i class="fa fa-star"></i> <span class="hidden_text">8/10</span>
+          </button>
+        </div>
+        <div class="col-12">
+          <button class="hidden_blocks_button">
+            <i class="fa fa-dollar "></i> <span class="hidden_text">2M/5M</span>
+          </button>
+        </div>
+        <div class="col-12">
+          <button class="hidden_blocks_button">
+            <i class="fa fa-comment "></i> <span class="hidden_text">2K</span>
+          </button>
+        </div>
+
+        <div class="col-12 ">
+          <button class="hidden_blocks_button">
+            <i class="fa fa-eye"></i> <span class="hidden_text">10M</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <span class="tag tag-teal category_games">Games</span>
+      <h4>
+        Valorant 2!
+      </h4>
+      <p>
+        I hope you love Valorant, but it needs in revolution, and it's here!
+      </p>
+      <div class="user">
+        <img src="https://images.pexels.com/photos/1704488/pexels-photo-1704488.jpeg?cs=srgb&dl=pexels-suliman-sallehi-1704488.jpg&fm=jpg" alt="user" />
+        <div class="user-info">
+          <h5>Steve Baskov</h5>
+          <small>15th November 2021</small>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" style="background-image: url('https://images.samsung.com/ru/smartphones/galaxy-z-fold2/images/canvas_img/galaxy-z-fold2_highlights_shooting_029.jpg');  ">
+      <div class="hidden_blocks row" style="">
+        <div class="col-12 ">
+          <button class="hidden_blocks_button">
+            <i class="fa fa-star"></i> <span class="hidden_text">8/10</span>
+          </button>
+        </div>
+        <div class="col-12">
+          <button class="hidden_blocks_button">
+            <i class="fa fa-dollar "></i> <span class="hidden_text">2M/5M</span>
+          </button>
+        </div>
+        <div class="col-12">
+          <button class="hidden_blocks_button">
+            <i class="fa fa-comment "></i> <span class="hidden_text">2K</span>
+          </button>
+        </div>
+
+        <div class="col-12 ">
+          <button class="hidden_blocks_button">
+            <i class="fa fa-eye"></i> <span class="hidden_text">10M</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <span class="tag tag-teal category_technology">Technology</span>
+      <h4>
+        Galaxy Fold 3
+      </h4>
+      <p>
+        After laving the company, I'd like to contonue this amazing fablet!
+      </p>
+      <div class="user">
+        <img src="https://www.whatsappprofiledpimages.com/wp-content/uploads/2021/11/alone-Best-Dp-Profile-Images-For-Instagram-photo.gif" alt="user" />
+        <div class="user-info">
+          <h5>Aelite Ishanova</h5>
+          <small>9th August 2020</small>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" style="background-image: url('https://media.wired.com/photos/5f9ca518227dbb78ec30dacf/master/w_2560%2Cc_limit/Gear-RIP-Google-Music-1194411695.jpg');  ">
+      <div class="hidden_blocks row" style="">
+        <div class="col-12 ">
+          <button class="hidden_blocks_button">
+            <i class="fa fa-star"></i> <span class="hidden_text">8/10</span>
+          </button>
+        </div>
+        <div class="col-12">
+          <button class="hidden_blocks_button">
+            <i class="fa fa-dollar "></i> <span class="hidden_text">2M/5M</span>
+          </button>
+        </div>
+        <div class="col-12">
+          <button class="hidden_blocks_button">
+            <i class="fa fa-comment "></i> <span class="hidden_text">2K</span>
+          </button>
+        </div>
+
+        <div class="col-12 ">
+          <button class="hidden_blocks_button">
+            <i class="fa fa-eye"></i> <span class="hidden_text">10M</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <span class="tag tag-teal category_music">Music</span>
+      <h4>
+        Gold Headphones
+      </h4>
+      <p>
+        It's gonna be the most expensive thing, but with this very cool headphones.
+      </p>
+      <div class="user">
+        <img src="https://www.whatsappprofiledpimages.com/wp-content/uploads/2021/11/2021-Simple-Whatsapp-Dp-Profile-Images-photo-hd.gif" alt="user" />
+        <div class="user-info">
+          <h5>Danelo Espanyolo</h5>
+          <small>1th January 2017</small>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" style="background-image: url('http://i.gzn.jp/img/2015/06/16/shenmue-three/top.png');  ">
+      <div class="hidden_blocks row" style="">
+        <div class="col-12 ">
+          <button class="hidden_blocks_button">
+            <i class="fa fa-star"></i> <span class="hidden_text">8/10</span>
+          </button>
+        </div>
+        <div class="col-12">
+          <button class="hidden_blocks_button">
+            <i class="fa fa-dollar "></i> <span class="hidden_text">2M/5M</span>
+          </button>
+        </div>
+        <div class="col-12">
+          <button class="hidden_blocks_button">
+            <i class="fa fa-comment "></i> <span class="hidden_text">2K</span>
+          </button>
+        </div>
+
+        <div class="col-12 ">
+          <button class="hidden_blocks_button">
+            <i class="fa fa-eye"></i> <span class="hidden_text">10M</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <span class="tag tag-teal category_games">Games</span>
+      <h4>
+        Shenmue 3
+      </h4>
+      <p>
+        Imagine that you can play the legendary series of 90's! Let's have attention on itx`
+      </p>
+      <div class="user">
+        <img src="https://cdn.mainichi.jp/vol1/2021/03/16/20210316p2a00m0na018000p/8.jpg?1" alt="user" />
+        <div class="user-info">
+          <h5>Li Yola</h5>
+          <small>29th June 2018</small>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" style="background-image: url('https://cdn1-production-images-kly.akamaized.net/OnehjpKqzUWzKux3UKX-K80AabI=/1200x1200/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/862363/original/010027500_1430108626-silent_hills_by_kukukurt-d7vl2uu-1426130643.jpg');  ">
+      <div class="hidden_blocks row" style="">
+        <div class="col-12 ">
+          <button class="hidden_blocks_button">
+            <i class="fa fa-star"></i> <span class="hidden_text">8/10</span>
+          </button>
+        </div>
+        <div class="col-12">
+          <button class="hidden_blocks_button">
+            <i class="fa fa-dollar "></i> <span class="hidden_text">2M/5M</span>
+          </button>
+        </div>
+        <div class="col-12">
+          <button class="hidden_blocks_button">
+            <i class="fa fa-comment "></i> <span class="hidden_text">2K</span>
+          </button>
+        </div>
+
+        <div class="col-12 ">
+          <button class="hidden_blocks_button">
+            <i class="fa fa-eye"></i> <span class="hidden_text">10M</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <span class="tag tag-teal category_games">Games</span>
+      <h4>
+        Silent Hill by Kojima
+      </h4>
+      <p>
+        Death Stranding was successful game, but we can better! It's new game series
+      </p>
+      <div class="user">
+        <img src="https://pbs.twimg.com/profile_images/914211724412166144/Bf2Yij9b_400x400.jpg" alt="user" />
+        <div class="user-info">
+          <h5>Hideo Kojima</h5>
+          <small>20th May 2022</small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+
+
+<footer class="container-fluid text-center text-light order border-primary px-5 justify-content-center " style="background-color:
+#03045E" >
+  <br>
+  <div class="row text-center " style="font-family: 'Inter', sans-serif; font-size: 30px">
+    <div class="col-4">About Us</div>
+    <div class="col-4">Contact Us</div>
+    <div class="col-4">FAQ</div>
+  </div>
+  <br>
+  <div class="row text-center mx-auto">
+    <div class="col-1"></div>
+    <div class="col-2"><i class="fa fa-2x fa-linkedin"></i></div>
+    <div class="col-2"><i class="fa fa-2x fa-google-plus"></i></div>
+    <div class="col-2"><i class="fa fa-2x fa-twitter"></i></div>
+    <div class="col-2"><i class="fa fa-2x fa-instagram"></i></div>
+    <div class="col-2"><i class="fa fa-2x fa-facebook-square"></i></div>
+    <div class="col-1"></div>
+  </div>
+  <br>
+  <div class="row text center" style="font-family: 'Inter', sans-serif; font-size: 20px">
+    <div class="col-12">© 2022 StarToryx Start Up Platform | All rights reserved</div>
+  </div>
+  <br>
+</footer>
+<script src="bootstrap-5.0.2/dist/js/bootstrap.js"></script>
+</body>
+</html>

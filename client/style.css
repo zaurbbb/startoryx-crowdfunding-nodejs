@@ -78,15 +78,19 @@ html, body {
     height: 50px;
     width: 100vw;
 
-    background-color:  #03045E;
     color: white;
 
     transition: background-color .3s;
-    z-index: 10;
+
+    z-index: 7;
 
     display: grid;
-    grid-template-columns: 50% 50% 50%;
+    grid-template-columns: 50% 50%;
 
+}
+
+#other_header img{
+    margin-top: 12px;
 }
 
 #video_section{
@@ -434,6 +438,7 @@ section {
 .nav-link {
     color: #03045E;
     font-size: 25px;
+    width: 100%;
 }
 .accordion-button{
     background: #CAF0F8C7;
@@ -810,4 +815,34 @@ legend{
     display:    inline-block;
     opacity: 1;
     transition: display 5s;
+}
+.dashboard_text{
+    font-weight: 200; font-size: 20px!important; color: #A9A9A9;
+}
+.dashboard_add_project{
+    font-weight: 200; font-size: 20px!important; color: #A9A9A9;
+}
+.dashboard_add_project:hover{
+    color: blue;
+}
+.dashboard_button{
+    width: 20%;
+    height: 50px;
+    color: #03045E;
+    border: none;
+    background-color: white;
+    transition: all .5s;
+}
+.dashboard_button:hover{
+    width: 30%;
+    height: 50px;
+    background: #03045E;
+    color: white;
+    transition: all .5s;
+}
+.btn-group{
+    margin-top: -5px;
+    width: 80%;
+    position: relative;
+    left: 50px;
 }
