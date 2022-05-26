@@ -46,10 +46,6 @@ class ViewService{
     }
     async profile(nickname){
         const user = await User.findOne({nickname: nickname})
-        if (user == null) {
-            throw ApiError.NotExist()
-        }
-
         let projects = await Project.find({user: user._id}).lean()
         return new ProfileDto(projects, user)
     }

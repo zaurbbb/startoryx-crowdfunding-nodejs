@@ -120,28 +120,20 @@ class ViewController {
 
     async profile(req, res, next) {
         try {
-            let email, nickname
-            if (req.user != null) {
-                email = req.user.email
-                nickname = req.user.nickname
-            }
-            if (req.params.id == null) {
-                req.params.id = nickname
-            }
+            let isOwner = false
+            if (req.user == null)
+                return res.redirect('/api/dashboard')
+            if (req.params.id == null)
+                req.params.id = req.user.nickname
+            if (req.params.id === req.user.nickname)
+                isOwner = true
 
             const profile = await viewService.profile(req.params.id)
+            res.render('pages/profile.ejs', {
+                user: profile.user, isOwner: isOwner,
+                projects: profile.projects, date: formatDate, url: process.env.CLIENT_URL
+            })
 
-            if (req.user != null && profile.user._id.equals(req.user._id)) {
-                res.render('pages/personal_profile.ejs', {
-                    email: req.user.email, user: profile.user, nickname: req.user.nickname,
-                    projects: profile.projects, date: formatDate, url: process.env.CLIENT_URL
-                })
-            } else {
-                res.render('pages/profile.ejs', {
-                    email: email, user: profile.user, nickname: nickname,
-                    projects: profile.projects, date: formatDate, url: process.env.CLIENT_URL
-                })
-            }
         } catch (e) {
             next(e)
         }
@@ -149,15 +141,12 @@ class ViewController {
 
     async profileSettings(req, res, next) {
         try {
-            let email, nickname
-            if (req.user != null) {
-                email = req.user.email
-                nickname = req.user.nickname
-            }
-            const user = await User.findOne({nickname: req.params.id})
-            if (user == null) return next(ApiError.NotExist())
+            if (req.user == null)
+                return res.redirect('/api/dashboard')
+            const user = await User.findOne({_id: req.params.id})
+
             res.render('pages/settings.ejs', {
-                email: email, user: user, nickname: nickname,
+                user: user,
                 date: formatDate
             })
         } catch (e) {

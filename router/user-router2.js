@@ -26,6 +26,7 @@ const upload = multer({storage: storage});
 
 // ---Local authorization---
 
+
 router.post('/registration',
     body('email').isEmail(),
     // body('phone').isMobilePhone(),
@@ -52,7 +53,7 @@ router.get('/password-reset', userController.passwordReset)
 
 router.get('/reset/:link', userController.reset)
 
-router.post('/reset/:link', body('password').isLength({min: 7, max: 32}), userController.updatePassword)
+router.post('/reset/:link', body('password').isLength({min: 4, max: 32}), userController.updatePassword)
 
 
 
@@ -82,10 +83,6 @@ router.get('/protected', ensureAuth, (req, res) => {
 });
 
 router.post('/donate/:id', userController.donate)
-
-router.get('/profile/:id?', viewController.profile);
-
-router.get('/profile/:id?/settings', viewController.profileSettings)
 
 router.post('/files/profile', upload.single('ava', {width: 305, height: 305, crop: "fill"}),
     userController.updateImage)

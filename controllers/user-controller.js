@@ -52,7 +52,7 @@ class UserController {
                 await userService.passwordReset(req.user._id, null)
             else
                 await userService.passwordReset(null, req.body.email)
-            res.send('A confirmation link has been sent to your email')
+            res.redirect('back')
         } catch (e) {
             next(e)
         }
@@ -62,7 +62,7 @@ class UserController {
         try {
             const resetLink = req.params.link;
             await userService.reset(resetLink);
-            res.render('pages/password_change.ejs', {
+            res.render('pages/change_password.ejs', {
                 link: resetLink
             });
         } catch (e) {
@@ -77,7 +77,7 @@ class UserController {
                 return next(ApiError.BadRequest('Validation error', errors.array()))
             }
             await userService.updatePassword(req.params.link, req.body.password)
-            res.redirect('/api/dashboard')
+            res.redirect('/profile')
         } catch (e) {
             next(e)
         }
@@ -100,9 +100,9 @@ class UserController {
 
     async updateProfile(req, res, next) {
         try {
-            const {nickname, first_name, last_name, phone, age} = req.body
-            await userService.updateProfile(req.user.email, nickname, first_name, last_name, age, phone)
-            res.redirect('/api/profile/' + req.user.nickname)
+            const {nickname, phone, age, specialist} = req.body
+            await userService.updateProfile(req.user.email, nickname, age, phone, specialist)
+            res.redirect('back')
         }
         catch (e) {
             next(e)

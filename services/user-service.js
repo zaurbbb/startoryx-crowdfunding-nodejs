@@ -120,10 +120,10 @@ class UserService {
         await User.findOneAndUpdate({resetLink: resetLink}, {password: hashPassword, resetLink: null})
     }
 
-    async updateProfile(email, nickname, first_name, last_name, age, phone = null){
+    async updateProfile(email, nickname, age, phone, specialist){
         await User.findOneAndUpdate(
             {email: email},
-            {nickname: nickname, first_name: first_name, last_name: last_name,
+            {nickname: nickname, specialist: specialist,
             age: age, phone: phone}
         )
     }
