@@ -12,10 +12,6 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <link rel="stylesheet" href="./style.css">
-
-    <style>
-
-    </style>
 </head>
 <body>
 
@@ -27,11 +23,14 @@
     <!--HEADER-->
     <header id="header">
 
-            <img src="img/logo.png" alt="" width="110" height="40" style="margin-top: -5px">
+            <img src="img/logo.png" alt="" width="110" height="40" style="margin-top: -8px">
 
-        <div style="text-align: right; margin-top: -5px">
-            <img style="filter: invert(100%); width: 20px; height: 20px; color: white" src="img/avatar-icon.png" alt="">
-            <img style="filter: invert(100%); width: 20px; height: 20px; color: white" src="img/search-icon.png" alt="">
+        <div style="text-align: right; margin-top: 3px">
+            <!--ICON PLUS крч сделаешь ссылку на создание проекта-->
+            <img style="width: 25px; height: 20px; color: white; margin-top: -3px" src="img/icons/icon_plus.png" alt="">
+            <img style="width: 17px; height: 17px; color: white; margin: -3px 8px 0" src="img/icons/icon_search.png" alt="" s>
+            <img style="width: 25px; height: 20px; color: white" src="img/icons/icon_man.png" alt="">
+
         </div>
     </header>
 
@@ -39,95 +38,101 @@
     <div id="video_text" class="container">
         <br>
         <div class="row">
-        <div id="video__title" class="col-12">
-            Star<span style="color: #87CEEB">Toryx</span>
-        </div>
-        <div class="" id="video__slogan"  class="col-12">
-            Create your start-up!
+            <div id="video__title" class="col-12">
+                StarToryx
+            </div>
+            <div id="video__slogan"  class="col-12">
+                Create your start-up
+            </div>
             <div id="video__line"></div>
         </div>
-        </div>
+
     </div>
 </section>
 
 <!--NAVBAR-->
-<div class="container-fluid bg-danger">
+<div class="container-fluid nav_bar" >
+    <!--Вот тут надо пооставить ссылки-->
     <div class="row text-center">
-        <div class="col-25">Arts</div>
-        <div class="col-25">Painting</div>
-        <div class="col-25">Technology</div>
-        <div class="col-25">Music</div>
-        <div class="col-25">Games</div>
+        <a class="col-25">Arts</a>
+        <a class="col-25">Painting</a>
+        <a class="col-25">Technology</a>
+        <a class="col-25">Music</a>
+        <a class="col-25">Games</a>
     </div>
 </div>
 
 <!--GENERAL BENEFITS BLOCK-->
-<div class="container-fluid py-5 " style="border-bottom: 1px solid gray">
-    <div class="about_us_section row">
-        <div class="col-6 my-auto mx-auto text-center">
-            <div class="col-12" style="font-size: 60px">
+<div class="container-fluid py-5 ">
+    <div class="about_us_section row mx-xl-5">
+        <div class="col-5 col-xl-6 my-auto mx-auto text-xl-start text-center">
+            <div class="col-12 about_us_big_text" >
                     <span style="color: #00B4D8">General </span><span style="color: #03045E">Benefits</span>
             </div>
-            <div class="col-12" style="font-size: 35px">
-                Why investors choose us:
+            <div class="col-12 about_us_small_text " >
+                Why investors and startups choose us:
             </div>
-            <div class="col-12" style="color:#00B4D8; font-size: 35px" onclick="showHiddenDiv1()">
-                → Professional Team
+            <div class="col-12 about_us_big_text" style="color:#00B4D8;" >
+                Professional Team
             </div>
-            <div id="showHiddenDiv1" style="display: none; font-size: 20px" class="px-3">
+            <div class="about_us_small_text">
                 StarToryx consists of international industry experts, with vast experience in managing capital raising for startups, and expertise in the different aspects required - from business to technology.
             </div>
-                    <br>
-            <div class="col-12" style="color:#00B4D8; font-size: 35px" onclick="showHiddenDiv2()">
-                → Confidence and Security
+
+            <div class="col-12 about_us_big_text" style="color:#00B4D8; " >
+                Confidence and Security
             </div>
-            <div id="showHiddenDiv2" style="display: none; font-size: 20px" class="px-3">
+            <div class="about_us_small_text">
                 Our platform is built on top of blockchain technology which enables a high level of data security and transparency.
             </div>
 
         </div>
-        <div class="col-6 px-0 py-0 mx-0 d-none d-xxl-block">
-            <div class="row" style="width: 100%">
-                <div class="col-11 py-auto">
-                    <img src="https://cdn11.bigcommerce.com/s-5w1jy93scp/images/stencil/789x789/uploaded_images/istock-511917030-1-min.jpg?t=1491001766" id="video_ackground">
+        <div class="col-6 d-none d-xl-block" >
 
+                <div class="about_us_img pt-3">
+                    <img src="img/about_us/about_us_photo_1.png" alt="">
+                    <img src="img/about_us/about_us_photo_2.png" alt="">
+                    <img src="img/about_us/about_us_photo_3.png" alt="">
                 </div>
-            </div>
+
+
 
         </div>
     </div>
 </div>
 
-<div class="container-fluid py-3 " style="border-bottom: 1px solid gray">
+<!--STARTUP SUCCESS STORIES-->
+<div class="container-fluid py-3 " >
     <div class="about_us_section row">
-        <div class="col-12 my-auto mx-auto text-center">
-            <div class="col-5" style="font-size: 60px">
-                <span style="color: #00B4D8">Startup </span><span style="color: #03045E">Success</span> <span style="color: #00B4D8">Stories </span>
+        <div class="col-12 my-auto mx-auto text-start">
+            <div class="col-12 ps-5" style="font-size: 60px">
+                <p class="ms-5 index_shadow_text">Startup Success Stories </p>
             </div>
 
             <div class="col-12 text-center mt-4 mb-4">
                 <div class="row mb-4">
                     <div class="col-4 text-center" style="">
                         <div class="card-head" style="">
-                            <img src="https://photographylife.com/wp-content/uploads/2017/01/Best-of-2016-Nasim-Mansurov-20.jpg" style="width:100%; border-radius: 10px">
+                            <div class="card-img" style="background-image: url('https://photographylife.com/wp-content/uploads/2017/01/Best-of-2016-Nasim-Mansurov-20.jpg')"> </div>
                             <p style="font-weight: 600; margin-top: 10px">Baibolat Akniet</p>
-                            <p style="font-size: 20px; padding: 5px 20px">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut labore</p>
+                            <p style="font-size: 20px; padding: 5px 20px">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut</p>
                             <button class="index-button" style="background: transparent; color: blue; padding: 25px 5px">Read the story</button>
                         </div>
                     </div>
                     <div class="col-4 text-center" style="">
                         <div class="card-head" style="">
-                            <img src="https://philadelphia.cbslocal.com/wp-content/uploads/sites/15116066/2022/03/northern-lights.jpeg?w=1500" style="width:100%; border-radius: 10px">
+                            <div class="card-img" style="background-image: url('https://philadelphia.cbslocal.com/wp-content/uploads/sites/15116066/2022/03/northern-lights.jpeg?w=1500')"> </div>
                             <p style="font-weight: 600; margin-top: 10px">Zaur Berdibekov</p>
-                            <p style="font-size: 20px; padding: 5px 20px">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut labore</p>
+                            <p style="font-size: 20px; padding: 5px 20px">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut</p>
                             <button class="index-button" style="background: transparent; color: blue; padding: 25px 5px">Read the story</button>
                         </div>
                     </div>
                     <div class="col-4 text-center" style="">
                         <div class="card-head" style="">
-                            <img src="https://www.planetware.com/wpimages/2020/02/france-in-pictures-beautiful-places-to-photograph-eiffel-tower.jpg" style="width:100%; border-radius: 10px">
+                            <div class="card-img" style="background-image: url('https://www.planetware.com/wpimages/2020/02/france-in-pictures-beautiful-places-to-photograph-eiffel-tower.jpg')"> </div>
+
                             <p style="font-weight: 600; margin-top: 10px">Mussa Umar</p>
-                            <p style="font-size: 20px; padding: 5px 20px">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut labore</p>
+                            <p style="font-size: 20px; padding: 5px 20px">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut</p>
                             <button class="index-button" style="background: transparent; color: blue; padding: 25px 5px">Read the story</button>
                         </div>
                     </div>
@@ -141,33 +146,58 @@
     </div>
 </div>
 
-<div class="container-fluid py-3 " style="border-bottom: 1px solid gray; background-color: #CAF0F8;">
+<!--INVESTORS BLOCK-->
+<div class="container-fluid py-5 ">
+    <div class="about_us_section row pe-5 ">
+        <div class="col-6 col-xl-6 my-auto mx-auto pe-5 text-xl-start text-center ps-5" style="
+                                                                                            font-family: 'Inter',sans-serif;
+                                                                                            font-style: normal;
+                                                                                            font-weight: 400;
+                                                                                            font-size: 55px;
+                                                                                            line-height: 80px;
+                                                                                            margin-left: 0px;
+                                                                                            
+                                                                                            display: flex;
+                                                                                            align-items: center;
+                                                                                            letter-spacing: 0.02em;">
+            <span class="ms-5">Investors from 60 countries investing via the LetsVenture technology platform.</span>
+        </div>
+        <div class="col-6">
+
+            <img src="img/index_world.png" alt="" style="width: 100%; margin-left: 0px">
+
+        </div>
+    </div>
+</div>
+
+<!--JOIN TO 10 000 + INVESTORS-->
+<div class="container-fluid py-3 ">
     <div class="about_us_section row">
-        <div class="col-12 my-auto mx-auto text-center">
-            <div class="col-7" style="font-size: 60px">
-                <span style="color: #00B4D8">Join to </span><span style="color: #03045E">10 000 +</span> <span style="color: #00B4D8">investors </span>
+        <div class="col-12 my-auto mx-auto text-start">
+            <div class="col-12 ps-5" style="font-size: 60px">
+                <p class="ms-5 index_shadow_text">Join to 10 000 + investors </p>
             </div>
 
-            <div class="col-12 text-center mt-4 mb-4">
+            <div class="col-12 text-center mt-4 mb-4 justify-content-center">
                 <div class="row mb-4">
                     <div class="col-4 text-center" style="">
-                        <div class="card" style="">
+                        <div class="quote">
                             <blockquote>
-                                <p>It's the best platform for startups!</p>
+                                <p>Startoryx - the best platform!</p>
                                 <footer>— <cite>Danil Ye.</cite></footer>
                             </blockquote>
                         </div>
                     </div>
                     <div class="col-4 text-center" style="">
-                        <div class="card" style="">
+                        <div class="quote" style="">
                             <blockquote>
-                                <p>I like the way how this company works!</p>
+                                <p>I like how this company works!</p>
                                 <footer>— <cite>Akzhan K.</cite></footer>
                             </blockquote>
                         </div>
                     </div>
                     <div class="col-4 text-center" style="">
-                        <div class="card" style="">
+                        <div class="quote" style="">
                             <blockquote>
                                 <p>With them you will be succeed!</p>
                                 <footer>— <cite>Daniyar K.</cite></footer>
@@ -184,10 +214,9 @@
 
 <div class="container-fluid py-3 " style="border-bottom: 1px solid gray;">
     <div class="about_us_section row">
-        <div class="col-12 my-auto mx-auto text-center">
-            <div class="col-5" style="font-size: 60px">
-                <span style="color: #00B4D8">Our  </span><span style="color: #03045E">Partners</span>
-
+        <div class="col-12 my-auto mx-auto text-start">
+            <div class="col-12 ps-5" style="font-size: 60px">
+                <p class="ms-5 index_shadow_text">Our Partners </p>
             </div>
             <div class="container">
 
@@ -195,42 +224,43 @@
                     <div class="row">
                         <div class="col-sm-6 col-md-4 col-lg-3">
                             <div class="square-holder">
-                                <img alt="" src="https://www.pmits.co.uk/portals/0/images/partners/solar-communications-200.png" />
+                                <img alt="" src="img/our_partnets/nike.png" />
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-4 col-lg-3">
                             <div class="square-holder">
-                                <img alt="" src="https://www.pmits.co.uk/portals/0/images/partners/cbf-200.png" />
+                                <img alt="" src="img/our_partnets/adidas.png" />
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-4 col-lg-3">
                             <div class="square-holder">
-                                <img alt="" src="https://www.pmits.co.uk/portals/0/images/partners/gxs-200.png" />
+                                <img alt="" src="img/our_partnets/halyk.png" />
+
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-4 col-lg-3">
                             <div class="square-holder">
-                                <img alt="" src="https://www.pmits.co.uk/portals/0/images/partners/jpr-200.png" />
+                                <img alt="" src="img/our_partnets/red_bull.png" />
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-4 col-lg-3">
                             <div class="square-holder">
-                                <img alt="" src="https://www.pmits.co.uk/portals/0/images/partners/talk-internet-200.png" />
+                                <img alt="" src="img/our_partnets/epam.png" />
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-4 col-lg-3">
                             <div class="square-holder">
-                                <img alt="" src="https://www.pmits.co.uk/Portals/0/img/opera3_logo.png" />
+                                <img alt="" src="img/our_partnets/atf.png" />
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-4 col-lg-3">
                             <div class="square-holder">
-                                <img alt="" src="https://www.pmits.co.uk/Portals/0/pegasus-logo.png" />
+                                <img alt="" src="img/our_partnets/habar.jpg" />
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-4 col-lg-3">
                             <div class="square-holder">
-                                <img alt="" src="https://www.pmits.co.uk/Portals/0/sage business partner.jpg" />
+                                <img alt="" src="img/our_partnets/kaspi.png" />
                             </div>
                         </div>
                     </div>
@@ -265,14 +295,7 @@
     <br>
 </footer>
 
-<iframe style="width: 100%"
-        height="200"
-        loading="lazy"
-        allowfullscreen
-        src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJBVZSBaaFRUIRflb3cxlK_00&key=
-                                AIzaSyCLGu6uBm1lI33xX6MiC1ZVSn8wP2RyoO8"></iframe>
-
-
+<script src="jquery-3.6.0.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
