@@ -31,16 +31,16 @@
                         <div class="col-12 profile_content"><%= user.first_name %> <%= user.last_name %></div>
                     </div>
                     <div class="row text-xl-start text-center">
-                        <div class="col-12 profile_type">Specialist</div>
-                        <div class="col-12 profile_content"><%= user.specialist %></div>
+                        <div class="col-12 profile_type">Nickname</div>
+                        <div class="col-12 profile_content"><%= user.nickname %></div>
                     </div>
                     <div class="row text-xl-start text-center">
                         <div class="col-12 profile_type">Age</div>
                         <div class="col-12 profile_content"><%= user.age %></div>
                     </div>
                     <div class="row text-xl-start text-center">
-                        <div class="col-12 profile_type">Nickname</div>
-                        <div class="col-12 profile_content"><%= user.nickname %></div>
+                        <div class="col-12 profile_type">Specialist</div>
+                        <div class="col-12 profile_content"><%= user.specialist %></div>
                     </div>
                 </div>
                 <% if (isOwner) { %>
@@ -130,9 +130,6 @@
                                 </div>
                                 <div class="card_profile_info_div">
                                     <i class="fa fa-share-alt"></i>Share
-                                </div>
-                                <div class="card_profile_info_div">
-                                    <i class="fa fa-bookmark"></i>Not Added
                                 </div>
                             </div>
                         </div>
