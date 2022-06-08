@@ -19,8 +19,7 @@ module.exports = function (passport, req, res) {
         },
         async (username, password, done) => {
             try {
-                const userData = await userService.login(username, password, done)
-                console.log(userData)
+                await userService.login(username, password, done)
             } catch (e) {
                 console.log(e)
             }
@@ -30,14 +29,13 @@ module.exports = function (passport, req, res) {
     passport.use(new GoogleStrategy({
                 clientID: process.env.GOOGLE_CLIENT_ID,
                 clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-                callbackURL: process.env.CLIENT_URL + "/api/google/callback"
+                callbackURL: process.env.URL + "/google/callback"
             },
             async (accessToken, refreshToken, profile, done) => {
                 try {
                     const email = (profile.email == null) ? profile.emails[0].value : profile.email
-                    const userData = await userService.googleAuth(profile.id, profile.name.givenName,
+                    await userService.googleAuth(profile.id, profile.name.givenName,
                         profile.name.familyName, email, email.split('@')[0], profile.photos[0].value, done)
-                    console.log(userData)
                 } catch (e) {
                     console.log(e)
                 }

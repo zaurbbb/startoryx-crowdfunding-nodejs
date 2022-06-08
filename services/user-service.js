@@ -9,30 +9,27 @@ const Project = require("../models/project-model");
 
 class UserService {
     async registration(email, nickname, password, first_name = null, last_name = null, phone = null, age = null
-        , googleId = null, image = null) {
-        // check: if such a user is in the database
+        , googleId = null) {
         const candidate = await UserModel.findOne({email})
         if (candidate) {
             throw ApiError.BadRequest('User with this email address already exists')
         }
-
-        const hashPassword = await bcrypt.hash(password, 4) // hash the password
+        const hashPassword = await bcrypt.hash(password, 4)
         const activationLink = uuid.v4()
         const user = await UserModel.create({
             email,
             nickname,
             password: hashPassword,
             googleId,
-            image,
             first_name,
             last_name,
             phone,
             age,
             activationLink,
             roles: ["USER"]
-        }) // save user to database
-        await mailService.sendActivationMail(email, `${process.env.API_URL}/api/activate/${activationLink}`) // sending an activation email
-        const userDto = new UserDto(user) // (data to transfer) id, email, isActivated, roles
+        })
+        await mailService.sendActivationMail(email, `${process.env.URL}/api/activate/${activationLink}`)
+        const userDto = new UserDto(user)
 
         return {user: userDto}
     }
@@ -57,7 +54,6 @@ class UserService {
         const userDto = new UserDto(user)
 
         return {user: userDto}
-
     }
 
     async passwordReset(id, email) {
@@ -72,13 +68,13 @@ class UserService {
 
         const resetLink = uuid.v4()
         await UserModel.findOneAndUpdate({email: user.email}, {resetLink: resetLink})
-        await mailService.sendResetLink(user.email, `${process.env.API_URL}/api/reset/${resetLink}`)
+        await mailService.sendResetLink(user.email, `${process.env.URL}/reset/${resetLink}`)
     }
 
     async activationMail(id) {
         const user = await UserModel.findOne({_id: id})
         const activationLink = user.activationLink
-        await mailService.sendActivationMail(user.email, `${process.env.API_URL}/api/activate/${activationLink}`)
+        await mailService.sendActivationMail(user.email, `${process.env.URL}/activate/${activationLink}`)
     }
 
     async activate(activationLink) {

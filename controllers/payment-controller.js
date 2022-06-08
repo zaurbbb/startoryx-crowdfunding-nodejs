@@ -19,8 +19,8 @@ class PaymentController{
                     "payment_method": "paypal"
                 },
                 "redirect_urls": {
-                    "return_url": process.env.CLIENT_URL + "/success/" + amount,
-                    "cancel_url": process.env.CLIENT_URL + "/profile"
+                    "return_url": process.env.URL + "/success/" + amount,
+                    "cancel_url": process.env.URL + "/profile"
                 },
                 "transactions": [{
                     "item_list": {
@@ -98,8 +98,8 @@ class PaymentController{
                     "payment_method": "paypal"
                 },
                 "redirect_urls": {
-                    "return_url": process.env.CLIENT_URL + "/donate_success/" + amount + "/" + project,
-                    "cancel_url": process.env.CLIENT_URL + "/dashboard"
+                    "return_url": process.env.URL + "/donate_success/" + amount + "/" + project,
+                    "cancel_url": process.env.URL + "/dashboard"
                 },
                 "transactions": [{
                     "item_list": {

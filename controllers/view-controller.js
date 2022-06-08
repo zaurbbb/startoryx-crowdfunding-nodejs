@@ -4,7 +4,6 @@ const Definition = require('../models/definition-model')
 const Payment = require('../models/payment-model')
 const Miscellaneous = require('../models/miscellaneous-model')
 const viewService = require('../services/view-service')
-const ApiError = require('../exceptions/api-error')
 const formatDate = require("../helpers/formatDate");
 
 class ViewController {
@@ -18,13 +17,12 @@ class ViewController {
             const board = await viewService.projectBoard(req._parsedUrl.query, req.params.sort)
             res.render('pages/dashboard.ejs', {
                 email: email, date: formatDate, projects: board.projects, search: board.search,
-                nickname: nickname, url: process.env.CLIENT_URL
+                nickname: nickname, url: process.env.URL
             })
         } catch (e) {
             next(e)
         }
     }
-
     async faq(req, res, next) {
         try {
             const definitions = await Definition.find()
@@ -36,7 +34,32 @@ class ViewController {
             next(e)
         }
     }
-
+    async registration(req, res, next) {
+        try {
+            if (req.user != null) return res.redirect('/profile')
+            res.render('pages/registration')
+        }
+        catch (e) {
+            next(e)
+        }
+    }
+    async login(req, res, next) {
+        try {
+            if (req.user != null) return res.redirect('/profile')
+            res.render('pages/login')
+        }
+        catch (e) {
+            next(e)
+        }
+    }
+    async forget(req, res, next) {
+        try {
+            res.render('pages/forget')
+        }
+        catch (e) {
+            next(e)
+        }
+    }
     async getProject(req, res, next) {
         try {
             let email, nickname
@@ -54,7 +77,6 @@ class ViewController {
             next(e)
         }
     }
-
     async putProject(req, res, next) {
         try {
             await Project.findOneAndUpdate(
@@ -68,7 +90,6 @@ class ViewController {
             next(e)
         }
     }
-
     async getEditProject(req, res, next) {
         try {
             const project = await Project.findById(req.params.id).lean()
@@ -81,7 +102,6 @@ class ViewController {
             next(e)
         }
     }
-
     async postProject(req, res, next) {
         try {
             req.body.user = req.user._id
@@ -92,7 +112,6 @@ class ViewController {
             next(e)
         }
     }
-
     async postComment(req, res, next) {
         try {
             req.body.project = req.params.id
@@ -104,7 +123,6 @@ class ViewController {
             next(e)
         }
     }
-
     async postRate(req, res, next) {
         try {
             req.body.rate = parseInt(req.body.rate)
@@ -117,35 +135,33 @@ class ViewController {
             next(e)
         }
     }
-
     async profile(req, res, next) {
         try {
             let isOwner = false
             if (req.user == null)
-                return res.redirect('/api/dashboard')
+                return res.redirect('/login')
             if (req.params.id == null)
                 req.params.id = req.user.nickname
             if (req.params.id === req.user.nickname)
                 isOwner = true
 
             const profile = await viewService.profile(req.params.id)
-            res.render('pages/profile.ejs', {
+            res.render('pages/profile', {
                 user: profile.user, isOwner: isOwner,
-                projects: profile.projects, date: formatDate, url: process.env.CLIENT_URL
+                projects: profile.projects, date: formatDate, url: process.env.URL
             })
 
         } catch (e) {
             next(e)
         }
     }
-
     async profileSettings(req, res, next) {
         try {
             if (req.user == null)
                 return res.redirect('/api/dashboard')
             const user = await User.findOne({_id: req.params.id})
 
-            res.render('pages/settings.ejs', {
+            res.render('pages/settings', {
                 user: user,
                 date: formatDate
             })
