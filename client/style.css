@@ -729,7 +729,7 @@ legend{
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    padding: 12px 20px 20px 20px;
+    padding: 12px 15px 20px 20px;
     height: 205px;
     font-family: Inter, sans-serif;
 }
