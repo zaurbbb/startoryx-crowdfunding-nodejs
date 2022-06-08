@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Startoryx Account</title>
+    <%- include('../partials/head'); %>
+</head>
+<body>
+
+<header id="header" style="background: #03045E;">
+    <div style="float: left; font-size: 25px;">
+
+    </div>
+    <div class="my-auto" style="text-align: right;">
+        <img style="filter: invert(100%); width: 20px; height: 20px; color: white" src="img/avatar-icon.png" alt="">
+        <img style="filter: invert(100%); width: 20px; height: 20px; color: white" src="img/search-icon.png" alt="">
+    </div>
+</header>
+
+<div class="container-fluid mb-5 mt-5 login_reg text-center">
+    <center>
+        <div class="row login__reg w-75">
+            <div class="col-6"><img src="img/login_reg.png" alt=""></div>
+            <div class="col-6">
+
+                <form method="post" action="/password-reset">
+                    <div class="col-12 " style="margin-top: 150px">
+                        <fieldset border="1">
+                            <legend id="course" class="float-none w-auto mx-sm-2 text-center">
+                                type your email for the password recovery
+                            </legend>
+                        </fieldset>
+                    </div>
+                    <div class="col-12 my-4" style="min-width: 300px">
+                        <input type="email" name="email" class="form-control " placeholder="Email">
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-12  text-start">
+
+
+                            <input class="submit" type="submit" style="float: left" value="Recovery">
+                            <a href="/login" style="float: right; font-family: 'Brawler';
+font-style: normal;
+font-weight: 400;
+font-size: 20px;
+
+
+
+letter-spacing: 0.07em;">Return to login page</a>
+                        </div>
+                        <div class="col-12 text-start">
+
+
+                        </div>
+                        `
+                    </div>
+                </form>
+            </div>
+        </div>
+    </center>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

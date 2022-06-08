@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Startoryx Account</title>
+    <%- include('../partials/head'); %>
+</head>
+<body>
+
+<header id="header" style="background: #03045E;">
+    <div style="float: left; font-size: 25px;">
+
+    </div>
+    <div class="my-auto" style="text-align: right;">
+        <img style="filter: invert(100%); width: 20px; height: 20px; color: white" src="img/avatar-icon.png" alt="">
+        <img style="filter: invert(100%); width: 20px; height: 20px; color: white" src="img/search-icon.png" alt="">
+    </div>
+</header>
+
+<div class="container-fluid mb-5 mt-5 login_reg text-center">
+    <center>
+        <div class="row login__reg w-75">
+            <div class="col-6"><br><br><br><img src="img/login_reg.png" alt=""></div>
+            <div class="col-6">
+
+                <div class="col-12">
+                <span style="float: left; font-family: 'Brawler';
+font-style: normal;
+font-weight: 400;
+font-size: 40px;
+line-height: 73px;
+display: flex;
+align-items: center;
+text-align: center;
+letter-spacing: 0.07em;">Sign Up</span>
+                </div>
+                <div class="col-12">
+                    <a href="/login" style="float: right; font-family: 'Brawler';
+font-style: normal;
+font-weight: 400;
+font-size: 20px;
+line-height: 73px;
+letter-spacing: 0.07em; position:relative; bottom: 0">or sign in</a>
+                </div>
+                <form action="/registration" method="post">
+                    <div class="col-12 my-4" style="min-width: 300px">
+                        <input type="text" name="first_name" class="form-control " placeholder="First Name">
+                    </div>
+                    <div class="col-12 my-4" style="min-width: 300px">
+                        <input type="text" name="last_name" class="form-control " placeholder="Last Name">
+                    </div>
+                    <div class="col-12 my-4" style="min-width: 300px">
+                        <input type="text" name="nickname" class="form-control m" placeholder="Nickname">
+                    </div>
+                    <div class="col-12 my-4" style="min-width: 300px">
+                        <input type="email" name="email" class="form-control m" placeholder="Email">
+                    </div>
+                    <div class="col-12 my-4" style="min-width: 300px">
+                        <input type="number" name="phone" class="form-control m" placeholder="Phone">
+                    </div>
+                    <div class="col-12 my-4" style="min-width: 300px">
+                        <input type="number" name="age" class="form-control m" placeholder="Age">
+                    </div>
+                    <div class="col-12 my-4" style="min-width: 300px">
+                        <input type="password" name="password" class="form-control m" placeholder="Password">
+                    </div>
+                    <div class="col-12 my-4" style="min-width: 300px">
+                        <input type="password" name="repeat_password" class="form-control m"
+                               placeholder="Repeat password">
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12  text-start">
+                            <input class="submit" href="index.html" type="submit" style="float: left" value="Sign in">
+                        </div>
+
+                        `
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </center>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

@@ -1,22 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Profile Page</title>
-
+    <title>Startoryx <%= user.nickname %></title>
     <%- include('../partials/head'); %>
     <!-- FONT AWESOME-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
-    <link rel="stylesheet" href="/style.css">
-
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Brawler&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Arvo&family=Brawler&family=Zilla+Slab:wght@300&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap');
-        @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
-
-    </style>
 </head>
 <body>
 
@@ -40,7 +27,7 @@
             <div class="row ">
                 <div class="col-6 my-1">
                     <div class="row text-xl-start text-center">
-                        <div class="col-12 profile_type">Name <%= isOwner %></div>
+                        <div class="col-12 profile_type">Name</div>
                         <div class="col-12 profile_content"><%= user.first_name %> <%= user.last_name %></div>
                     </div>
                     <div class="row text-xl-start text-center">
@@ -83,7 +70,7 @@
                             <div class="col-12 profile_type">Balance</div>
                             <div class="col-12 profile_content"><%= user.balance %>$
                                 <button data-bs-toggle="modal" data-bs-target="#paypal" class="profile_balance_button">
-                                    <span style="position: relative; top: -2px">+</span></button>
+                                    <span style="position: relative; top: -3px">+</span></button>
                             </div>
                         </div>
                     </div>
@@ -97,50 +84,67 @@
 <br>
 <hr>
 <div class="container-fluid container-for-projects mb-4">
-    <% projects.forEach(function(project) { %>
-        <div class="card">
-            <div class="card-header" onclick="location.href='/api/projects/<%= project._id %>'"
-                 style="background-image: url('<%= project.image %>'); cursor: pointer;  ">
-                <div class="hidden_blocks row" style="">
-                    <div class="col-12 ">
-                        <button class="hidden_blocks_button">
-                            <i class="fa fa-star"></i> <span class="hidden_text"><%= project.avgRate %>/10</span>
-                        </button>
-                    </div>
-                    <div class="col-12">
-                        <button class="hidden_blocks_button">
-                            <i class="fa fa-dollar "></i> <span class="hidden_text"><%= project.collected %>/<%= project.goal%></span>
-                        </button>
-                    </div>
-                    <div class="col-12">
-                        <button class="hidden_blocks_button">
-                            <i class="fa fa-comment "></i> <span class="hidden_text">0</span>
-                        </button>
-                    </div>
+        <% projects.forEach(function(project) { %>
+            <div class="card">
+                <div class="card-header" onclick="location.href='/api/projects/<%= project._id %>'"
+                     style="background-image: url('<%= project.image %>'); cursor: pointer;  ">
+                    <div class="hidden_blocks row" style="">
+                        <div class="col-12 ">
+                            <button class="hidden_blocks_button">
+                                <i class="fa fa-star"></i> <span class="hidden_text"><%= project.avgRate %>/10</span>
+                            </button>
+                        </div>
+                        <div class="col-12">
+                            <button class="hidden_blocks_button">
+                                <i class="fa fa-dollar "></i> <span
+                                        class="hidden_text"><%= project.collected %>/<%= project.goal %></span>
+                            </button>
+                        </div>
+                        <div class="col-12">
+                            <button class="hidden_blocks_button">
+                                <i class="fa fa-comment "></i> <span class="hidden_text">0</span>
+                            </button>
+                        </div>
 
-                    <div class="col-12 ">
-                        <button class="hidden_blocks_button">
-                            <i class="fa fa-eye"></i> <span class="hidden_text"><%= project.visits %></span>
+                        <div class="col-12 ">
+                            <button class="hidden_blocks_button">
+                                <i class="fa fa-eye"></i> <span class="hidden_text"><%= project.visits %></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <span class="tag category_<%= project.type %>"><%= project.type %></span>
+                    <h5 onclick="location.href='/api/projects/<%= project._id %>'" style="cursor: pointer">
+                        <%= project.title %>
+                    </h5>
+                    <p>
+                        <%= project.shortly %>
+                    </p>
+                    <div class="user">
+                        <div class="user-info">
+                            <h5>Posted: <%= project.published %></h5>
+                        </div>
+                    </div>
+                    <br>
+                    <div style="display: flex">
+                        <button onclick="Confirm()"
+                                style="background-color: gray; width: 80px; margin-left: 30px; margin-right: 30px; height: 40px;"
+                                class="btn">Edit
                         </button>
+                        <button style="background-color: red; width: 80px;height: 40px;" class="btn">Delete</button>
                     </div>
+                    <br>
                 </div>
             </div>
-            <div class="card-body">
-                <span class="tag category_<%= project.type %>"><%= project.type %></span>
-                <h5 onclick="location.href='/api/projects/<%= project._id %>'" style="cursor: pointer">
-                    <%= project.title %>
-                </h5>
-                <p>
-                    <%= project.shortly %>
-                </p>
-                <div class="user">
-                    <div class="user-info">
-                        <h5>Posted: <%= project.published %></h5>
-                    </div>
-                </div>
-            </div>
-        </div>
-    <% }); %>
+            <script>
+                function Confirm() {
+                    if (confirm("If any data is changed, your project will be processed by moderation again and will become private")) {
+                        location.href = '<%= url %>/api/projects/edit/<%= project._id %>'
+                    }
+                }
+            </script>
+        <% }); %>
 </div>
 
 <!-- Modal -->

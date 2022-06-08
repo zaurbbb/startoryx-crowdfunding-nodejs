@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Startoryx Account</title>
+    <%- include('../partials/head'); %>
+</head>
+<body>
+
+<header id="header" style="background: #03045E;">
+    <div style="float: left; font-size: 25px;">
+
+    </div>
+    <div class="my-auto" style="text-align: right;">
+        <img style="filter: invert(100%); width: 20px; height: 20px; color: white" src="img/avatar-icon.png" alt="">
+        <img style="filter: invert(100%); width: 20px; height: 20px; color: white" src="img/search-icon.png" alt="">
+    </div>
+</header>
+
+<div class="container-fluid mb-5 mt-5 login_reg text-center">
+    <center>
+        <div class="row login__reg w-75">
+            <div class="col-6"><img src="img/login_reg.png" alt=""></div>
+            <div class="col-6" style="margin-top: 40px">
+                <div class="col-12">
+                <span style="float: left; font-family: 'Brawler';
+font-style: normal;
+font-weight: 400;
+font-size: 40px;
+line-height: 73px;
+display: flex;
+align-items: center;
+text-align: center;
+letter-spacing: 0.07em;">Sign in</span>
+                </div>
+                <div class="col-12">
+                    <a href="/registration" style="float: right; font-family: 'Brawler';
+font-style: normal;
+font-weight: 400;
+font-size: 20px;
+line-height: 73px;
+
+
+letter-spacing: 0.07em; position:relative; bottom: 0">or create an account</a>
+                </div>
+                <div class="col-12">
+                    <a href="/google" class="btn">
+                        <i class="fa fa-google fa-1x fa-fw" style="float: left"></i>
+                        Login with Google
+                    </a>
+                </div>
+                <div class="col-12 ">
+                    <fieldset border="1">
+                        <legend id="course" class="float-none w-auto mx-sm-2 text-center">
+                            or
+                        </legend>
+                    </fieldset>
+                </div>
+                <form action="/login" method="post">
+                    <div class="col-12 my-4" style="min-width: 300px">
+
+                        <input type="email" name="email" class="form-control " placeholder="Email">
+                    </div>
+
+                    <div class="col-12 " style="min-width: 300px">
+                        <input type="password" name="password" class="form-control m" placeholder="Password">
+                    </div>
+                    <div class="row">
+                        <div class="col-12 my-4 text-start">
+
+                            <input class="form-check-input" type="checkbox" checked>
+                            <label class="form-check-label" style="font-family: 'Brawler'; font-size: 15px;
+font-style: normal; font-weight:500; margin-left: 20px;">
+                                Remember me
+                            </label>
+                            <input class="submit" type="submit" style="float: right" value="Sign in">
+                        </div>
+                        <div class="col-12 text-start">
+
+
+                            <a href="/forget"
+                               style="font-family: 'Brawler'; font-size: 15px;font-style: normal; font-weight:500; ">
+                                Forget your password?</a>
+                            <br><br>
+
+                        </div>
+                        `
+                    </div>
+                </form>
+            </div>
+        </div>
+    </center>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
