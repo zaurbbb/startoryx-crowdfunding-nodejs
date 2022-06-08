@@ -730,11 +730,29 @@ legend{
     justify-content: center;
     align-items: flex-start;
     padding: 12px 20px 20px 20px;
-    height: 200px;
+    height: 205px;
     font-family: Inter, sans-serif;
 }
 .card-body p {
     font-size: 13px;
+    overflow-x: hidden;
+    word-wrap: break-word;
+    width: 100%;
+}
+.card-body h4 {
+    overflow-x: hidden;
+    word-wrap: break-word;
+    width: 100%;
+    height: 60px;
+}
+
+.card-body p::-webkit-scrollbar {
+    opacity: 0.5;
+    width: 2px;
+}
+.card-body h4::-webkit-scrollbar {
+    opacity: 0.5;
+    width: 2px;
 }
 .user {
     display: flex;
