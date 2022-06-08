@@ -9,7 +9,7 @@ class MailService{
             secure: false,
             auth: {
                 user: process.env.SMTP_USER,
-                pass: process.env.SMTP_PASSWORD
+                pass: process.env.SMTP_APP_PASSWORD
             }
         })
     }
@@ -18,7 +18,7 @@ class MailService{
         await this.transporter.sendMail({
             from: process.env.SMTP_USER,
             to,
-            subject: 'Account activation on ' + process.env.API_URL,
+            subject: 'Account activation on ' + process.env.URL,
             text: '',
             html:
                 `
@@ -34,7 +34,7 @@ class MailService{
         await this.transporter.sendMail({
             from: process.env.SMTP_USER,
             to,
-            subject: 'Reset password on ' + process.env.API_URL,
+            subject: 'Reset password on ' + process.env.URL,
             text: '',
             html:
                 `
