@@ -75,7 +75,10 @@
                         </div>
                     </div>
                     <div class="col-1"><i class="fa fa-solid fa-pencil" style="cursor: pointer"
-                                          onclick="location.href='/profile/settings/<%= user.id %>'"></i></div>
+                                          onclick="location.href='/profile/settings/<%= user.id %>'"></i>
+                        <a style="cursor: pointer" onclick="location.href='/logout'"><i
+                                    class="fa fa-solid fa-sign-out"></i></a>
+                    </div>
                 <% } %>
             </div>
         </div>
@@ -87,7 +90,11 @@
     <ul class="nav nav-pills mx-3 mt-4" role="tablist">
         <li class="nav-item" role="presentation">
             <button class="nav-link ">
-                My Projects
+                <% if (isOwner) { %>
+                    My projects
+                <% } else { %>
+                    <%= user.nickname %>'s projects
+                <% } %>
             </button>
         </li>
 
@@ -106,7 +113,8 @@
                         <div class="row" style="position:relative;">
                             <!--TITLE-->
                             <div
-                                 class="col-12 card_profile_text_div "><span onclick="location.href='/api/projects/<%= project._id %>'"
+                                    class="col-12 card_profile_text_div "><span
+                                        onclick="location.href='/api/projects/<%= project._id %>'"
                                         style="font-weight: 600; cursor: pointer"><%= project.title %></span>
                                 <!--SHORTLY--> <br>
                                 <%= project.shortly %>
@@ -135,6 +143,7 @@
                         </div>
 
                     </div>
+                    <% if (isOwner) { %>
                     <div class="col-1 py-3">
                         <!--EDIT-->
                         <i style="cursor: pointer" onclick="editConfirm()" class="fa fa-solid fa-pencil"></i>
@@ -142,6 +151,7 @@
                         <!--DELETE-->
                         <i style="cursor: pointer" onclick="deleteConfirm()" class="fa fa-solid fa-trash"></i>
                     </div>
+                    <% } %>
                 </div>
 
             </div>
@@ -152,6 +162,7 @@
                         location.href = '<%= url %>/api/projects/edit/<%= project._id %>'
                     }
                 }
+
                 function deleteConfirm() {
                     if (confirm("Are you sure you want to delete the project? There will be no turning back...")) {
                         location.href = '<%= url %>/api/projects/delete/<%= project._id %>'
