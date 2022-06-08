@@ -22,54 +22,52 @@
 <body>
   <!--HEADER-->
   <header id="header" style="background: #03045E;">
-    <div style="float: left; font-size: 25px;">
+
+    <a href="index.html"><img src="img/logo.png" alt="" width="110" height="40" style="margin-top: -8px"></a>
+
+    <div style="text-align: right; margin-top: 3px">
+      <!--ICON PLUS крч сделаешь ссылку на создание проекта-->
+      <a href="create_project.html"><img style="width: 25px; height: 20px; color: white; margin-top: -3px" src="img/icons/icon_plus.png" alt=""></a>
+      <a href="dashboard.html"><img style="width: 17px; height: 17px; color: white; margin: -3px 8px 0" src="img/icons/icon_search.png" alt=""></a>
+      <a href="profile.html"><img style="width: 25px; height: 20px; color: white" src="img/icons/icon_man.png" alt=""></a>
 
     </div>
-    <div class="my-auto" style="text-align: right;">
-      <img style="filter: invert(100%); width: 20px; height: 20px; color: white" src="img/avatar-icon.png" alt="">
-      <img style="filter: invert(100%); width: 20px; height: 20px; color: white" src="img/search-icon.png" alt="">
-    </div>
   </header>
-  <br><br><br>
-  <div class="container  text-center " style="font-family: 'Inter', sans-serif; font-size: 20px; text-align:right;">
-    <div class="row">
-      <div class="col-12 inter text-center" style="font-weight: 600; font-size: 40px">Start-up list</div>
-      <div class="col-12 inter dashboard_text"> Tap <a class="dashboard_add_project" href="#">here</a> to add new
-        project</div>
+  <br>
+
+  <div class="container-fluid text-center mt-3 dashboard_main">
+    <div class="row ps-5">
+      <div class="ms-5 text-start inter text-light">Start-Up List</div>
+    </div>
     </div>
   </div>
   <!--NAVIGATION BUTTONS-->
   <div class="container-fluid">
     <center>
-      <ul class="nav nav-pills mx-3 mt-4 justify-content-center row " role="tablist">
+      <ul class="nav nav-pills mx-3 justify-content-center row " >
         <li class="nav-item col-2 ">
           <button class="nav-link active " data-bs-toggle="pill">
-            All
+            Arts <i class="fa fa-long-arrow-down"></i>
           </button>
         </li>
         <li class="nav-item col-2 ">
           <button class="nav-link  " data-bs-toggle="pill">
-            Arts
+            Paiting <i class="fa fa-long-arrow-right"></i>
           </button>
         </li>
         <li class="nav-item col-2 ">
           <button class="nav-link  " data-bs-toggle="pill">
-            Paiting
+            Technology <i class="fa fa-long-arrow-right"></i>
           </button>
         </li>
         <li class="nav-item col-2 ">
           <button class="nav-link  " data-bs-toggle="pill">
-            Technology
+            Music <i class="fa fa-long-arrow-right"></i>
           </button>
         </li>
         <li class="nav-item col-2 ">
           <button class="nav-link  " data-bs-toggle="pill">
-            Music
-          </button>
-        </li>
-        <li class="nav-item col-2 ">
-          <button class="nav-link  " data-bs-toggle="pill">
-            Games
+            Games <i class="fa fa-long-arrow-right"></i>
           </button>
         </li>
       </ul>

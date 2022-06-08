@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title id="version">Error</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+          crossorigin="anonymous"></script>
+
+  <!-- FONT AWESOME-->
+  <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+
+<div class="container-fluid" style="position:absolute;top: 30%">
+  <div class="row justify-content-center">
+
+    <div class="col-12 d-print-block mb-2">
+      <div class="row justify-content-center">
+        <div class="col-md-1 col-12 text-center text-wrap" ><h1 class=" display-2 text-center">Ooops! Page not found!</h1></div>
+        <div class="col-md-1 col-12"><p class="lead text-center text-wrap"> Sorry, the page you’re looking for doesn’t exist.
+          If you think something is broken, report a problem.</p></div>
+
+        <div class="d-flex justify-content-center ">
+          <p>
+            <button class="submit" href="index.html" type="submit" style="float: left; height: 40px">Back to home</button>
+            <button class="ms-4 submit" href="index.html" type="submit" style="float: left; height: 40px" data-bs-toggle="modal" data-bs-target="#reportModal">Send a   Report</button>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- REPORT MODAL -->
+<div class="modal fade" id="reportModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Report a problem</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email:</label>
+            <input type="email" class="form-control" id="email" placeholder="name@example.com">
+          </div>
+          <div class="mb-3">
+            <label for="message-text" class="form-label">Message:</label>
+            <textarea class="form-control" id="message-text"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-primary" id="sendButton" onclick="sendLoadingButton()">Send a message
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</body>
+</html>
