@@ -83,68 +83,86 @@
 </div>
 <br>
 <hr>
-<div class="container-fluid container-for-projects mb-4">
+<div class="container">
+    <ul class="nav nav-pills mx-3 mt-4" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link ">
+                My Projects
+            </button>
+        </li>
+
+
+    </ul>
+    <div class="contact-us-line  mb-3"></div>
+
+    <div class="container ">
         <% projects.forEach(function(project) { %>
-            <div class="card">
-                <div class="card-header" onclick="location.href='/api/projects/<%= project._id %>'"
-                     style="background-image: url('<%= project.image %>'); cursor: pointer;  ">
-                    <div class="hidden_blocks row" style="">
-                        <div class="col-12 ">
-                            <button class="hidden_blocks_button">
-                                <i class="fa fa-star"></i> <span class="hidden_text"><%= project.avgRate %>/10</span>
-                            </button>
-                        </div>
-                        <div class="col-12">
-                            <button class="hidden_blocks_button">
-                                <i class="fa fa-dollar "></i> <span
-                                        class="hidden_text"><%= project.collected %>/<%= project.goal %></span>
-                            </button>
-                        </div>
-                        <div class="col-12">
-                            <button class="hidden_blocks_button">
-                                <i class="fa fa-comment "></i> <span class="hidden_text">0</span>
-                            </button>
+            <div class="card_profile">
+                <div class="row">
+                    <div class="col-1 card_profile_image_div " style="cursor: pointer"
+                         onclick="location.href='/api/projects/<%= project._id %>'"><img
+                                src="<%= project.image %>" alt=""></div>
+                    <div class="col-10 card_profile_content_div ">
+                        <div class="row" style="position:relative;">
+                            <!--TITLE-->
+                            <div
+                                 class="col-12 card_profile_text_div "><span onclick="location.href='/api/projects/<%= project._id %>'"
+                                        style="font-weight: 600; cursor: pointer"><%= project.title %></span>
+                                <!--SHORTLY--> <br>
+                                <%= project.shortly %>
+                            </div>
+
+
+                            <!--FONT AWESOMES-->
+                            <div class="col-12">
+
+                                <div class="card_profile_info_div">
+                                    <i class="fa fa-star"></i><%= project.avgRate %>/10
+                                </div>
+                                <div class="card_profile_info_div">
+                                    <i class="fa fa-dollar"></i><%= project.collected %>/<%= project.goal %>
+                                </div>
+                                <div class="card_profile_info_div">
+                                    <i class="fa fa-comments"></i>NULL
+                                </div>
+                                <div class="card_profile_info_div">
+                                    <i class="fa fa-eye"></i><%= project.visits %>
+                                </div>
+                                <div class="card_profile_info_div">
+                                    <i class="fa fa-share-alt"></i>Share
+                                </div>
+                                <div class="card_profile_info_div">
+                                    <i class="fa fa-bookmark"></i>Not Added
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="col-12 ">
-                            <button class="hidden_blocks_button">
-                                <i class="fa fa-eye"></i> <span class="hidden_text"><%= project.visits %></span>
-                            </button>
-                        </div>
+                    </div>
+                    <div class="col-1 py-3">
+                        <!--EDIT-->
+                        <i style="cursor: pointer" onclick="editConfirm()" class="fa fa-solid fa-pencil"></i>
+
+                        <!--DELETE-->
+                        <i style="cursor: pointer" onclick="deleteConfirm()" class="fa fa-solid fa-trash"></i>
                     </div>
                 </div>
-                <div class="card-body">
-                    <span class="tag category_<%= project.type %>"><%= project.type %></span>
-                    <h5 onclick="location.href='/api/projects/<%= project._id %>'" style="cursor: pointer">
-                        <%= project.title %>
-                    </h5>
-                    <p>
-                        <%= project.shortly %>
-                    </p>
-                    <div class="user">
-                        <div class="user-info">
-                            <h5>Posted: <%= project.published %></h5>
-                        </div>
-                    </div>
-                    <br>
-                    <div style="display: flex">
-                        <button onclick="Confirm()"
-                                style="background-color: gray; width: 80px; margin-left: 30px; margin-right: 30px; height: 40px;"
-                                class="btn">Edit
-                        </button>
-                        <button style="background-color: red; width: 80px;height: 40px;" class="btn">Delete</button>
-                    </div>
-                    <br>
-                </div>
+
             </div>
+            <br>
             <script>
-                function Confirm() {
+                function editConfirm() {
                     if (confirm("If any data is changed, your project will be processed by moderation again and will become private")) {
                         location.href = '<%= url %>/api/projects/edit/<%= project._id %>'
                     }
                 }
+                function deleteConfirm() {
+                    if (confirm("Are you sure you want to delete the project? There will be no turning back...")) {
+                        location.href = '<%= url %>/api/projects/delete/<%= project._id %>'
+                    }
+                }
             </script>
-        <% }); %>
+        <% }) %>
+    </div>
 </div>
 
 <!-- Modal -->
