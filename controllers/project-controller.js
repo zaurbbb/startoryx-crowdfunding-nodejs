@@ -1,4 +1,5 @@
 const sortingService = require("../services/sorting-service")
+const Project = require('../models/project-model')
 
 class ProjectController{
     async ProjectSort(projects, sort = 0) {
@@ -14,6 +15,18 @@ class ProjectController{
         }
         catch (e) {
             console.log(e)
+        }
+    }
+    async deleteProject(req, res, next){
+        try {
+            const project = await Project.findById(req.params.id).lean()
+            if (project.user.equals(req.user._id))
+                await Project.deleteOne({_id: req.params.id})
+
+            res.redirect('back')
+        }
+        catch (e) {
+            next(e)
         }
     }
 }

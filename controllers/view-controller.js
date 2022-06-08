@@ -146,6 +146,7 @@ class ViewController {
                 isOwner = true
 
             const profile = await viewService.profile(req.params.id)
+            console.log(profile)
             res.render('pages/profile', {
                 user: profile.user, isOwner: isOwner,
                 projects: profile.projects, date: formatDate, url: process.env.URL
