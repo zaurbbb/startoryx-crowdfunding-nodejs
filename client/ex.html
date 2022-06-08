@@ -8,26 +8,42 @@
     <title>Document</title>
 
     <style>
-        #a {
-            opacity: 0;
-            animation: ani 2.5s forwards;
-        }
 
-        @keyframes ani {
-            0% {opacity: 0;}
-            100% {opacity: 1;}
+        div:nth-child(1){
+            width: 100px;
+            height: 100px;
+            background-color: #495057;
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 6;
         }
-
+        div:nth-child(2){
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            position: absolute;
+            left: 30px;
+            top: 30px;
+            z-index: 8;
+        }
+        div:nth-child(3){
+            width: 100px;
+            height: 100px;
+            background-color: green;
+            position: absolute;
+            left: 60px;
+            top: 60px;
+            z-index: 11;
+        }
     </style>
     <script src="jquery-3.6.0.min.js"></script>
 </head>
 <body>
 
-    <div id="a"><a href="#">Пункт 1</a></div>
-    <div><a href="#">Пункт 2</a></div>
-    <div><a href="#">Пункт 3</a></div>
-    <div><a href="#">Пункт 4</a></div>
-    <div><a href="#">Пункт 5</a></div>
+<div></div>
+<div></div>
+<div></div>
 
 
 </body>
