@@ -1,4 +1,4 @@
-const ApiError = require('../exceptions/api-error')
+const Errors = require('../exceptions/404-errors')
 
 module.exports = function (roles) {
     return function (req, res, next) {
@@ -12,12 +12,12 @@ module.exports = function (roles) {
                 }
             })
             if (!hasRole) {
-                return next(ApiError.NoAccess())
+                return Errors.NoAccess(req, res)
             }
             next();
         } catch (e) {
             console.log(e)
-            return next(ApiError.NoAccess())
+            return Errors.NoAccess(req, res)
         }
     }
 };

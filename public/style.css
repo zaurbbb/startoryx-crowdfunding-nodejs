@@ -441,6 +441,7 @@ blockquote p {
 .contact-us-line{
     background: #03045E;
     width: 100%;
+    margin: 0;
     height: 5px;
 }
 
@@ -576,6 +577,12 @@ legend{
     border: 1px solid #00B4D8;
     color: white;
     padding: 0 30px;
+    transition: all .2s;
+}
+.submit:hover{
+    background: white;
+    color: #00B4D8;
+    transition: all .2s;
 }
 .profile_div{
     margin-top: 100px;
@@ -738,12 +745,13 @@ legend{
     overflow-x: hidden;
     word-wrap: break-word;
     width: 100%;
+    height: 50px;
 }
 .card-body h4 {
     overflow-x: hidden;
     word-wrap: break-word;
     width: 100%;
-    height: 60px;
+    height: 38px;
 }
 
 .card-body p::-webkit-scrollbar {
@@ -797,8 +805,9 @@ legend{
     width: 100%;
     border: 5px solid #CAF0F8;
     border-radius: 10px;
-    min-height: 145px;
+    height: 130px;
     padding: 0 10px;
+    margin-bottom: 20px;
 }
 .card_profile_image_div{
     display: flex;
@@ -819,6 +828,27 @@ legend{
     letter-spacing: 0.05em;
 
     padding: 15px 20px;
+}
+.card_profile_text_div p{
+    overflow-x: hidden;
+    word-wrap: break-word;
+    width: 100%;
+    height: 25px;
+}
+.card_profile_text_div p{
+    overflow-x: hidden;
+    word-wrap: break-word;
+    width: 100%;
+    height: 25px;
+}
+.card_profile_text_div span{
+    overflow-x: hidden;
+    word-wrap: break-word;
+    width: 100%;
+    height: 25px;
+}
+.card_profile_text_div .tag{
+    margin-top: -2px;
 }
 .card_profile_info_div{
     display: inline-block;
@@ -880,12 +910,6 @@ legend{
     opacity: 1;
     transition: display 5s;
 }
-.dashboard_text{
-    font-weight: 200; font-size: 20px!important; color: #A9A9A9;
-}
-.dashboard_add_project{
-    font-weight: 200; font-size: 20px!important; color: #A9A9A9;
-}
 .dashboard_add_project:hover{
     color: blue;
 }
@@ -909,4 +933,27 @@ legend{
     width: 80%;
     position: relative;
     left: 50px;
+}
+.dashboard_main{
+    font-family: 'Inter', sans-serif;
+    background-image: url('https://i.ibb.co/4pqhp6K/image-40.png');
+    background-size: 100%;
+    height: 500px;
+    font-weight: 600; font-size: 40px
+}
+.dashboard_main .row{
+    margin: 0;
+    position: absolute;               /* 2 */
+    top: 35%;                         /* 3 */
+    transform: translate(0, -50%)
+}
+.dashboard_main .row .col-12{
+    margin: 0;
+}
+.fa-long-arrow-down, .fa-long-arrow-right{
+    -webkit-text-stroke: 1px white!important;
+}
+.nav-item.active {
+    -webkit-text-stroke: 10px white;
+    font-weight: normal;
 }

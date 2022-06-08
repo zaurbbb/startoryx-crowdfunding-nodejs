@@ -1,6 +1,6 @@
 const userService = require('../services/user-service')
 const {validationResult} = require('express-validator')
-const ApiError = require('../exceptions/api-error')
+const Errors = require('../exceptions/404-errors')
 const User = require('../models/user-model')
 
 class UserController {
@@ -9,8 +9,9 @@ class UserController {
             const {email, nickname, password, repeat_password, first_name, last_name, phone, age} = req.body
             const errors = validationResult(req);
             if (!errors.isEmpty() || password !== repeat_password) {
-                return next(ApiError.BadRequest('Validation error', errors.array()))
+                return Errors.BadRequest(req, res)
             }
+            if (await User.findOne({email})) return Errors.AlreadyExist(req, res)
             await userService.registration(email, nickname, password, first_name, last_name, phone, age)
             return next()
         } catch (e) {
@@ -28,6 +29,7 @@ class UserController {
     async activate(req, res, next) {
         try {
             const activationLink = req.params.link;
+            if (!await User.findOne({activationLink})) return Errors.IncorrectLink(req, res)
             await userService.activate(activationLink);
             res.redirect('/profile');
         } catch (e) {
@@ -57,7 +59,8 @@ class UserController {
     async reset(req, res, next) {
         try {
             const resetLink = req.params.link;
-            await userService.reset(resetLink);
+            if(!await User.findOne({resetLink})) return Errors.IncorrectLink(req, res)
+
             res.render('pages/change_password.ejs', {
                 link: resetLink
             });
@@ -69,7 +72,7 @@ class UserController {
         try {
             const errors = validationResult(req);
             if (!errors.isEmpty() || req.body.password !== req.body.confirm_pass) {
-                return next(ApiError.BadRequest('Validation error', errors.array()))
+                return Errors.BadRequest(req, res)
             }
             await userService.updatePassword(req.params.link, req.body.password)
             res.redirect('/profile')
@@ -80,7 +83,7 @@ class UserController {
     async updateImage(req, res, next) {
         try {
             if (req.file == null){
-                return next(ApiError.NotUploaded())
+                return Errors.NotUploaded(req, res)
             }
             await User.findOneAndUpdate(
                 {_id: req.user.id},
@@ -95,7 +98,7 @@ class UserController {
         try {
             const {nickname, phone, age, specialist} = req.body
             await userService.updateProfile(req.user.email, nickname, age, phone, specialist)
-            res.redirect('back')
+            res.redirect('/profile')
         }
         catch (e) {
             next(e)
@@ -103,6 +106,9 @@ class UserController {
     }
     async donate(req, res, next) {
         try {
+            const user = await User.findOne({_id: req.user._id})
+            if (user.balance < req.body.amount) return Errors.NotEnough(req, res)
+
             await userService.donate(req.user._id, req.params.id, req.body.amount)
             res.redirect('back')
         }

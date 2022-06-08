@@ -3,17 +3,13 @@ const bcrypt = require('bcrypt')
 const uuid = require('uuid')
 const mailService = require('./mail-service')
 const UserDto = require('../dtos/user-dto')
-const ApiError = require('../exceptions/api-error')
 const User = require("../models/user-model");
 const Project = require("../models/project-model");
 
 class UserService {
     async registration(email, nickname, password, first_name = null, last_name = null, phone = null, age = null
         , googleId = null) {
-        const candidate = await UserModel.findOne({email})
-        if (candidate) {
-            throw ApiError.BadRequest('User with this email address already exists')
-        }
+
         const hashPassword = await bcrypt.hash(password, 4)
         const activationLink = uuid.v4()
         const user = await UserModel.create({
@@ -62,9 +58,7 @@ class UserService {
             user = await UserModel.findOne({_id: id})
         else
             user = await UserModel.findOne({email: email})
-        if (!user) {
-            throw ApiError.BadRequest('User with this email address already exists')
-        }
+        if (!user) return
 
         const resetLink = uuid.v4()
         await UserModel.findOneAndUpdate({email: user.email}, {resetLink: resetLink})
@@ -79,35 +73,22 @@ class UserService {
 
     async activate(activationLink) {
         const user = await UserModel.findOne({activationLink})
-        if (!user) {
-            throw ApiError.BadRequest('Incorrect activation link')
-        }
         user.isActivated = true;
         await user.save();
-    }
-
-    async reset(resetLink) {
-        const user = await UserModel.findOne({resetLink})
-        if (!user) {
-            throw ApiError.BadRequest('Incorrect reset link')
-        }
     }
 
     async login(email, password, done) {
         const user = await UserModel.findOne({email})
         if (!user) {
             done(null, false)
-            throw ApiError.BadRequest('User with this email address already exists')
         }
         const isPassEquals = await bcrypt.compare(password, user.password)
         if (!isPassEquals) {
             done(null, false)
-            throw ApiError.BadRequest('Wrong password')
         }
         const userDto = new UserDto(user)
 
         done(null, user)
-
         return {user: userDto}
     }
 
@@ -126,9 +107,6 @@ class UserService {
 
     async donate(userId, projectId, amount){
         const user = await User.findOne({_id: userId})
-        if (user.balance < amount) {
-            throw ApiError.NotEnough()
-        }
         const project = await Project.findOne({_id: projectId})
 
         await Project.findOneAndUpdate({_id: projectId}, {collected: project.collected + parseInt(amount)})

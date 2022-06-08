@@ -1,21 +1,19 @@
-const ApiError = require('../exceptions/api-error')
+const Errors = require('../exceptions/404-errors')
 const Project = require('../models/project-model')
 
 module.exports = {
-    ensureAuth: function (req, res, next){
-        if (req.isAuthenticated()){
+    ensureAuth: function (req, res, next) {
+        if (req.isAuthenticated()) {
             return next()
-        }
-        else {
-            res.send(ApiError.UnauthorizedError().message)
+        } else {
+            return Errors.UnauthorizedError(req, res)
         }
     },
 
-    ensureGuest: function (req, res, next){
-        if (req.isAuthenticated()){
-            res.redirect('/api/dashboard')
-        }
-        else{
+    ensureGuest: function (req, res, next) {
+        if (req.isAuthenticated()) {
+            res.redirect('/profile')
+        } else {
             return next()
         }
     },
@@ -30,11 +28,9 @@ module.exports = {
                     return true
                 }
             })
-            if (isEqual) {
-                res.send(ApiError.RatedError().message)
-            } else {
-                return next()
-            }
+            if (isEqual)
+                return Errors.RatedError(req, res)
+            return next()
         } catch (e) {
             console.log(e)
         }

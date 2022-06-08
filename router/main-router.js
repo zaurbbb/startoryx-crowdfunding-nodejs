@@ -6,6 +6,24 @@ const {body} = require("express-validator");
 const {ensureGuest} = require("../middlewares/auth-middleware");
 const userController = require("../controllers/user-controller");
 const passport = require("passport");
+const {v2: cloudinary} = require("cloudinary");
+const {CloudinaryStorage} = require("multer-storage-cloudinary");
+const multer = require("multer");
+
+cloudinary.config({
+    cloud_name: process.env.CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
+const storage = new CloudinaryStorage({
+    cloudinary: cloudinary,
+    params: {
+        folder: "AVATARS",
+    },
+});
+
+const upload = multer({storage: storage});
 
 
 router.get('/registration', viewController.registration)
@@ -57,6 +75,11 @@ router.get('/google/callback', passport.authenticate('google', {
 router.get('/profile/:id?', viewController.profile);
 
 router.get('/profile/settings/:id?', viewController.profileSettings)
+
+router.post('/files/profile', upload.single('ava', {width: 305, height: 305, crop: "fill"}),
+    userController.updateImage)
+
+router.post('/files/profile/settings', userController.updateProfile)
 
 router.post('/pay', paymentController.payment)
 

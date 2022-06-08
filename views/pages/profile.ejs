@@ -3,7 +3,6 @@
 <head>
     <title>Startoryx <%= user.nickname %></title>
     <%- include('../partials/head'); %>
-    <!-- FONT AWESOME-->
 </head>
 <body>
 
@@ -59,7 +58,7 @@
                         <div class="row text-xl-start text-center">
                             <div class="col-12 profile_type">Activation Status</div>
                             <% if(user.isActivated === false){ %>
-                                <div style="color: red; cursor: pointer;" onclick="location.href='/api/activation'"
+                                <div style="color: red; cursor: pointer;" onclick="location.href='/activation'"
                                      class="col-12 profile_content">Activate
                                 </div>
                             <% } else { %>
@@ -85,7 +84,6 @@
     </div>
 </div>
 <br>
-<hr>
 <div class="container">
     <ul class="nav nav-pills mx-3 mt-4" role="tablist">
         <li class="nav-item" role="presentation">
@@ -182,7 +180,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <br>
-            <form action="/api/files/profile" method="POST" enctype="multipart/form-data">
+            <form action="/files/profile" method="POST" enctype="multipart/form-data">
                 <label for="ava" class="text-white"></label>
                 <input type="file" name="ava" accept="image/*">
                 <button type="submit" class="btn border">Upload Image</button>

@@ -12,12 +12,12 @@ const router = require('./router/main-router')
 const router2 = require('./router/user-router2')
 const adminRouter = require('./router/admin-router')
 const projectRouter = require('./router/project-router')
-const errorMiddleware = require('./middlewares/error-middleware')
 
 dotenv.config();
 
 require('./controllers/passport')(passport)
 require('./cron/days-update')
+const viewController = require("./controllers/view-controller");
 
 const PORT = process.env.PORT || 5000;
 const app = express()
@@ -44,9 +44,6 @@ app.set('view engine', 'ejs')
 // passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
-
-
-app.use(errorMiddleware);
 
 const start = async () => {
     try{
@@ -76,5 +73,7 @@ app.get('/', (req, res) => {
 app.use(router);
 app.use('/api', router2);
 app.use('/api/projects', projectRouter); // TODO: edit url (/api)
+
+app.get('*', viewController.error_page)
 
 start()

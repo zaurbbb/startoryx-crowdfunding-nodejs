@@ -34,6 +34,14 @@ class ViewController {
             next(e)
         }
     }
+    async error_page(req, res, next) {
+        try {
+            res.render('pages/404', {isError: false, message: "Sorry, the page you’re looking for doesn’t exist."})
+        }
+        catch (e) {
+            next(e)
+        }
+    }
     async registration(req, res, next) {
         try {
             if (req.user != null) return res.redirect('/profile')

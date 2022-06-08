@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title id="version">Error</title>
+    <%- include('../partials/head'); %>
+</head>
+<body>
+
+<div class="container-fluid" style="position:absolute;top: 30%">
+    <div class="row justify-content-center">
+
+        <div class="col-12 d-print-block mb-2">
+            <div class="row justify-content-center">
+                <div class="col-md-1 col-12 text-center text-wrap"><h1 class=" display-2 text-center">
+                        <% if (isError) { %>
+                            Error! You got an Error!
+                        <% } else { %>
+                            Ooops! Page not found!
+                        <% } %>
+                    </h1></div>
+                <div class="col-md-1 col-12">
+                    <% if (isError) { %>
+                        <p style="color: red; font-size: 24px" class="lead text-center text-wrap my-3">
+                            <%= message %>!
+                        </p>
+                    <% } else { %>
+                        <p class="lead text-center text-wrap my-3">
+                            <%= message %>
+                        </p>
+                    <% } %>
+                    <p class="lead text-center text-wrap">If you think something is broken, report a problem.</p></div>
+
+                <div class="d-flex justify-content-center ">
+                    <p>
+                        <button onclick="history.back()" class="submit" style="float: left; height: 40px">Go Back
+                        </button>
+                        <button class="ms-4 submit" type="submit" style="float: left; height: 40px"
+                                data-bs-toggle="modal" data-bs-target="#reportModal">Send a Report
+                        </button>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- REPORT MODAL -->
+<div class="modal fade" id="reportModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Report a problem</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email:</label>
+                        <input type="email" class="form-control" id="email" placeholder="name@example.com">
+                    </div>
+                    <div class="mb-3">
+                        <label for="message-text" class="form-label">Message:</label>
+                        <textarea class="form-control" id="message-text"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-primary" id="sendButton" onclick="sendLoadingButton()">Send
+                    a message
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
