@@ -24,63 +24,7 @@ const storage = new CloudinaryStorage({
 
 const upload = multer({storage: storage});
 
-// ---Local authorization---
-
-
-router.post('/registration',
-    body('email').isEmail(),
-    // body('phone').isMobilePhone(),
-    body('password').isLength({min: 3, max: 32}), // TODO: change min
-    ensureGuest, userController.registration,
-    passport.authenticate('local', {
-        successRedirect: "/api/dashboard",
-        failureRedirect: "/api/dashboard"
-    }));
-
-router.post('/login', ensureGuest,
-    passport.authenticate('local', {
-        successRedirect: "/api/dashboard",
-        failureRedirect: "/api/dashboard"
-    }));
-
-router.get('/activation', userController.activationMail)
-
-router.get('/activate/:link', userController.activate)
-
-router.post('/password-reset', userController.passwordReset)
-
-router.get('/password-reset', userController.passwordReset)
-
-router.get('/reset/:link', userController.reset)
-
-router.post('/reset/:link', body('password').isLength({min: 4, max: 32}), userController.updatePassword)
-
-
-
-// ---Google authorization---
-
-router.get('/google', ensureGuest,
-    passport.authenticate('google', {scope: ['email', 'profile']}));
-
-router.get('/google/callback', passport.authenticate('google', {
-    successRedirect: "/api/dashboard",
-    failureRedirect: "/api/dashboard"
-}));
-
-
-// ---Logout---
-
-router.get('/logout', userController.logout);
-
-
-// ---Views---
-
 router.get('/dashboard/:sort?/:search?', viewController.dashboard);
-
-router.get('/protected', ensureAuth, (req, res) => {
-    res.render('pages/protected.ejs', {email: req.user.email, name: req.user.first_name, imgSrc: req.user.image,
-        nickname: req.user.nickname})
-});
 
 router.post('/donate/:id', userController.donate)
 

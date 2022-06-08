@@ -79,7 +79,6 @@ const router = AdminBroExpress.buildAuthenticatedRouter(adminBro, {
     authenticate: async (email, password) => {
         try {
             const user = await User.findOne({email})
-            console.log(user.roles)
             let hasRole = false
             user.roles.forEach(role => {
                 if ("ADMIN".includes(role))
