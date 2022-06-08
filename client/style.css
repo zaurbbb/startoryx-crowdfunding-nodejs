@@ -738,12 +738,13 @@ legend{
     overflow-x: hidden;
     word-wrap: break-word;
     width: 100%;
+    height: 50px;
 }
 .card-body h4 {
     overflow-x: hidden;
     word-wrap: break-word;
     width: 100%;
-    height: 60px;
+    height: 38px;
 }
 
 .card-body p::-webkit-scrollbar {
@@ -799,6 +800,7 @@ legend{
     border-radius: 10px;
     min-height: 145px;
     padding: 0 10px;
+    margin-bottom: 20px;
 }
 .card_profile_image_div{
     display: flex;
@@ -819,6 +821,27 @@ legend{
     letter-spacing: 0.05em;
 
     padding: 15px 20px;
+}
+.card_profile_text_div p{
+    overflow-x: hidden;
+    word-wrap: break-word;
+    width: 100%;
+    height: 25px;
+}
+.card_profile_text_div p{
+    overflow-x: hidden;
+    word-wrap: break-word;
+    width: 100%;
+    height: 25px;
+}
+.card_profile_text_div span{
+    overflow-x: hidden;
+    word-wrap: break-word;
+    width: 100%;
+    height: 25px;
+}
+.card_profile_text_div .tag{
+    margin-top: -2px;
 }
 .card_profile_info_div{
     display: inline-block;

@@ -21,54 +21,56 @@
 <body>
 
 <header id="header" style="background: #03045E;">
-    <div style="float: left; font-size: 25px;">
 
-    </div>
-    <div class="my-auto" style="text-align: right;">
-        <img style="filter: invert(100%); width: 20px; height: 20px; color: white" src="img/avatar-icon.png" alt="">
-        <img style="filter: invert(100%); width: 20px; height: 20px; color: white" src="img/search-icon.png" alt="">
+    <img src="img/logo.png" alt="" width="110" height="40" style="margin-top: -8px">
+
+    <div style="text-align: right; margin-top: 3px">
+        <!--ICON PLUS крч сделаешь ссылку на создание проекта-->
+        <a href="create_project.html"><img style="width: 25px; height: 20px; color: white; margin-top: -3px" src="img/icons/icon_plus.png" alt=""></a>
+        <a href="dashboard.html"><img style="width: 17px; height: 17px; color: white; margin: -3px 8px 0" src="img/icons/icon_search.png" alt=""></a>
+        <a href="profile.html"><img style="width: 25px; height: 20px; color: white" src="img/icons/icon_man.png" alt=""></a>
+
     </div>
 </header>
 
-<!--PUBLIC-->
-<div class="container profile_div text-center">
-    <h1>ЧТО ВИДЯТ ДРУГИЕ ЮЗЕРЫ</h1>
-    <div class="row">
-        <div class="col-4 text-center profile_photo_div">
-            <img src="img/photo.png" class="rounded-3 profile_photo">
-            <div>
-                <h4 style="font-family: 'Quicksand', sans-serif;">Change photo</h4>
-            </div>
-        </div>
-        <div class="col-8 py-auto">
-            <div class="row ">
-                <div class="col-6 my-1">
-                    <div class="row text-xl-start text-center">
-                    <div class="col-12 profile_type">Name</div>
-                    <div class="col-12 profile_content">Akniet Baybolat</div>
-                </div>
-                    <div class="row text-xl-start text-center">
-                        <div class="col-12 profile_type">Specialist</div>
-                        <div class="col-12 profile_content">Main Tormoz of SE-2109</div>
-                    </div>
-                    <div class="row text-xl-start text-center">
-                        <div class="col-12 profile_type">Age</div>
-                        <div class="col-12 profile_content">19</div>
-                    </div>
-                    <div class="row text-xl-start text-center">
-                        <div class="col-12 profile_type">Phone</div>
-                        <div class="col-12 profile_content">7 777 777 77 77</div>
-                    </div>
-                </div>
-            </div>
+<!--&lt;!&ndash;PUBLIC&ndash;&gt;-->
+<!--<div class="container profile_div text-center">-->
+<!--    <h1>ЧТО ВИДЯТ ДРУГИЕ ЮЗЕРЫ</h1>-->
+<!--    <div class="row">-->
+<!--        <div class="col-4 text-center profile_photo_div">-->
+<!--            <img src="img/photo.png" class="rounded-3 profile_photo">-->
+<!--            <div>-->
+<!--                <h4 style="font-family: 'Quicksand', sans-serif;">Change photo</h4>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="col-8 py-auto">-->
+<!--            <div class="row ">-->
+<!--                <div class="col-6 my-1">-->
+<!--                    <div class="row text-xl-start text-center">-->
+<!--                    <div class="col-12 profile_type">Name</div>-->
+<!--                    <div class="col-12 profile_content">Akniet Baybolat</div>-->
+<!--                </div>-->
+<!--                    <div class="row text-xl-start text-center">-->
+<!--                        <div class="col-12 profile_type">Specialist</div>-->
+<!--                        <div class="col-12 profile_content">Main Tormoz of SE-2109</div>-->
+<!--                    </div>-->
+<!--                    <div class="row text-xl-start text-center">-->
+<!--                        <div class="col-12 profile_type">Age</div>-->
+<!--                        <div class="col-12 profile_content">19</div>-->
+<!--                    </div>-->
+<!--                    <div class="row text-xl-start text-center">-->
+<!--                        <div class="col-12 profile_type">Phone</div>-->
+<!--                        <div class="col-12 profile_content">7 777 777 77 77</div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
 
-        </div>
-    </div>
-</div>
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 
 <!--PRIVATE-->
 <div class="container profile_div text-center ">
-    <h1>ЧТО ВИДИТ ВЛАДЕЛЕЦ АККАУНТА</h1>
     <div class="row">
         <div class="col-4 text-center profile_photo_div">
             <img src="img/photo.png" class="rounded-3 profile_photo">
@@ -116,7 +118,7 @@
                         <div class="col-12 profile_content">100$ <div class="profile_balance_button">    </div></div>
                     </div>
                 </div>
-                <div class="col-1"><i class="fa fa-solid fa-pencil"></i></div>
+                <div class="col-1"><a href="change_profile.html"><i class="fa fa-solid fa-pencil"></i></a></div>
             </div>
 
         </div>
@@ -124,61 +126,60 @@
 </div>
 
 <!--sETTING-->
-<div class="container profile_div text-center">
-    <h1>СЕТТИНГ ФОР АККАУНТ</h1>
-    <div class="row">
-        <div class="col-4 text-center profile_photo_div">
-            <img src="img/photo.png" class="rounded-3 profile_photo">
-            <div>
-                <h4 style="">Change photo</h4>
-            </div>
-        </div>
-        <div class="col-8 py-auto">
-            <div class="row ">
-                <div class="col-6  text-center my-1">
-                    <div class="row text-xl-start text-center">
-                        <div class="col-12 profile_type">Name</div>
-                        <div class="col-12 profile_content ">
-                            <input class="profile_input disabled" disabled placeholder="Akniet Baybolat">
-                        </div>
-                    </div>
-                    <div class="row text-xl-start text-center">
-                        <div class="col-12 profile_type">Specialist</div>
-                        <div class="col-12 profile_content"><input class="profile_input" placeholder="Main Tormoz"></div>
-                    </div>
-                    <div class="row text-xl-start text-center">
-                        <div class="col-12 profile_type">Age</div>
-                        <div class="col-12 profile_content"><input class="profile_input disabled" disabled placeholder="19"></div>
-                    </div>
-                    <div class="row text-xl-start text-center">
-                        <div class="col-12 profile_type">Phone</div>
-                        <div class="col-12 profile_content"><input class="profile_input" placeholder="7 777 777 77 77"></div>
-                    </div>
-                </div>
-                <div class="col-6  text-center my-1">
-                    <div class="row text-xl-start text-center">
-                        <div class="col-12 profile_type">Nickname</div>
-                        <div class="col-12 profile_content"><input class="profile_input" placeholder="Qolymnan_Usta"></div>
-                    </div>
-                    <div class="row text-xl-start text-center">
-                        <div class="col-12 profile_type">Email</div>
-                        <div class="col-12 profile_content "><input class="profile_input disabled" disabled placeholder="aka_aka@gmail.com"></div>
-                    </div>
-                    <div class="row text-xl-start text-center">
-                        <div class="col-12 profile_type">Activation Status</div>
-                        <div class="col-12 profile_content"><input class="profile_input disabled" disabled placeholder="Activated"></div>
-                    </div>
-                    <div class="row text-xl-start text-center">
-                        <div class="col-12 profile_type">Balance</div>
-                        <div class="col-12 profile_content"> <input class="profile_input disabled" disabled placeholder="100$" style="width: 50px"><button class="profile_balance_button"> + </button></div>
-                    </div>
-                </div>
+<!--<div class="container profile_div text-center">-->
+<!--    <h1>СЕТТИНГ ФОР АККАУНТ</h1>-->
+<!--    <div class="row">-->
+<!--        <div class="col-4 text-center profile_photo_div">-->
+<!--            <img src="img/photo.png" class="rounded-3 profile_photo">-->
+<!--            <div>-->
+<!--                <h4 style="">Change photo</h4>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="col-8 py-auto">-->
+<!--            <div class="row ">-->
+<!--                <div class="col-6  text-center my-1">-->
+<!--                    <div class="row text-xl-start text-center">-->
+<!--                        <div class="col-12 profile_type">Name</div>-->
+<!--                        <div class="col-12 profile_content ">-->
+<!--                            <input class="profile_input disabled" disabled placeholder="Akniet Baybolat">-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="row text-xl-start text-center">-->
+<!--                        <div class="col-12 profile_type">Specialist</div>-->
+<!--                        <div class="col-12 profile_content"><input class="profile_input" placeholder="Main Tormoz"></div>-->
+<!--                    </div>-->
+<!--                    <div class="row text-xl-start text-center">-->
+<!--                        <div class="col-12 profile_type">Age</div>-->
+<!--                        <div class="col-12 profile_content"><input class="profile_input disabled" disabled placeholder="19"></div>-->
+<!--                    </div>-->
+<!--                    <div class="row text-xl-start text-center">-->
+<!--                        <div class="col-12 profile_type">Phone</div>-->
+<!--                        <div class="col-12 profile_content"><input class="profile_input" placeholder="7 777 777 77 77"></div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-6  text-center my-1">-->
+<!--                    <div class="row text-xl-start text-center">-->
+<!--                        <div class="col-12 profile_type">Nickname</div>-->
+<!--                        <div class="col-12 profile_content"><input class="profile_input" placeholder="Qolymnan_Usta"></div>-->
+<!--                    </div>-->
+<!--                    <div class="row text-xl-start text-center">-->
+<!--                        <div class="col-12 profile_type">Email</div>-->
+<!--                        <div class="col-12 profile_content "><input class="profile_input disabled" disabled placeholder="aka_aka@gmail.com"></div>-->
+<!--                    </div>-->
+<!--                    <div class="row text-xl-start text-center">-->
+<!--                        <div class="col-12 profile_type">Activation Status</div>-->
+<!--                        <div class="col-12 profile_content"><input class="profile_input disabled" disabled placeholder="Activated"></div>-->
+<!--                    </div>-->
+<!--                    <div class="row text-xl-start text-center">-->
+<!--                        <div class="col-12 profile_type">Balance</div>-->
+<!--                        <div class="col-12 profile_content"> <input class="profile_input disabled" disabled placeholder="100$" style="width: 50px"><button class="profile_balance_button"> + </button></div>-->
+<!--                    </div>-->
+<!--                </div>-->
 
-        </div>
-        </div>
-    </div>
-</div>
-<br><br><br>
+<!--        </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 <div class="container">
     <ul class="nav nav-pills mx-3 mt-4" role="tablist">
         <li class="nav-item" role="presentation">
@@ -198,9 +199,11 @@
                 <div class="col-10 card_profile_content_div ">
                     <div class="row" style="position:relative;">
                         <!--NAME OF THE PROJECT-->
-                        <div class="col-12 card_profile_text_div "><span style="font-weight: 600">Anime Chainsaw Man by MAPPA</span>
+                        <div class="col-12 card_profile_text_div ">
+                            <span style="font-weight: 600">Anime Chainsaw Man by MAPPA </span><span class="tag tag-teal category_arts">Arts</span>
                             <!--SHORT DESCTIPYNIO--> <br>
-                            We're big fans of this manga and want to present the animezation of this title! Date: Autumn 2022</div>
+                            <p>We're big fans of this manga and want to present the animezation of this title! Date: Autumn 2022 We're big fans of this manga and want to present the animezation of this title! Date: Autumn 2022</p>
+                        </div>
 
 
                         <!--FONT AWESOMES-->
@@ -238,227 +241,104 @@
             </div>
 
         </div>
+        <div class="card_profile">
+            <div class="row">
+                <div class="col-1 card_profile_image_div "><img src="https://pbs.twimg.com/media/EpIERhMXcAA9Hr9?format=jpg&name=medium" alt=""></div>
+                <div class="col-10 card_profile_content_div ">
+                    <div class="row" style="position:relative;">
+                        <!--NAME OF THE PROJECT-->
+                        <div class="col-12 card_profile_text_div ">
+                            <span style="font-weight: 600">Anime Chainsaw Man by MAPPA</span><span class="tag tag-teal category_arts">Arts</span>
+                            <!--SHORT DESCTIPYNIO--> <br>
+                            <p>We're big fans of this manga and want to present the animezation of this title! Date: Autumn 2022 We're big fans of this manga and want to present the animezation of this title! Date: Autumn 2022</p>
+                        </div>
+
+
+                        <!--FONT AWESOMES-->
+                        <div class="col-12" >
+
+                            <div class="card_profile_info_div">
+                                <i class="fa fa-star"></i>8/10
+                            </div>
+                            <div class="card_profile_info_div">
+                                <i class="fa fa-dollar"></i>2M/5M
+                            </div>
+                            <div class="card_profile_info_div">
+                                <i class="fa fa-comments"></i>2K
+                            </div>
+                            <div class="card_profile_info_div">
+                                <i class="fa fa-eye"></i>10M
+                            </div>
+                            <div class="card_profile_info_div">
+                                <i class="fa fa-share-alt"></i>Share
+                            </div>
+                            <div class="card_profile_info_div">
+                                <i class="fa fa-bookmark"></i>Not Added
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-1 py-3">
+                    <!--                    редактировние -->
+                    <i class="fa fa-solid fa-pencil"></i>
+
+                    <!--                    удаление-->
+                    <i class="fa fa-solid fa-trash"></i>
+                </div>
+            </div>
+
+        </div>
+        <div class="card_profile">
+            <div class="row">
+                <div class="col-1 card_profile_image_div "><img src="https://pbs.twimg.com/media/EpIERhMXcAA9Hr9?format=jpg&name=medium" alt=""></div>
+                <div class="col-10 card_profile_content_div ">
+                    <div class="row" style="position:relative;">
+                        <!--NAME OF THE PROJECT-->
+                        <div class="col-12 card_profile_text_div ">
+                            <span style="font-weight: 600">Anime Chainsaw Man by MAPPA</span><span class="tag tag-teal category_arts">Arts</span>
+                            <!--SHORT DESCTIPYNIO--> <br>
+                            <p>We're big fans of this manga and want to present the animezation of this title! Date: Autumn 2022 We're big fans of this manga and want to present the animezation of this title! Date: Autumn 2022</p>
+                        </div>
+
+
+                        <!--FONT AWESOMES-->
+                        <div class="col-12" >
+
+                            <div class="card_profile_info_div">
+                                <i class="fa fa-star"></i>8/10
+                            </div>
+                            <div class="card_profile_info_div">
+                                <i class="fa fa-dollar"></i>2M/5M
+                            </div>
+                            <div class="card_profile_info_div">
+                                <i class="fa fa-comments"></i>2K
+                            </div>
+                            <div class="card_profile_info_div">
+                                <i class="fa fa-eye"></i>10M
+                            </div>
+                            <div class="card_profile_info_div">
+                                <i class="fa fa-share-alt"></i>Share
+                            </div>
+                            <div class="card_profile_info_div">
+                                <i class="fa fa-bookmark"></i>Not Added
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-1 py-3">
+                    <!--                    редактировние -->
+                    <i class="fa fa-solid fa-pencil"></i>
+
+                    <!--                    удаление-->
+                    <i class="fa fa-solid fa-trash"></i>
+                </div>
+            </div>
+
+        </div>
     </div>
 
-
-    <div class="container container-for-projects">
-        <div class="card">
-            <div class="card-header" style="background-image: url('https://c0.wallpaperflare.com/preview/483/210/436/car-green-4x4-jeep.jpg');  ">
-                <div class="hidden_blocks row" style="">
-                    <div class="col-12 ">
-                        <button class="hidden_blocks_button">
-                            <i class="fa fa-star"></i> <span class="hidden_text">8/10</span>
-                        </button>
-                    </div>
-                    <div class="col-12">
-                        <button class="hidden_blocks_button">
-                            <i class="fa fa-dollar "></i> <span class="hidden_text">2M/5M</span>
-                        </button>
-                    </div>
-                    <div class="col-12">
-                        <button class="hidden_blocks_button">
-                            <i class="fa fa-comment "></i> <span class="hidden_text">2K</span>
-                        </button>
-                    </div>
-
-                    <div class="col-12 ">
-                        <button class="hidden_blocks_button">
-                            <i class="fa fa-eye"></i> <span class="hidden_text">10M</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="card-body">
-                <span class="tag tag-teal category_technology">Technology</span>
-                <h4>
-                    ElectroCar TESLA
-                </h4>
-                <p>
-                    An exploration into the truck's polarising design! By Elon Mask uahahahahuahahahahuahahahahuahahahahuahahahah
-                </p>
-                <div class="user">
-                    <img src="https://yt3.ggpht.com/a/AGF-l7-0J1G0Ue0mcZMw-99kMeVuBmRxiPjyvIYONg=s900-c-k-c0xffffffff-no-rj-mo" alt="user" />
-                    <div class="user-info">
-                        <h5>Elona Maskova</h5>
-                        <small>24th April</small>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-header" style="background-image: url('https://c0.wallpaperflare.com/preview/483/210/436/car-green-4x4-jeep.jpg');  ">
-                <div class="hidden_blocks row" style="">
-                    <div class="col-12 ">
-                        <button class="hidden_blocks_button">
-                            <i class="fa fa-star"></i> <span class="hidden_text">8/10</span>
-                        </button>
-                    </div>
-                    <div class="col-12">
-                        <button class="hidden_blocks_button">
-                            <i class="fa fa-dollar "></i> <span class="hidden_text">2M/5M</span>
-                        </button>
-                    </div>
-                    <div class="col-12">
-                        <button class="hidden_blocks_button">
-                            <i class="fa fa-comment "></i> <span class="hidden_text">2K</span>
-                        </button>
-                    </div>
-
-                    <div class="col-12 ">
-                        <button class="hidden_blocks_button">
-                            <i class="fa fa-eye"></i> <span class="hidden_text">10M</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="card-body">
-                <span class="tag tag-teal category_arts">Arts</span>
-                <h4>
-                    ElectroCar TESLA
-                </h4>
-                <p>
-                    An exploration into the truck's polarising design! By Elon Mask uahahahah
-                </p>
-                <div class="user">
-                    <img src="https://yt3.ggpht.com/a/AGF-l7-0J1G0Ue0mcZMw-99kMeVuBmRxiPjyvIYONg=s900-c-k-c0xffffffff-no-rj-mo" alt="user" />
-                    <div class="user-info">
-                        <h5>Elona Maskova</h5>
-                        <small>24th April</small>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-header" style="background-image: url('https://c0.wallpaperflare.com/preview/483/210/436/car-green-4x4-jeep.jpg');  ">
-                <div class="hidden_blocks row" style="">
-                    <div class="col-12 ">
-                        <button class="hidden_blocks_button">
-                            <i class="fa fa-star"></i> <span class="hidden_text">8/10</span>
-                        </button>
-                    </div>
-                    <div class="col-12">
-                        <button class="hidden_blocks_button">
-                            <i class="fa fa-dollar "></i> <span class="hidden_text">2M/5M</span>
-                        </button>
-                    </div>
-                    <div class="col-12">
-                        <button class="hidden_blocks_button">
-                            <i class="fa fa-comment "></i> <span class="hidden_text">2K</span>
-                        </button>
-                    </div>
-
-                    <div class="col-12 ">
-                        <button class="hidden_blocks_button">
-                            <i class="fa fa-eye"></i> <span class="hidden_text">10M</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="card-body">
-                <span class="tag tag-teal category_games">Games</span>
-                <h4>
-                    ElectroCar TESLA
-                </h4>
-                <p>
-                    An exploration into the truck's polarising design! By Elon Mask uahahahah
-                </p>
-                <div class="user">
-                    <img src="https://yt3.ggpht.com/a/AGF-l7-0J1G0Ue0mcZMw-99kMeVuBmRxiPjyvIYONg=s900-c-k-c0xffffffff-no-rj-mo" alt="user" />
-                    <div class="user-info">
-                        <h5>Elona Maskova</h5>
-                        <small>24th April</small>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-header" style="background-image: url('https://c0.wallpaperflare.com/preview/483/210/436/car-green-4x4-jeep.jpg');  ">
-                <div class="hidden_blocks row" style="">
-                    <div class="col-12 ">
-                        <button class="hidden_blocks_button">
-                            <i class="fa fa-star"></i> <span class="hidden_text">8/10</span>
-                        </button>
-                    </div>
-                    <div class="col-12">
-                        <button class="hidden_blocks_button">
-                            <i class="fa fa-dollar "></i> <span class="hidden_text">2M/5M</span>
-                        </button>
-                    </div>
-                    <div class="col-12">
-                        <button class="hidden_blocks_button">
-                            <i class="fa fa-comment "></i> <span class="hidden_text">2K</span>
-                        </button>
-                    </div>
-
-                    <div class="col-12 ">
-                        <button class="hidden_blocks_button">
-                            <i class="fa fa-eye"></i> <span class="hidden_text">10M</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="card-body">
-                <span class="tag category_music">Music</span>
-                <h4>
-                    ElectroCar TESLA
-                </h4>
-                <p>
-                    An exploration into the truck's polarising design! By Elon Mask uahahahah
-                </p>
-                <div class="user">
-                    <img src="https://yt3.ggpht.com/a/AGF-l7-0J1G0Ue0mcZMw-99kMeVuBmRxiPjyvIYONg=s900-c-k-c0xffffffff-no-rj-mo" alt="user" />
-                    <div class="user-info">
-                        <h5>Elona Maskova</h5>
-                        <small>24th April</small>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-header" style="background-image: url('https://c0.wallpaperflare.com/preview/483/210/436/car-green-4x4-jeep.jpg');  ">
-                <div class="hidden_blocks row" style="">
-                    <div class="col-12 ">
-                        <button class="hidden_blocks_button">
-                            <i class="fa fa-star"></i> <span class="hidden_text">8/10</span>
-                        </button>
-                    </div>
-                    <div class="col-12">
-                        <button class="hidden_blocks_button">
-                            <i class="fa fa-dollar "></i> <span class="hidden_text">2M/5M</span>
-                        </button>
-                    </div>
-                    <div class="col-12">
-                        <button class="hidden_blocks_button">
-                            <i class="fa fa-comment "></i> <span class="hidden_text">2K</span>
-                        </button>
-                    </div>
-
-                    <div class="col-12 ">
-                        <button class="hidden_blocks_button">
-                            <i class="fa fa-eye"></i> <span class="hidden_text">10M</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="card-body">
-                <span class="tag tag-teal category_painting">Painting</span>
-                <h4>
-                    ElectroCar TESLA
-                </h4>
-                <p>
-                    An exploration into the truck's polarising design! By Elon Mask uahahahah
-                </p>
-                <div class="user">
-                    <img src="https://yt3.ggpht.com/a/AGF-l7-0J1G0Ue0mcZMw-99kMeVuBmRxiPjyvIYONg=s900-c-k-c0xffffffff-no-rj-mo" alt="user" />
-                    <div class="user-info">
-                        <h5>Elona Maskova</h5>
-                        <small>24th April</small>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
 </div>
 
 
