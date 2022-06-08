@@ -6,7 +6,6 @@ const Comment = require("../models/comment-model");
 const Rate = require("../models/rate-model");
 const averageRate = require("../helpers/averageRate");
 const User = require("../models/user-model");
-const ApiError = require("../exceptions/api-error");
 
 class ViewService{
     async projectBoard(query, sort){
@@ -46,7 +45,7 @@ class ViewService{
     }
     async profile(nickname){
         const user = await User.findOne({nickname: nickname})
-        let projects = await Project.find({user: user._id}).lean()
+        let projects = await Project.find({user}).lean()
         return new ProfileDto(projects, user)
     }
 }

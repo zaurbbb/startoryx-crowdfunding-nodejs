@@ -5,6 +5,7 @@ const multer = require('multer')
 const cloudinary = require('cloudinary').v2
 const {CloudinaryStorage} = require("multer-storage-cloudinary")
 const viewController = require('../controllers/view-controller')
+const projectController = require('../controllers/project-controller')
 
 
 cloudinary.config({
@@ -39,17 +40,6 @@ router.post('/:id/comment', ensureAuth, viewController.postComment)
 
 router.post('/:id/rate', ensureAuth, alreadyRated, viewController.postRate)
 
-
-// router.delete('/delete/:id', async (req, res) => {
-//     try {
-//         const project = await Project.findById(req.params.id).lean()
-//         if (project.user.equals(req.user._id))
-//             await Project.deleteOne({_id: req.params.id})
-//
-//         res.redirect('/api/dashboard')
-//     } catch (e) {
-//         console.log(e)
-//     }
-// })
+router.get('/delete/:id', ensureAuth, projectController.deleteProject)
 
 module.exports = router
