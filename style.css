@@ -634,7 +634,7 @@ legend{
     height: 25px;
     outline:none;
     border: none;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid black!important;
     color: black;
     margin-bottom: 5px ;
 
@@ -982,7 +982,7 @@ legend{
     height: 50px;
     outline:none;
     border: none;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid black!important;
     color: black;
     margin-bottom: 5px ;
     padding-left: 10px;
@@ -1060,7 +1060,7 @@ legend{
     background:white;
     border-top:none;
     position:relative;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid black!important;
     transition: all .2s;
 }
 
@@ -1103,4 +1103,16 @@ legend{
 }
 .create_project_main .row .col-12{
     margin: 0;
+}
+input[type="file"] {
+    display: none;
+}
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    height: 40px;
+    font-size: 20px;
+    color: gray;
 }

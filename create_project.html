@@ -52,13 +52,9 @@
   </div>
 </header>
 
-<div class="container-fluid text-center mt-3 create_project_main">
-    <div class="row ps-5">
-        <div class="ms-5 text-start inter text-light">Create a Start-Up</div>
-    </div>
-</div>
-<div class="container mt-5" style="font-size: 50px;">
-  <div class="row">
+<div class="container mb-4" style=" border: 5px solid #CAF0F8; border-radius: 10px; padding: 20px 30px 5px 30px; margin-top: 70px">
+    <h1>Create your startup project!</h1>
+    <div class="row px-5 mt-5">
     <div class="col-12 py-auto">
         <div class="create_project_type">Title</div>
         <div class="col-12 create_project_content">
@@ -80,10 +76,15 @@
         </div>
 
 <!--        ЗАГРУЗКА ФОТО-->
-<!--        <div class="create_project_type">Upload poster</div>-->
-<!--        <div class="col-12 create_project_content">-->
-<!--          <input class="create_project_input" name="specialist" placeholder="photo" style="width: 100%">-->
-<!--        </div>-->
+        <div class="create_project_type">Project poster</div>
+        <div class="col-12 create_project_content">
+            <label for="file-upload" class="custom-file-upload">
+                Upload image
+            </label>
+            <input id="file-upload" type="file"/>
+        </div>
+
+
 
         <div class="create_project_type">Shortly Description</div>
         <div class="col-12 create_project_content">
@@ -91,8 +92,13 @@
         </div>
 
         <div class="create_project_type">Date in days</div>
-        <div class="col-12 create_project_content">
-            <input class="create_project_input" type="number" min="1" max="3650" placeholder="365 days..." style="width: 100%">
+        <div class="select" tabindex="1">
+            <input class="selectopt" name="test" type="radio" id="opt6" checked>
+            <label for="opt6" class="option">7 days</label>
+            <input class="selectopt" name="test" type="radio" id="opt7">
+            <label for="opt7" class="option">14 days</label>
+            <input class="selectopt" name="test" type="radio" id="opt8">
+            <label for="opt8" class="option">30 days</label>
         </div>
 
         <div class="create_project_type">Goal in dollars</div>
@@ -100,11 +106,12 @@
             <input class="create_project_input" type="number" min="1" max="100000000000" placeholder="10 000$..." style="width: 100%">
         </div>
         <textarea id="mytextarea" name="body" value="body"></textarea>
-        <a href="dashboard.html">
-            <input class="submit my-4" type="submit" style="width: 100%; font-size: 30px; height: 50px;" value="Create a Start-Up! Soon you will be informed about the posting of your project">
-        </a>
+        <div class="col-12 create_project_content justify-content-center">
+            <a href="dashboard.html" class="w-50">
+                <input class="submit my-4" type="submit" style="width: 100%; font-size: 30px; height: 50px; float: left" value="Create a Start-Up with StarToryx!">
 
-        <br>
+            </a>
+        </div>
     </div>
   </div>
 </div>
