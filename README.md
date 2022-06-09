@@ -28,6 +28,6 @@ Startoryx is an analogue of Kickstarter - a site for raising funds for the imple
 * UI/UX design - Akniet Baybolat (tg @Qolymnan_usta)
 
 ## Deployment
-You have access to the project by this links:
+You have access to the project by these links:
 * Heroku Deployment: http://startoryx.live/
 * GitHub Pages Deployment https://zaurbbb.github.io/startoryx/
