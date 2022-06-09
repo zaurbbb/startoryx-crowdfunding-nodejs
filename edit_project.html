@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Startoryx</title>
+
+    <!-- CSS (load bootstrap from a CDN) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Brawler&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Arvo&family=Brawler&family=Zilla+Slab:wght@300&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap');
+        @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
+    </style>
+
+    <script src="https://cdn.tiny.cloud/1/a7s7zj1l8p26vlnsrlxxd253idknfiua9aj13smdnkxm653k/tinymce/6/tinymce.min.js"
+            referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({
+            selector: '#mytextarea',
+            plugins: [
+                'advlist', 'autolink',
+                'lists', 'link', 'image', 'charmap', 'preview', 'anchor', 'searchreplace', 'visualblocks',
+                'fullscreen', 'insertdatetime', 'media', 'table', 'help', 'wordcount'
+            ],
+            toolbar: 'undo redo | formatpainter casechange blocks | bold italic backcolor | ' +
+                'alignleft aligncenter alignright alignjustify | ' +
+                'bullist numlist checklist outdent indent | removeformat | a11ycheck code table help'
+        });
+    </script>
+</head>
+<body>
+
+<header id="header" style="background: #03045E;">
+
+  <a href="index.html"><img src="img/logo.png" alt="" width="110" height="40" style="margin-top: -8px"></a>
+
+  <div style="text-align: right; margin-top: 3px">
+    <!--ICON PLUS крч сделаешь ссылку на создание проекта-->
+    <a href="create_project.html"><img style="width: 25px; height: 20px; color: white; margin-top: -3px" src="img/icons/icon_plus.png" alt=""></a>
+    <a href="dashboard.html"><img style="width: 17px; height: 17px; color: white; margin: -3px 8px 0" src="img/icons/icon_search.png" alt=""></a>
+    <a href="profile.html"><img style="width: 25px; height: 20px; color: white" src="img/icons/icon_man.png" alt=""></a>
+
+  </div>
+</header>
+
+<div class="container mb-4" style=" border: 5px solid #CAF0F8; border-radius: 10px; padding: 20px 30px 5px 30px; margin-top: 70px">
+    <h1>Edit your startup project!</h1>
+    <div class="row px-5 mt-5">
+    <div class="col-12 py-auto">
+        <div class="create_project_type">Title</div>
+        <div class="col-12 create_project_content">
+          <input disabled class="create_project_input disabled" name="specialist" placeholder="Artificial Intelligence to help with your insomnia" style="width: 100%">
+        </div>
+
+        <div class="create_project_type">Type</div>
+        <div class="select disabled" tabindex="1" >
+          <input disabled class="selectopt" name="test" type="radio" id="opt1" checked>
+          <label for="opt1" class="option">Art</label>
+          <input disabled class="selectopt" name="test" type="radio" id="opt2">
+          <label for="opt2" class="option">Painting</label>
+          <input disabled class="selectopt" name="test" type="radio" id="opt3">
+          <label for="opt3" class="option">Technology</label>
+          <input disabled class="selectopt" name="test" type="radio" id="opt4">
+          <label for="opt4" class="option">Music</label>
+          <input disabled class="selectopt" name="test" type="radio" id="opt5">
+          <label for="opt5" class="option">Games</label>
+        </div>
+
+<!--        ЗАГРУЗКА ФОТО-->
+        <div class="create_project_type">Project poster</div>
+        <div class="col-12 create_project_content">
+            <label for="file-upload" class="custom-file-upload">
+                Update image
+            </label>
+            <input id="file-upload" type="file"/>
+        </div>
+
+
+
+        <div class="create_project_type">Shortly Description</div>
+        <div class="col-12 create_project_content">
+            <input class="create_project_input" name="specialist" placeholder="It's technology will correct your sleep mode!" style="width: 100%">
+        </div>
+
+        <div class="create_project_type">Date in days</div>
+        <div class="select" tabindex="1">
+            <input disabled class="selectopt disabled" name="test" type="radio" id="opt6" checked>
+            <label for="opt6" class="option">7 days</label>
+            <input disabled class="selectopt disabled" name="test" type="radio" id="opt7">
+            <label for="opt7" class="option">14 days</label>
+            <input disabled class="selectopt disabled" name="test" type="radio" id="opt8">
+            <label for="opt8" class="option">30 days</label>
+        </div>
+
+        <div class="create_project_type" >Goal in dollars</div>
+        <div class="col-12 create_project_content">
+            <input disabled class="create_project_input disabled" type="number" min="1" max="100000000000" placeholder="1 000$" style="width: 100%">
+        </div>
+        <textarea id="mytextarea" name="body" value="body"></textarea>
+        <div class="col-12 create_project_content justify-content-center">
+            <a href="dashboard.html" class="w-25">
+                <input class="submit my-4" type="submit" style="width: 100%; font-size: 30px; height: 50px; float: left" value="Save Changes">
+
+            </a>
+        </div>
+    </div>
+  </div>
+</div>
+
+<footer class="container-fluid text-center text-light order border-primary px-5 justify-content-center " style="background-color:
+#03045E">
+    <br>
+    <div class="row text-center " style="font-family: 'Inter', sans-serif; font-size: 30px">
+        <div class="col-4">About Us</div>
+        <div class="col-4">Contact Us</div>
+        <div class="col-4">FAQ</div>
+    </div>
+    <br>
+    <div class="row text-center mx-auto">
+        <div class="col-1"></div>
+        <div class="col-2"><i class="fa fa-2x fa-linkedin"></i></div>
+        <div class="col-2"><i class="fa fa-2x fa-google-plus"></i></div>
+        <div class="col-2"><i class="fa fa-2x fa-twitter"></i></div>
+        <div class="col-2"><i class="fa fa-2x fa-instagram"></i></div>
+        <div class="col-2"><i class="fa fa-2x fa-facebook-square"></i></div>
+        <div class="col-1"></div>
+    </div>
+    <br>
+    <div class="row text center" style="font-family: 'Inter', sans-serif; font-size: 20px">
+        <div class="col-12">© 2022 StarToryx Start Up Platform | All rights reserved</div>
+    </div>
+    <br>
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
