@@ -2,9 +2,194 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Startoryx</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- CSS (load bootstrap from a CDN) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Brawler&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Arvo&family=Brawler&family=Zilla+Slab:wght@300&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap');
+        @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
+    </style>
 </head>
 <body>
+
+<header id="header" style="background: #03045E;">
+
+    <a href="index.html"><img src="img/logo.png" alt="" width="110" height="40" style="margin-top: -8px"></a>
+
+    <div style="text-align: right; margin-top: 3px">
+        <!--ICON PLUS крч сделаешь ссылку на создание проекта-->
+        <a href="create_project.html"><img style="width: 25px; height: 20px; color: white; margin-top: -3px" src="img/icons/icon_plus.png" alt=""></a>
+        <a href="dashboard.html"><img style="width: 17px; height: 17px; color: white; margin: -3px 8px 0" src="img/icons/icon_search.png" alt=""></a>
+        <a href="profile.html"><img style="width: 25px; height: 20px; color: white" src="img/icons/icon_man.png" alt=""></a>
+
+    </div>
+</header>
+
+<div class="container-fluid profile_div text-center">
+    <div class="row">
+
+        <div class="col-5" style="height: 300px;">
+
+            <img style=" height: 100%; width: 100%;object-fit: contain;"
+                 src="https://pbs.twimg.com/media/EpIERhMXcAA9Hr9?format=jpg&name=medium">
+
+        </div>
+        <div class="col-7 py-auto ">
+            <div class="row text-xl-start text-center">
+                <div class="col-11 h1 startup_name">Anime Chainsaw Man by MAPPA</div>
+            </div>
+            <div class="row text-xl-start text-center my-2">
+                <div class="col-11 h5 startup_short_description">We're big fans of this manga and want to present the animezation of this title! Date: Autumn 2022 </div>
+
+            </div>
+            <div class="row text-xl-start text-center my-2">
+
+                <div class="col-8">
+                    <a href="profile.html"><img src="img/photo.png" class="startup_users_photo"> <span class="startup_users_name">aknietbaybolat</span></a>
+                </div>
+                <div class="col-3">
+                    <img src="img/icons/icon_rocket.png" class="startup_users_photo"> <span class="startup_users_name">1 project</span>
+                </div>
+            </div>
+            <div class="row text-xl-start text-center my-2">
+                <div class="col-12 my-3">
+                    <div id="progressbarWrapper"  >
+                        <span id="blueBar" style="width: 200px;">3000$/10000$</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row text-xl-start text-center my-2">
+                <div class="col-12 my-2">
+                    <a href="profile.html" ><input class="submit" type="submit" style="float: left" value="Donate"></a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <ul class="nav nav-pills mx-3 mt-4" role="tablist">
+        <li class="nav-item w-25" role="presentation">
+            <a href="startup.html">
+            <button class="nav-link  ">
+                Project
+            </button>
+            </a>
+        </li>
+        <li class="nav-item w-25" role="presentation">
+            <button class="nav-link active">
+                Comments
+            </button>
+        </li>
+
+
+    </ul>
+    <div class="contact-us-line  mb-3"></div>
+</div>
+<!--        COMMENTS BLOCK-->
+<div class="container">
+    <div class="row">
+        <div class="col-12 startup_comments">
+                <div class="row">
+                    <div class="col-1">
+                        <a href="profile.html">
+                            <div style="background-image: url('https://www.spletnik.ru/img/2019/09/olga/20191090-dud-post-2.jpg')" class="startup_comments_users_photo">
+
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-10">
+                        <div class="row">
+                            <div class="col-12 ">
+                                <span class="startup_users_name">Alexey Ischenov</span>
+                                <span class="startup_users_comment_time">18 May 2022 at 16:27</span>
+                            </div>
+                            <div class="col-12" style="word-break: break-word;">Since the MAPPA studio is filming, it should turn out well.</div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <div class="col-12 startup_comments">
+            <div class="row">
+                <div class="col-1">
+                    <a href="profile.html">
+                        <div style="background-image: url('https://aif-s3.aif.ru/images/011/857/f5ef0f2e2e55334bec4503294e0b6ae1.jpg')" class="startup_comments_users_photo">
+
+                        </div>
+                    </a>
+                </div>
+                <div class="col-10">
+                    <div class="row">
+                        <div class="col-12 ">
+                            <span class="startup_users_name">Robiya Genelin</span>
+                            <span class="startup_users_comment_time">18 May 2022 at 18:55</span>
+                        </div>
+                        <div class="col-12" style="word-break: break-word;"><span class="text-primary me-3">@anime_fun</span>Not that it's good, it's a hell of a holiday for us. Gorgeous studio</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 startup_comments">
+            <div class="row">
+                <div class="col-1">
+                    <a href="profile.html">
+                        <div style="background-image: url('https://st2.depositphotos.com/2931363/5249/i/600/depositphotos_52492703-stock-photo-confident-mature-man-in-shirt.jpg')" class="startup_comments_users_photo">
+
+                        </div>
+                    </a>
+                </div>
+                <div class="col-10">
+                    <div class="row">
+                        <div class="col-12 ">
+                            <span class="startup_users_name">Michael Mendi</span>
+                            <span class="startup_users_comment_time">18 May 2022 at 16:27</span>
+                        </div>
+                        <div class="col-12" style="word-break: break-word;">What do you think? Will the plot be the same, or will Mappa try to make his own ending?</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<br>
+<footer class="container-fluid text-center text-light order border-primary px-5 justify-content-center " style="background-color:
+#03045E">
+    <br>
+    <div class="row text-center " style="font-family: 'Inter', sans-serif; font-size: 30px">
+        <div class="col-4">About Us</div>
+        <div class="col-4">Contact Us</div>
+        <div class="col-4">FAQ</div>
+    </div>
+    <br>
+    <div class="row text-center mx-auto">
+        <div class="col-1"></div>
+        <div class="col-2"><i class="fa fa-2x fa-linkedin"></i></div>
+        <div class="col-2"><i class="fa fa-2x fa-google-plus"></i></div>
+        <div class="col-2"><i class="fa fa-2x fa-twitter"></i></div>
+        <div class="col-2"><i class="fa fa-2x fa-instagram"></i></div>
+        <div class="col-2"><i class="fa fa-2x fa-facebook-square"></i></div>
+        <div class="col-1"></div>
+    </div>
+    <br>
+    <div class="row text center" style="font-family: 'Inter', sans-serif; font-size: 20px">
+        <div class="col-12">© 2022 StarToryx Start Up Platform | All rights reserved</div>
+    </div>
+    <br>
+</footer>
+<script src="script.js"></script>
 
 </body>
 </html>
