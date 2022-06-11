@@ -568,7 +568,7 @@ legend{
     height: 15px;
 }
 .submit{
-    float: right;
+
     height: 25px;
     vertical-align: center;
     font-size: 15px;
@@ -1115,4 +1115,60 @@ input[type="file"] {
     height: 40px;
     font-size: 20px;
     color: gray;
+}
+.startup_name{
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+.startup_short_description{
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+
+    letter-spacing: 0.02em
+}
+.startup_users_photo{
+    vertical-align: middle;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+    letter-spacing: 0.02em;
+}
+.startup_users_name{
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+}
+#progressbarWrapper {
+    height: 35px;
+    width: 80%;
+    display: block;
+    padding: 4px;
+    border: 1px solid #03045E;
+    border-radius: 20px ;
+}
+
+#blueBar {
+    border-radius: 200px ;
+    display: block;
+    height: 100%;
+
+    background-color: #03045E;
+    position: relative;
+    overflow: hidden;
+    font-size: 15px;
+    text-align: center;
+    transition: all 700ms ease;
+    color: white;
+    padding-top: 1px;
+}
+.project_description{
+    font-family: 'Inter', sans-serif;
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    padding: 10px;
+    font-size: 20px;
 }
