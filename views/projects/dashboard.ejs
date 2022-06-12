@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+</head>
+<body>
+
+<header id="header" style="background-color: #03045E">
+    <%- include('../partials/header'); %>
+</header>
+
+<br>
+
+<div class="container-fluid text-center mt-3 dashboard_main">
+    <div class="row ps-5">
+        <div onclick="location.href='/dashboard'" style="cursor: pointer" class="ms-5 text-start inter text-light">Start-Up List</div>
+    </div>
+</div>
+<!--NAVIGATION BUTTONS-->
+<div class="container-fluid">
+    <center>
+        <ul class="nav nav-pills mx-3 justify-content-center row ">
+            <% const arr = ['Art', 'Painting', 'Technology', 'Music', 'Games'] %>
+            <% arr.forEach(function(a) { %>
+                <li class="nav-item col-2 ">
+                    <% if (type === a) { %>
+                        <button class="nav-link active" data-bs-toggle="pill"
+                                onclick="location.href='/dashboard/<%= a %>'">
+                            <%= a %>
+                            <i class="fa fa-long-arrow-down"></i>
+                        </button>
+                    <% } else { %>
+                    <button class="nav-link " data-bs-toggle="pill" onclick="location.href='/dashboard/<%= a %>'">
+                        <%= a %>
+                        <i class="fa fa-long-arrow-right"></i>
+                        <% } %>
+                    </button>
+                </li>
+            <% }) %>
+        </ul>
+        <div class="contact-us-line  mb-3"></div>
+    </center>
+</div>
+
+<center>
+    <div class="container-fluid">
+
+        <div class="btn-group ">
+            <button class="" style="width: 150px; background-color: transparent; border: none">Sort by:
+            </button>
+            <button class="dashboard_button" onclick="location.href = '/dashboard/<%= type %>/01/?<%= search %>'">Title
+                (ascending)
+            </button>
+            <button type="button" class="dashboard_button"
+                    onclick="location.href = '/dashboard/<%= type %>/02/?<%= search %>'">Title (decreasing)
+            </button>
+            <button type="button" class="dashboard_button"
+                    onclick="location.href = '/dashboard/<%= type %>/03/?<%= search %>'">Newest
+            </button>
+            <button type="button" class="dashboard_button"
+                    onclick="location.href = '/dashboard/<%= type %>/04/?<%= search %>'">Oldest
+            </button>
+            <button type="button" class="dashboard_button" onclick="location.href = '/dashboard/<%= type %>/05/?<%= search %>'">
+                Most
+                Rated
+            </button>
+
+            <form class="mx-3">
+                <div class="input-group my-1">
+                    <input type="text" name="search" class="form-control form-control w-25"
+                           placeholder="Search Project">
+                    <button type="submit" onclick="document.pressed=this.value" class="input-group-text btn-primary"><i
+                                class="fa fa-search"></i></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</center>
+
+<div class="container-fluid container-for-projects mb-4">
+    <% projects.forEach(function(project) { %>
+        <div class="card">
+            <div class="card-header" onclick="location.href='/project/<%= project._id %>'"
+                 style="background-image: url('<%= project.image %>'); cursor: pointer ">
+                <div class="hidden_blocks row" style="">
+                    <div class="col-12 ">
+                        <button class="hidden_blocks_button">
+                            <i class="fa fa-star"></i> <span class="hidden_text"><%= project.avgRate %>/10</span>
+                        </button>
+                    </div>
+                    <div class="col-12">
+                        <button class="hidden_blocks_button">
+                            <i class="fa fa-dollar "></i> <span
+                                    class="hidden_text"><%= project.collected %>/<%= project.goal %></span>
+                        </button>
+                    </div>
+                    <div class="col-12">
+                        <button class="hidden_blocks_button">
+                            <i class="fa fa-comment "></i> <span class="hidden_text"><%= project.numOfComments %></span>
+                        </button>
+                    </div>
+
+                    <div class="col-12 ">
+                        <button class="hidden_blocks_button">
+                            <i class="fa fa-eye"></i> <span class="hidden_text"><%= project.visits %></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <span class="tag tag-teal category_technology"><%= project.type %></span>
+                <h4 onclick="location.href='/project/<%= project._id %>'" style="cursor: pointer">
+                    <%= project.title %>
+                </h4>
+                <p>
+                    <%= project.shortly %>
+                </p>
+                <div class="user">
+                    <img style="cursor: pointer;" onclick="location.href='/profile/<%= project.user.nickname %>'"
+                         src="<%= project.user.image %>"
+                         alt="user"/>
+                    <div class="user-info">
+                        <h5 style="cursor: pointer;"
+                            onclick="location.href='/profile/<%= project.user.nickname %>'"><%= project.user.nickname %></h5>
+                        <small><%= date(project.dateCreated) %></small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <% }) %>
+</div>
+
+<%- include('../partials/footer') %>
+
+</body>
+
+</html>

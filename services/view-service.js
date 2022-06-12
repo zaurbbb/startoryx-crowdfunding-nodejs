@@ -8,16 +8,29 @@ const averageRate = require("../helpers/averageRate");
 const User = require("../models/user-model");
 
 class ViewService {
-    async projectBoard(query, sort) {
+    async projectBoard(query, sort, type) {
         let search, projects
-
         if (query === "search=")
             query = null
         if (query != null) {
             search = query.split('=', 2)[1]
-            projects = await Project.find({published: true, $text: {$search: search}}).lean()
-        } else
-            projects = await Project.find({published: true}).lean()
+            if (type != null && type !== '0')
+                projects = await Project.find({
+                    published: true,
+                    type: type,
+                    $text: {$search: search}
+                }).lean().populate('user')
+            else
+                projects = await Project.find({
+                    published: true,
+                    $text: {$search: search}
+                }).lean().populate('user')
+        } else {
+            if (type != null && type !== '0')
+                projects = await Project.find({published: true, type: type}).lean().populate('user')
+            else
+                projects = await Project.find({published: true}).lean().populate('user')
+        }
 
         const sortedProjects = await projectController.ProjectSort(projects, parseInt(sort) || 0)
 

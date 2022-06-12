@@ -3,6 +3,7 @@ const viewController = require("../controllers/view-controller");
 const cloudinary = require('cloudinary').v2
 const {CloudinaryStorage} = require("multer-storage-cloudinary");
 const multer = require("multer");
+const projectController = require("../controllers/project-controller");
 const Router = require('express').Router
 const router = new Router()
 
@@ -31,8 +32,11 @@ router.get('/create', ensureAuth, (req, res) => {
 
 router.post('/create', ensureAuth, upload.single('image'), viewController.postProject)
 
-router.get('/edit/:id', viewController.getEditProject)
+router.get('/edit/:id', ensureAuth, viewController.getEditProject)
 
 router.post('/edit/:id', viewController.putProject)
+
+router.get('/delete/:id', ensureAuth, projectController.deleteProject)
+
 
 module.exports = router

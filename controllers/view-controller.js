@@ -9,15 +9,10 @@ const formatDate = require("../helpers/formatDate");
 class ViewController {
     async dashboard(req, res, next) {
         try {
-            let email, nickname
-            if (req.user != null) {
-                email = req.user.email
-                nickname = req.user.nickname
-            }
-            const board = await viewService.projectBoard(req._parsedUrl.query, req.params.sort)
-            res.render('pages/dashboard.ejs', {
-                email: email, date: formatDate, projects: board.projects, search: board.search,
-                nickname: nickname, url: process.env.URL
+            const board = await viewService.projectBoard(req._parsedUrl.query, req.params.sort, req.params.type)
+            const type = req.params.type == null ? 0 : req.params.type
+            res.render('projects/dashboard', {
+                date: formatDate, projects: board.projects, search: board.search, type: type
             })
         } catch (e) {
             next(e)

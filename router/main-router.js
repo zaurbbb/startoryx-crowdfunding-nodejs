@@ -95,4 +95,6 @@ router.get('/donate_success/:amount/:id', paymentController.donateSuccess)
 
 router.get('/faq', viewController.faq)
 
+router.get('/dashboard/:type?/:sort?/:search?', viewController.dashboard);
+
 module.exports = router
