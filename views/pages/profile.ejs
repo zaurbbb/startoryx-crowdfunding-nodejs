@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<header id="other_header">
+<header id="header" style="background-color: #03045E">
     <%- include('../partials/header'); %>
 </header>
 
@@ -129,7 +129,7 @@
                                     <i class="fa fa-dollar"></i><%= project.collected %>/<%= project.goal %>
                                 </div>
                                 <div class="card_profile_info_div">
-                                    <i class="fa fa-comments"></i>NULL
+                                    <i class="fa fa-comments"></i><%= project.numOfComments %>
                                 </div>
                                 <div class="card_profile_info_div">
                                     <i class="fa fa-eye"></i><%= project.visits %>

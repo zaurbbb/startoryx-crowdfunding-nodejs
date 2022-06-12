@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+
+    <%- include('../partials/tinymc'); %>
+
+</head>
+<body>
+
+<header id="header" style="background-color: #03045E">
+    <%- include('../partials/header'); %>
+</header>
+
+<div class="container mb-4"
+     style=" border: 5px solid #CAF0F8; border-radius: 10px; padding: 20px 30px 5px 30px; margin-top: 70px">
+    <h1>Create your startup project!</h1>
+    <div class="row px-5 mt-5">
+        <div class="col-12 py-auto">
+            <form action="/project/create" method="POST" enctype="multipart/form-data">
+                <div class="create_project_type">Title</div>
+                <div class="col-12 create_project_content">
+                    <input class="create_project_input" name="title" type="text"
+                           placeholder="Artificial Intelligence to help with your insomnia" style="width: 100%"
+                           required>
+                </div>
+                <div class="create_project_type">Type</div>
+                <div class="select" tabindex="1">
+                    <input class="selectopt" name="type" type="radio" id="opt1" value="Art" checked>
+                    <label for="opt1" class="option">Art</label>
+                    <input class="selectopt" name="type" type="radio" id="opt2" value="Painting">
+                    <label for="opt2" class="option">Painting</label>
+                    <input class="selectopt" name="type" type="radio" id="opt3" value="Technology">
+                    <label for="opt3" class="option">Technology</label>
+                    <input class="selectopt" name="type" type="radio" id="opt4" value="Music">
+                    <label for="opt4" class="option">Music</label>
+                    <input class="selectopt" name="type" type="radio" id="opt5" value="Games">
+                    <label for="opt5" class="option">Games</label>
+                </div>
+                <div class="create_project_type">Project poster</div>
+                <div class="col-12 create_project_content">
+                    <label for="file-upload" class="custom-file-upload">
+                        Upload image
+                    </label>
+                    <input name="image" accept="image/*" id="file-upload" type="file"/>
+                    <p id="feedback" style="color: green; margin: 10px"></p>
+                </div>
+                <div class="create_project_type">Shortly Description</div>
+                <div class="col-12 create_project_content">
+                    <input class="create_project_input" name="shortly" type="text"
+                           placeholder="It's technology will correct your sleep mode!" style="width: 100%" required>
+                </div>
+                <div class="create_project_type">Date in days</div>
+                <div class="select" tabindex="2">
+                    <input class="selectopt" name="days" type="radio" id="opt6" value="7" checked>
+                    <label for="opt6" class="option">7 days</label>
+                    <input class="selectopt" name="days" type="radio" id="opt7" value="14">
+                    <label for="opt7" class="option">14 days</label>
+                    <input class="selectopt" name="days" type="radio" id="opt8" value="30">
+                    <label for="opt8" class="option">30 days</label>
+                </div>
+                <div class="create_project_type">Goal in dollars</div>
+                <div class="col-12 create_project_content">
+                    <input class="create_project_input" type="number" name="goal" min="1" max="1000000"
+                           placeholder="10 000$..."
+                           style="width: 100%" required>
+                </div>
+                <textarea id="mytextarea" name="body"></textarea>
+                <div class="col-12 create_project_content justify-content-center">
+                    <a class="w-50">
+                        <input class="submit my-4" type="submit"
+                               style="width: 100%; font-size: 30px; height: 50px; float: left"
+                               value="Create a Start-Up with StarToryx!">
+
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<%- include('../partials/footer') %>
+<script>
+    const fileUploader = document.getElementById('file-upload');
+
+    fileUploader.addEventListener('change', (event) => {
+        const feedback = document.getElementById('feedback');
+        feedback.innerHTML = `✔`;
+    });
+</script>
+</body>
+</html>

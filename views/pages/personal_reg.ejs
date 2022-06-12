@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Startoryx <%= user.nickname %></title>
+    <%- include('../partials/head'); %>
+</head>
+<body>
+
+<header id="header" style="background-color: #03045E">
+    <%- include('../partials/header'); %>
+</header>
+
+<div class="container-fluid mb-5 mt-5 login_reg text-center">
+    <center>
+        <div class="row login__reg w-75">
+            <div class="col-6"><img src="img/login_reg.png" alt=""></div>
+            <div class="col-6">
+                <form method="post" action="/personal_reg">
+
+                    <div class="col-12">
+                        <br>
+                        <span style="float: left; font-family: 'Brawler';
+font-style: normal;
+font-weight: 400;
+font-size: 40px;
+line-height: 73px;
+display: flex;
+align-items: center;
+text-align: center;
+letter-spacing: 0.07em;">Tell about yourself!</span>
+
+                    </div>
+                    <div class="col-12 my-4" style="min-width: 300px">
+                        <input type="text" value="<%= user.first_name %>" class="form-control " name="first_name"
+                               placeholder="First Name" required>
+                    </div>
+                    <div class="col-12 my-4" style="min-width: 300px">
+                        <input type="text" value="<%= user.last_name %>" class="form-control " name="last_name"
+                               placeholder="Last Name" required>
+                    </div>
+                    <div class="col-12 my-4" style="min-width: 300px">
+                        <input type="text" value="<%= user.nickname %>" class="form-control m" name="nickname"
+                               placeholder="Nickname" required>
+                    </div>
+                    <div class="col-12 my-4" style="min-width: 300px">
+                        <input type="tel" value="<%= user.phone %>" class="form-control m" name="phone"
+                               placeholder="Phone" required>
+                    </div>
+                    <div class="col-12 my-4" style="min-width: 300px">
+                        <input type="number" value="<%= user.age %>" class="form-control m" name="age" placeholder="Age"
+                               required>
+                    </div>
+                    <div class="col-12 my-4" style="min-width: 300px">
+                        <input type="text" value="<%= user.specialist %>" class="form-control m" name="specialist"
+                               placeholder="Specialist" required>
+                    </div>
+                    <div class="row">
+                        <div class="col-12  text-start">
+                            <input class="submit" type="submit" style="float: left"
+                                   value="Sign in">
+                            <input onclick="location.href='/logout'" class="submit mx-3" type="button" style="float: left"
+                                   value="Log Out">
+                        </div>
+                    </div>
+                </form>
+
+
+                `
+            </div>
+
+        </div>
+    </center>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

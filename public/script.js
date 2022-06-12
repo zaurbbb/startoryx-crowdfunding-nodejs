@@ -7,30 +7,43 @@ window.addEventListener('scroll', ()=>{
     } else {
         h.remove('bgDark');
     }
-});/*IT'S CODE FOR HEADER_BACKGROUND'S VISIBILITY*/
-
-function showHiddenDiv1() {
-    const x = document.getElementById("showHiddenDiv1");
-    if (x.style.display === "none") {
-        x.style.display = "block";
-    } else {
-        x.style.display = "none";
-    }
-}
-function showHiddenDiv2() {
-    const x = document.getElementById("showHiddenDiv2");
-    if (x.style.display === "none") {
-        x.style.display = "block";
-    } else {
-        x.style.display = "none";
-    }
-}
+});
 
 function func(){
-    const a = document.getElementById('text');
-    if (a.style.display === "none") {
+    var a = document.getElementById('text');
+    if (a.style.display == "none") {
         a.style.display = "block";
     } else {
         a.style.display = "none";
     }
 }
+
+$.fn.animate_Text = function() {
+    var string = this.text();
+    return this.each(function(){
+        var $this = $(this);
+        $this.html(string.replace(/./g, '<span class="new">$&</span>'));
+        $this.find('span.new').each(function(i, el){
+            setTimeout(function(){ $(el).addClass('div_opacity'); }, 80 * i);
+        });
+    });
+};
+
+$.fn.animate_Text2 = function() {
+    var string = this.text();
+    return this.each(function(){
+        var $this = $(this);
+        $this.html(string.replace(/./g, '<span class="new">$&</span>'));
+        $this.find('span.new').each(function(i, el){
+            setTimeout(function(){ $(el).addClass('div_opacity'); }, 80 * i);
+        });
+    });
+};
+
+$('#video__title').show();
+$('#video__title').animate_Text();
+
+$('#video__slogan').show();
+$('#video__slogan').animate_Text2();
+
+

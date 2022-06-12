@@ -116,6 +116,16 @@ class UserController {
             next(e)
         }
     }
+    async personal(req, res, next) {
+        try {
+            const {first_name, last_name, nickname, phone, age, specialist} = req.body
+            await userService.personal(req.user._id, first_name, last_name, nickname, phone, age, specialist)
+            res.redirect('/profile')
+        }
+        catch (e) {
+            next(e)
+        }
+    }
 }
 
 module.exports = new UserController()

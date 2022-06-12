@@ -23,51 +23,52 @@ class ViewController {
             next(e)
         }
     }
+
     async faq(req, res, next) {
         try {
             const definitions = await Definition.find()
             const payments = await Payment.find()
             const miscellaneous = await Miscellaneous.find()
             res.render('pages/faq.ejs', {defs: definitions, pays: payments, misc: miscellaneous})
-        }
-        catch (e) {
+        } catch (e) {
             next(e)
         }
     }
+
     async error_page(req, res, next) {
         try {
             res.render('pages/404', {isError: false, message: "Sorry, the page you’re looking for doesn’t exist."})
-        }
-        catch (e) {
+        } catch (e) {
             next(e)
         }
     }
+
     async registration(req, res, next) {
         try {
             if (req.user != null) return res.redirect('/profile')
             res.render('pages/registration')
-        }
-        catch (e) {
+        } catch (e) {
             next(e)
         }
     }
+
     async login(req, res, next) {
         try {
             if (req.user != null) return res.redirect('/profile')
             res.render('pages/login')
-        }
-        catch (e) {
+        } catch (e) {
             next(e)
         }
     }
+
     async forget(req, res, next) {
         try {
             res.render('pages/forget')
-        }
-        catch (e) {
+        } catch (e) {
             next(e)
         }
     }
+
     async getProject(req, res, next) {
         try {
             let email, nickname
@@ -85,6 +86,7 @@ class ViewController {
             next(e)
         }
     }
+
     async putProject(req, res, next) {
         try {
             await Project.findOneAndUpdate(
@@ -98,6 +100,7 @@ class ViewController {
             next(e)
         }
     }
+
     async getEditProject(req, res, next) {
         try {
             const project = await Project.findById(req.params.id).lean()
@@ -110,16 +113,18 @@ class ViewController {
             next(e)
         }
     }
+
     async postProject(req, res, next) {
         try {
             req.body.user = req.user._id
             if (req.file != null) req.body.image = req.file.path
             await Project.create(req.body)
-            res.send('Submitted for approval by moderation')
+            res.redirect('/profile')
         } catch (e) {
             next(e)
         }
     }
+
     async postComment(req, res, next) {
         try {
             req.body.project = req.params.id
@@ -131,6 +136,7 @@ class ViewController {
             next(e)
         }
     }
+
     async postRate(req, res, next) {
         try {
             req.body.rate = parseInt(req.body.rate)
@@ -143,6 +149,7 @@ class ViewController {
             next(e)
         }
     }
+
     async profile(req, res, next) {
         try {
             let isOwner = false
@@ -154,7 +161,10 @@ class ViewController {
                 isOwner = true
 
             const profile = await viewService.profile(req.params.id)
-            console.log(profile)
+
+            if ((isOwner) && (profile.user.age == null || profile.user.phone == null || profile.user.specialist == null))
+                return res.render('pages/personal_reg',
+                    {user: profile.user})
             res.render('pages/profile', {
                 user: profile.user, isOwner: isOwner,
                 projects: profile.projects, date: formatDate, url: process.env.URL
@@ -164,6 +174,7 @@ class ViewController {
             next(e)
         }
     }
+
     async profileSettings(req, res, next) {
         try {
             if (req.user == null)
@@ -174,6 +185,15 @@ class ViewController {
                 user: user,
                 date: formatDate
             })
+        } catch (e) {
+            next(e)
+        }
+    }
+
+    async personal(req, res, next) {
+        try {
+            const user = await User.findOne({_id: req.user._id})
+            res.render('pages/personal_reg', {user: user})
         } catch (e) {
             next(e)
         }

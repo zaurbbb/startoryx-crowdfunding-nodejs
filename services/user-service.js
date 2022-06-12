@@ -92,20 +92,24 @@ class UserService {
         return {user: userDto}
     }
 
-    async updatePassword(resetLink, password){
+    async updatePassword(resetLink, password) {
         const hashPassword = await bcrypt.hash(password, 4)
         await User.findOneAndUpdate({resetLink: resetLink}, {password: hashPassword, resetLink: null})
     }
 
-    async updateProfile(email, nickname, age, phone, specialist){
+    async updateProfile(email, nickname, age, phone, specialist) {
         await User.findOneAndUpdate(
             {email: email},
-            {nickname: nickname, specialist: specialist,
-            age: age, phone: phone}
+            {
+                nickname,
+                specialist,
+                age,
+                phone
+            }
         )
     }
 
-    async donate(userId, projectId, amount){
+    async donate(userId, projectId, amount) {
         const user = await User.findOne({_id: userId})
         const project = await Project.findOne({_id: projectId})
 
@@ -113,6 +117,16 @@ class UserService {
         await User.findOneAndUpdate({_id: userId}, {balance: user.balance - parseInt(amount)})
     }
 
+    async personal(id, first_name, last_name, nickname, phone, age, specialist) {
+        await User.findOneAndUpdate({_id: id}, {
+            first_name,
+            last_name,
+            nickname,
+            phone,
+            age,
+            specialist
+        })
+    }
 }
 
 module.exports = new UserService()

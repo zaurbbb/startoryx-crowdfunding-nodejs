@@ -72,6 +72,8 @@ router.get('/google/callback', passport.authenticate('google', {
     failureRedirect: "/login"
 }));
 
+router.post('/personal_reg', userController.personal)
+
 router.get('/profile/:id?', viewController.profile);
 
 router.get('/profile/settings/:id?', viewController.profileSettings)

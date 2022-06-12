@@ -7,8 +7,8 @@ const Rate = require("../models/rate-model");
 const averageRate = require("../helpers/averageRate");
 const User = require("../models/user-model");
 
-class ViewService{
-    async projectBoard(query, sort){
+class ViewService {
+    async projectBoard(query, sort) {
         let search, projects
 
         if (query === "search=")
@@ -25,13 +25,20 @@ class ViewService{
         if (query != null) searchUrl = query
         return new ProjectDto(sortedProjects, searchUrl)
     }
-    async postComment(body){
+
+    async postComment(body) {
         const comment = await Comment.create(body)
+        const project = await Project.findOne({_id: body.project})
+
         await Project.findOneAndUpdate(
             {_id: body.project},
-            {$push: {comments: comment}})
+            {
+                $push: {comments: comment},
+                numOfComments: project.comments.length + 1
+            })
     }
-    async postRate(body){
+
+    async postRate(body) {
         const rate = await Rate.create(body)
         await Project.findOneAndUpdate(
             {_id: body.project},
@@ -43,7 +50,8 @@ class ViewService{
             avgRate: await averageRate(body.project)
         })
     }
-    async profile(nickname){
+
+    async profile(nickname) {
         const user = await User.findOne({nickname: nickname})
         let projects = await Project.find({user}).lean()
         return new ProfileDto(projects, user)

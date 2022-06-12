@@ -6,14 +6,15 @@
 </head>
 <body>
 
-<header id="other_header">
+<header id="header" style="background-color: #03045E">
     <%- include('../partials/header'); %>
 </header>
 
 <div class="container profile_div text-center">
     <div class="row">
         <div class="col-4 text-center profile_photo_div">
-            <img data-bs-toggle="modal" data-bs-target="#changePhoto" src="<%= user.image %>" class="rounded-3 profile_photo">
+            <img data-bs-toggle="modal" data-bs-target="#changePhoto" src="<%= user.image %>"
+                 class="rounded-3 profile_photo">
             <div>
                 <h4>Change photo</h4>
             </div>
@@ -31,7 +32,8 @@
                         </div>
                         <div class="row text-xl-start text-center">
                             <div class="col-12 profile_type">Nickname</div>
-                            <div class="col-12 profile_content"><input name="nickname" class="profile_input" value="<%= user.nickname %>">
+                            <div class="col-12 profile_content"><input name="nickname" class="profile_input"
+                                                                       value="<%= user.nickname %>">
                             </div>
                         </div>
                         <div class="row text-xl-start text-center">
@@ -44,18 +46,22 @@
                             <div class="col-12 profile_content"><input class="profile_input" name="specialist"
                                                                        value="<%= user.specialist %>">
                             </div>
-                            <button class="submit" type="submit" style="width: 45%; height: 35px!important; margin: 12px">Confirm Changes</button>
+                            <button class="submit" type="submit"
+                                    style="width: 45%; height: 35px!important; margin: 12px">Confirm Changes
+                            </button>
                         </div>
                     </div>
                     <div class="col-6  text-center my-1">
                         <div class="row text-xl-start text-center">
                             <div class="col-12 profile_type">Phone</div>
-                            <div class="col-12 profile_content"><input name="phone" class="profile_input" value="<%= user.phone %>">
+                            <div class="col-12 profile_content"><input id="phone" name="phone" type="tel" class="profile_input"
+                                                                       value="<%= user.phone %>">
                             </div>
                         </div>
                         <div class="row text-xl-start text-center">
                             <div class="col-12 profile_type">Email</div>
-                            <div class="col-12 profile_content "><input class="profile_input disabled" disabled
+                            <div class="col-12 profile_content "><input type="email" class="profile_input disabled"
+                                                                        disabled
                                                                         value="<%= user.email %>"></div>
                         </div>
                         <div class="row text-xl-start text-center">
@@ -118,6 +124,5 @@
 </div>
 
 <%- include('../partials/footer') %>
-
 </body>
 </html>
