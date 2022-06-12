@@ -149,7 +149,9 @@
                                     <div class="card_profile_info_div">
                                         <i class="fa fa-eye"></i><%= project.visits %>
                                     </div>
-                                    <div class="card_profile_info_div">
+                                    <div style="cursor: pointer"
+                                         onclick="location.href='https://telegram.me/share/url?url=<%= url %>/project/<%= project._id %>&text=<%= project.title %> | <%= project.shortly %>'"
+                                         class="card_profile_info_div">
                                         <i class="fa fa-share-alt"></i>Share
                                     </div>
                                 </div>

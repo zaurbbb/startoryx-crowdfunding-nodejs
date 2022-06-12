@@ -185,7 +185,8 @@ class ViewController {
                     {user: profile.user})
             res.render('pages/profile', {
                 user: profile.user, isOwner: isOwner,
-                projects: profile.projects, date: formatDate
+                projects: profile.projects, date: formatDate,
+                url: process.env.URL
             })
 
         } catch (e) {
