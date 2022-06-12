@@ -29,7 +29,7 @@ class ViewController {
             const definitions = await Definition.find()
             const payments = await Payment.find()
             const miscellaneous = await Miscellaneous.find()
-            res.render('pages/faq.ejs', {defs: definitions, pays: payments, misc: miscellaneous})
+            res.render('pages/faq', {defs: definitions, pays: payments, misc: miscellaneous})
         } catch (e) {
             next(e)
         }
@@ -71,21 +71,45 @@ class ViewController {
 
     async getProject(req, res, next) {
         try {
-            let email, nickname
+            const count = await Project.count()
+            const rand = Math.floor(Math.random() * count)
+            const randProject = await Project.findOne().skip(rand)
             const project = await Project.findById(req.params.id).populate({
                 path: 'comments', model: 'Comment',
                 populate: {path: 'user', model: 'User'}
             }).populate('user')
+            const userProjects = await Project.count({user: project.user})
             if (req.user != null) {
-                email = req.user.email
-                nickname = req.user.nickname
                 await Project.findOneAndUpdate({_id: req.params.id}, {visits: project.visits + 1})
             }
-            res.render('projects/read.ejs', {email: email, date: formatDate, project: project, nickname: nickname})
+            res.render('projects/read', {
+                date: formatDate, project: project, randProject: randProject,
+                userProjects: userProjects
+            })
         } catch (e) {
             next(e)
         }
     }
+
+    async getComments(req, res, next) {
+        try {
+            const project = await Project.findById(req.params.id).populate({
+                path: 'comments', model: 'Comment',
+                populate: {path: 'user', model: 'User'}
+            }).populate('user')
+            const userProjects = await Project.count({user: project.user})
+            if (req.user != null) {
+                await Project.findOneAndUpdate({_id: req.params.id}, {visits: project.visits + 1})
+            }
+            res.render('projects/comments', {
+                date: formatDate, project: project,
+                userProjects: userProjects
+            })
+        } catch (e) {
+            next(e)
+        }
+    }
+
 
     async putProject(req, res, next) {
         try {
@@ -95,7 +119,7 @@ class ViewController {
                     title: req.body.title, body: req.body.body, shortly: req.body.shortly, days: req.body.days,
                     type: req.body.type, goal: req.body.goal, published: false
                 })
-            res.send('Submitted for approval by moderation')
+            res.redirect('/profile')
         } catch (e) {
             next(e)
         }
@@ -105,10 +129,9 @@ class ViewController {
         try {
             const project = await Project.findById(req.params.id).lean()
             if (project.user.equals(req.user._id))
-                res.render('projects/edit.ejs', {email: req.user.email, project: project, nickname: req.user.nickname})
+                res.render('projects/edit', {project: project})
             else
-                res.redirect('/api/dashboard')
-
+                res.redirect('/profile')
         } catch (e) {
             next(e)
         }
@@ -167,7 +190,7 @@ class ViewController {
                     {user: profile.user})
             res.render('pages/profile', {
                 user: profile.user, isOwner: isOwner,
-                projects: profile.projects, date: formatDate, url: process.env.URL
+                projects: profile.projects, date: formatDate
             })
 
         } catch (e) {

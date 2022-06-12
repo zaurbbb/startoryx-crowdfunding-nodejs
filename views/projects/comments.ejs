@@ -50,80 +50,58 @@
 
         </div>
     </div>
+
 </div>
 
 <div class="container">
     <ul class="nav nav-pills mx-3 mt-4" role="tablist">
         <li class="nav-item w-25" role="presentation">
-            <button class="nav-link active">
-                Project
-            </button>
-        </li>
-        <li class="nav-item w-25" role="presentation">
-            <a href="/project/comments/<%= project._id %>">
-                <button class="nav-link ">
-                    Comments
+            <a href="/project/<%= project._id %>">
+                <button class="nav-link  ">
+                    Project
                 </button>
             </a>
+        </li>
+        <li class="nav-item w-25" role="presentation">
+            <button class="nav-link active">
+                Comments
+            </button>
         </li>
 
 
     </ul>
     <div class="contact-us-line  mb-3"></div>
 </div>
-
+<!--        COMMENTS BLOCK-->
 <div class="container">
     <div class="row">
-        <div class="col-9 project_description"><%- project.body %>
-        </div>
+        <% project.comments.slice().reverse().forEach(function(comment) { %>
+        <div class="col-12 startup_comments">
+            <div class="row">
+                <div class="col-1">
+                    <a href="/profile/<%= comment.user.nickname %>">
+                        <div style="background-image: url('<%= comment.user.image %>')" class="startup_comments_users_photo">
 
-        <div class="col-3">
-            <div class="col-12 text-center"><h3 style="font-weight: 400">Another Project</h3></div>
-            <div class="card" style="transform: scale(90%)">
-                <div class="card-header" onclick="location.href='/project/<%= randProject._id %>'"
-                     style="background-image: url('<%= randProject.image %>'); cursor: pointer  ">
-
+                        </div>
+                    </a>
                 </div>
-                <div class="card-body ">
-                    <span class="tag tag-teal category_technology"><%= randProject.type %></span>
-                    <h4>
-                        <%= randProject.title %>
-                    </h4>
-                    <p>
-                        <%= randProject.shortly %>
-                    </p>
-                    <a href="/project/<%= randProject._id %>" style="margin: auto"><input class="submit" type="submit" value="Read more"></a>
+                <div class="col-10">
+                    <div class="row">
+                        <div class="col-12 ">
+                            <span class="startup_users_name"><%= comment.user.first_name %> <%= comment.user.last_name %></span>
+                            <span class="startup_users_comment_time"><%= date(comment.date) %></span>
+                        </div>
+                        <div class="col-12" style="word-break: break-word;"><%= comment.text %></div>
+                    </div>
                 </div>
             </div>
         </div>
+        <% }) %>
     </div>
 </div>
 <br>
-
 <%- include('../partials/footer') %>
 
-<!-- Modal -->
-<div class="modal fade" id="donateModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Back this start-up</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <form method="post">
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <label for="message-text" class="col-form-label">Donation amount:</label>
-                        <input type="number" class="form-control" name="amount">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" formaction="/donate/<%= project._id %>" class="btn btn-success">Donate via Balance</button>
-                    <button type="submit" formaction="/donate_paypal/<%= project._id %>" class="btn btn-success">Donate via PayPal</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
+
 </body>
 </html>

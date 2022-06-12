@@ -73,8 +73,8 @@ app.get('/', (req, res) => {
 })
 app.use(router);
 app.use('/api', router2);
-app.use('/api/projects', projectRouter); // TODO: edit url (/api)
 app.use('/project', projectRouter2);
+app.use('/api/projects', projectRouter); // TODO: edit url (/api)
 
 app.get('*', viewController.error_page)
 

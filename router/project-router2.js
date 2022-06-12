@@ -21,11 +21,18 @@ const storage = new CloudinaryStorage({
 
 const upload = multer({storage: storage});
 
+router.get('/:id', viewController.getProject)
+
+router.get('/comments/:id', viewController.getComments)
+
 router.get('/create', ensureAuth, (req, res) => {
     res.render('projects/create', {})
 })
 
 router.post('/create', ensureAuth, upload.single('image'), viewController.postProject)
 
+router.get('/edit/:id', viewController.getEditProject)
+
+router.post('/edit/:id', viewController.putProject)
 
 module.exports = router

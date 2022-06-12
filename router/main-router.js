@@ -85,6 +85,8 @@ router.post('/files/profile/settings', userController.updateProfile)
 
 router.post('/pay', paymentController.payment)
 
+router.post('/donate/:id', userController.donate)
+
 router.post('/donate_paypal/:id', paymentController.donatePaypal)
 
 router.get('/success/:amount', paymentController.successPayment)

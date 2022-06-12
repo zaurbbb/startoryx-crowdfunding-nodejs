@@ -14,12 +14,15 @@
 <div class="container profile_div text-center ">
     <div class="row">
         <div class="col-4 text-center profile_photo_div">
-            <img data-bs-toggle="modal" data-bs-target="#changePhoto" src="<%= user.image %>"
-                 class="rounded-3 profile_photo">
             <% if (isOwner) { %>
+                <img data-bs-toggle="modal" data-bs-target="#changePhoto" src="<%= user.image %>"
+                     class="rounded-3 profile_photo">
                 <div>
                     <h4>Change photo</h4>
                 </div>
+            <% } else { %>
+                <img src="<%= user.image %>"
+                     class="rounded-3 profile_photo">
             <% } %>
         </div>
         <div class="col-8 py-auto">
@@ -102,71 +105,76 @@
 
     <div class="container ">
         <% projects.forEach(function(project) { %>
-            <div class="card_profile">
-                <div class="row">
-                    <div class="col-1 card_profile_image_div " style="cursor: pointer"
-                         onclick="location.href='/api/projects/<%= project._id %>'"><img
-                                src="<%= project.image %>" alt=""></div>
-                    <div class="col-10 card_profile_content_div ">
-                        <div class="row" style="position:relative;">
-                            <!--TITLE-->
-                            <div
-                                    class="col-12 card_profile_text_div "><span
-                                        onclick="location.href='/api/projects/<%= project._id %>'"
-                                        style="font-weight: 600; cursor: pointer"><%= project.title %></span>
-                                <!--SHORTLY--> <br>
-                                <%= project.shortly %>
+            <% if ((project.published && !isOwner) || (isOwner)) { %>
+                <div class="card_profile">
+                    <div class="row">
+                        <div class="col-1 card_profile_image_div " style="cursor: pointer"
+                             onclick="location.href='/project/<%= project._id %>'"><img
+                                    src="<%= project.image %>" alt=""></div>
+                        <div class="col-10 card_profile_content_div ">
+                            <div class="row" style="position:relative;">
+                                <!--TITLE-->
+                                <div
+                                        class="col-12 card_profile_text_div "><span
+                                            onclick="location.href='/project/<%= project._id %>'"
+                                            style="font-weight: 600; cursor: pointer"><%= project.title %> </span><span
+                                            class="tag tag-teal category_arts"><%= project.type %></span>
+                                    <% if (project.published) { %>
+                                        <i data-bs-toggle="tooltip" data-bs-placement="top"
+                                           title="This project is published" style="color: green"
+                                           class="fa fa-check-circle"></i>
+                                    <% } else { %>
+                                        <i data-bs-toggle="tooltip" data-bs-placement="top"
+                                           title="This project has not been published. Moderation approval is required"
+                                           style="color: red" class="fa fa-times-circle"></i>
+                                    <% } %>
+                                    <br>
+                                    <!--SHORTLY-->
+                                    <%= project.shortly %>
+                                </div>
+
+
+                                <!--FONT AWESOMES-->
+                                <div class="col-12">
+
+                                    <div class="card_profile_info_div">
+                                        <i class="fa fa-star"></i><%= project.avgRate %>/10
+                                    </div>
+                                    <div class="card_profile_info_div">
+                                        <i class="fa fa-dollar"></i><%= project.collected %>/<%= project.goal %>
+                                    </div>
+                                    <div class="card_profile_info_div">
+                                        <i class="fa fa-comments"></i><%= project.numOfComments %>
+                                    </div>
+                                    <div class="card_profile_info_div">
+                                        <i class="fa fa-eye"></i><%= project.visits %>
+                                    </div>
+                                    <div class="card_profile_info_div">
+                                        <i class="fa fa-share-alt"></i>Share
+                                    </div>
+                                </div>
                             </div>
 
-
-                            <!--FONT AWESOMES-->
-                            <div class="col-12">
-
-                                <div class="card_profile_info_div">
-                                    <i class="fa fa-star"></i><%= project.avgRate %>/10
-                                </div>
-                                <div class="card_profile_info_div">
-                                    <i class="fa fa-dollar"></i><%= project.collected %>/<%= project.goal %>
-                                </div>
-                                <div class="card_profile_info_div">
-                                    <i class="fa fa-comments"></i><%= project.numOfComments %>
-                                </div>
-                                <div class="card_profile_info_div">
-                                    <i class="fa fa-eye"></i><%= project.visits %>
-                                </div>
-                                <div class="card_profile_info_div">
-                                    <i class="fa fa-share-alt"></i>Share
-                                </div>
-                            </div>
                         </div>
+                        <% if (isOwner) { %>
+                            <div class="col-1 py-3">
+                                <!--EDIT-->
+                                <i style="cursor: pointer"
+                                   onclick="if (confirm('If any data is changed, your project will be processed by moderation again and will become private'))
+                                           location.href='/project/edit/<%= project._id %>'"
+                                   class="fa fa-solid fa-pencil"></i>
 
+                                <!--DELETE-->
+                                <i style="cursor: pointer"
+                                   onclick="if (confirm('Are you sure you want to delete the project? There will be no turning back...'))
+                                           location.href='/project/delete/<%= project._id %>'"
+                                   class="fa fa-solid fa-trash"></i>
+                            </div>
+                        <% } %>
                     </div>
-                    <% if (isOwner) { %>
-                    <div class="col-1 py-3">
-                        <!--EDIT-->
-                        <i style="cursor: pointer" onclick="editConfirm()" class="fa fa-solid fa-pencil"></i>
-
-                        <!--DELETE-->
-                        <i style="cursor: pointer" onclick="deleteConfirm()" class="fa fa-solid fa-trash"></i>
-                    </div>
-                    <% } %>
                 </div>
-
-            </div>
+            <% } %>
             <br>
-            <script>
-                function editConfirm() {
-                    if (confirm("If any data is changed, your project will be processed by moderation again and will become private")) {
-                        location.href = '<%= url %>/api/projects/edit/<%= project._id %>'
-                    }
-                }
-
-                function deleteConfirm() {
-                    if (confirm("Are you sure you want to delete the project? There will be no turning back...")) {
-                        location.href = '<%= url %>/api/projects/delete/<%= project._id %>'
-                    }
-                }
-            </script>
         <% }) %>
     </div>
 </div>
@@ -180,10 +188,13 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <br>
-            <form action="/files/profile" method="POST" enctype="multipart/form-data">
-                <label for="ava" class="text-white"></label>
-                <input type="file" name="ava" accept="image/*">
-                <button type="submit" class="btn border">Upload Image</button>
+            <form class="text-center" action="/files/profile" method="POST" enctype="multipart/form-data">
+                <label style="width: 100%" for="file-upload" class="custom-file-upload">
+                    Upload image
+                </label>
+                <input name="ava" accept="image/*" id="file-upload" type="file"/>
+
+                <button type="submit" class="btn border">Save Changes</button>
                 <br>
             </form>
         </div>

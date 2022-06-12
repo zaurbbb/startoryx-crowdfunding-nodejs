@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+</head>
+<body class="container mx-3">
+
+<header>
+    <%- include('../partials/header_'); %>
+</header>
+
+<main>
+    <br>
+    <div class="container mx-5">
+        <fieldset class="border p-2">
+            <div class="text-center">
+                <h1 class="display-4"><%= project.title %> </h1>
+                <p class="lead"><%= project.user.email %></p>
+                <h3><%= project.avgRate %> / 10 &#9733;</h3>
+                <p><%= date(project.dateCreated) %></p>
+                <p><%= project.collected %> / <%= project.goal %>$</p>
+                <p><%= project.days %> days left</p>
+                <p><%= project.visits %></p>
+            </div>
+
+            <h3><%- project.body %></h3>
+
+            <br>
+        </fieldset>
+        <br>
+        <% project.comments.slice().reverse().forEach(function(comment) { %>
+            <fieldset class="border border-dark border-2 p-3">
+                <img class="rounded" src="<%= comment.user.image %>" width="32" height="32" style="float: left">
+                <p class="my-1">. <%= comment.user.email %> (<%= date(comment.date) %>)</p>
+                <hr>
+                <p class="lead"><%= comment.text %></p>
+            </fieldset>
+            <br>
+        <% }); %>
+        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Back this project</button>
+
+
+        <br><br>
+        <form action="/api/projects/<%= project._id %>/rate" method="post">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" name="rate" type="radio" value="1">1
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" name="rate" type="radio" value="2">2
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" name="rate" type="radio" value="3">3
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" name="rate" type="radio" value="4">4
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" name="rate" type="radio" value="5">5
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" name="rate" type="radio" value="6">6
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" name="rate" type="radio" value="7">7
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" name="rate" type="radio" value="8">8
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" name="rate" type="radio" value="9">9
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" name="rate" type="radio" value="10">10
+            </div>
+            <button class="btn btn-success" type="submit">Rate</button>
+        </form>
+        <br>
+        <form action="/api/projects/<%= project._id %>/comment" method="POST">
+            <label for="text">Leave a comment</label>
+            <textarea class="form-control border-1 border-dark" id="text" name="text"></textarea>
+            <br>
+            <input type="hidden" name="_method" value="DELETE">
+            <button class="btn btn-success" type="submit">Post Comment</button>
+        </form>
+        <br>
+    </div>
+</main>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="post" action="/api/donate/<%= project._id %>">
+            <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="message-text" class="col-form-label">Donation amount:</label>
+                        <input type="number" class="form-control" name="amount">
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-success">Donate via Balance</button>
+                <button type="submit" formaction="/donate_paypal/<%= project._id %>" class="btn btn-success">Donate via PayPal</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
