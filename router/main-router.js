@@ -3,7 +3,7 @@ const router = new Router()
 const viewController = require('../controllers/view-controller')
 const paymentController = require('../controllers/payment-controller')
 const {body} = require("express-validator");
-const {ensureGuest} = require("../middlewares/auth-middleware");
+const {ensureGuest, ensureAuth} = require("../middlewares/auth-middleware");
 const userController = require("../controllers/user-controller");
 const passport = require("passport");
 const {v2: cloudinary} = require("cloudinary");
@@ -83,11 +83,11 @@ router.post('/files/profile', upload.single('ava', {width: 305, height: 305, cro
 
 router.post('/files/profile/settings', userController.updateProfile)
 
-router.post('/pay', paymentController.payment)
+router.post('/pay', ensureAuth, paymentController.payment)
 
-router.post('/donate/:id', userController.donate)
+router.post('/donate/:id', ensureAuth, userController.donate)
 
-router.post('/donate_paypal/:id', paymentController.donatePaypal)
+router.post('/donate_paypal/:id', ensureAuth, paymentController.donatePaypal)
 
 router.get('/success/:amount', paymentController.successPayment)
 
