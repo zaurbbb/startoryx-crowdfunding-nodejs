@@ -23,28 +23,41 @@
                 <div class="col-11 h1 startup_name"><%= project.title %></div>
             </div>
             <div class="row text-xl-start text-center my-2">
-                <div class="col-11 h5 startup_short_description"><%= project.shortly %><br> Date: <%= date(project.dateCreated) %> </div>
+                <div class="col-11 h5 startup_short_description"><%= project.shortly %></div>
 
             </div>
-            <div class="row text-xl-start text-center my-2">
+            <div class="row text-xl-start text-center my-3">
 
                 <div class="col-8">
-                    <a href="/profile/<%= project.user.nickname %>"><img src="<%= project.user.image %>" class="startup_users_photo"> <span class="startup_users_name"><%= project.user.nickname %></span></a>
+                    <a href="/profile/<%= project.user.nickname %>"><img src="<%= project.user.image %>"
+                                                                         class="startup_users_photo"> <span
+                                class="startup_users_name"><%= project.user.nickname %></span></a>
                 </div>
                 <div class="col-3">
-                    <img src="/img/icons/icon_rocket.png" class="startup_users_photo"> <span class="startup_users_name"><%= userProjects %> project('s)</span>
+                    <img src="/img/icons/icon_rocket.png" class="startup_users_photo"> <span
+                            class="startup_users_name"><%= userProjects %> project('s)</span>
                 </div>
             </div>
-            <div class="row text-xl-start text-center my-2">
-                <div class="col-12 my-3">
-                    <div id="progressbarWrapper"  >
-                        <span id="blueBar" style="width: 200px;"><%= project.collected %>$/<%= project.goal %>$</span>
+            <div class="row text-xl-start text-center">
+                <div class="row">
+                    <div class="col-5 ps-4"><%= date(project.dateCreated) %></div>
+                    <div class="col-5 text-end ms-4"><%= project.days %> days left</div>
+                </div>
+                <div class="col-12 my-2">
+                    <div id="progressbarWrapper">
+                        <span id="blueBar" style="width: <%= barWidth %>%;"><%= project.collected %>/<%= project.goal %>$</span>
                     </div>
                 </div>
             </div>
             <div class="row text-xl-start text-center my-2">
-                <div class="col-12 my-2">
-                    <input data-bs-toggle="modal" data-bs-target="#donateModal" class="submit" type="submit" style="float: left" value="Donate">
+                <div class="col-5 my-2">
+                    <input data-bs-toggle="modal" data-bs-target="#donateModal" class="submit" type="submit"
+                           style="float: left" value="Donate">
+                </div>
+                <div class="col-5 my-2">
+                    <span style="float: right">
+                        <i class="fa fa-star text-warning"></i><%= project.avgRate %>/10
+                    </span>
                 </div>
             </div>
 
@@ -92,11 +105,59 @@
                     <p>
                         <%= randProject.shortly %>
                     </p>
-                    <a href="/project/<%= randProject._id %>" style="margin: auto"><input class="submit" type="submit" value="Read more"></a>
+                    <a href="/project/<%= randProject._id %>" style="margin: auto"><input class="submit" type="submit"
+                                                                                          value="Read more"></a>
                 </div>
             </div>
         </div>
     </div>
+    <br>
+    <br>
+    <p class="h2">How do you to rate this project?</p>
+    <form action="/project/<%= project._id %>/rate" method="post">
+        <div class="form-check form-check-inline">
+            <input id="radio-1" class="radio-custom" type="radio" name="rate" value="1">
+            <label for="radio-1" class="radio-custom-label"> 1</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input id="radio-2" class="radio-custom" type="radio" name="rate" value="2">
+            <label for="radio-2" class="radio-custom-label"> 2</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input id="radio-3" class="radio-custom" type="radio" name="rate" value="3">
+            <label for="radio-3" class="radio-custom-label"> 3</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input id="radio-4" class="radio-custom" type="radio" name="rate" value="4">
+            <label for="radio-4" class="radio-custom-label"> 4</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input id="radio-5" class="radio-custom" type="radio" name="rate" value="5">
+            <label for="radio-5" class="radio-custom-label"> 5</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input id="radio-6" class="radio-custom" type="radio" name="rate" value="6">
+            <label for="radio-6" class="radio-custom-label"> 6</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input id="radio-7" class="radio-custom" type="radio" name="rate" value="7">
+            <label for="radio-7" class="radio-custom-label"> 7</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input id="radio-8" class="radio-custom" type="radio" name="rate" value="8">
+            <label for="radio-8" class="radio-custom-label"> 8</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input id="radio-9" class="radio-custom" type="radio" name="rate" value="9">
+            <label for="radio-9" class="radio-custom-label"> 9</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input id="radio-10" class="radio-custom" type="radio" name="rate" value="10">
+            <label for="radio-10" class="radio-custom-label"> 10</label>
+        </div>
+        <br>
+        <button class="submit mt-3" type="submit">Rate</button>
+    </form>
 </div>
 <br>
 
@@ -118,8 +179,12 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" formaction="/donate/<%= project._id %>" class="btn btn-success">Donate via Balance</button>
-                    <button type="submit" formaction="/donate_paypal/<%= project._id %>" class="btn btn-success">Donate via PayPal</button>
+                    <button type="submit" formaction="/donate/<%= project._id %>" class="btn btn-success">Donate via
+                        Balance
+                    </button>
+                    <button type="submit" formaction="/donate_paypal/<%= project._id %>" class="btn btn-success">Donate
+                        via PayPal
+                    </button>
                 </div>
             </form>
         </div>

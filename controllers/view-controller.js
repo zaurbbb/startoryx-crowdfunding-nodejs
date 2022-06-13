@@ -77,9 +77,12 @@ class ViewController {
             if (req.user != null) {
                 await Project.findOneAndUpdate({_id: req.params.id}, {visits: project.visits + 1})
             }
+            let barWidth = project.collected / project.goal * 100
+            barWidth = barWidth > 100 ? 100 : barWidth
+
             res.render('projects/read', {
                 date: formatDate, project: project, randProject: randProject,
-                userProjects: userProjects
+                userProjects: userProjects, barWidth: barWidth
             })
         } catch (e) {
             next(e)
@@ -92,13 +95,17 @@ class ViewController {
                 path: 'comments', model: 'Comment',
                 populate: {path: 'user', model: 'User'}
             }).populate('user')
+            const user = await User.findOne({_id: req.user._id})
             const userProjects = await Project.count({user: project.user})
             if (req.user != null) {
                 await Project.findOneAndUpdate({_id: req.params.id}, {visits: project.visits + 1})
             }
+            let barWidth = project.collected / project.goal * 100
+            barWidth = barWidth > 100 ? 100 : barWidth
             res.render('projects/comments', {
                 date: formatDate, project: project,
-                userProjects: userProjects
+                userProjects: userProjects, user: user,
+                barWidth: barWidth
             })
         } catch (e) {
             next(e)

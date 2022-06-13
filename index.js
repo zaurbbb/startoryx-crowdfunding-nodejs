@@ -9,10 +9,8 @@ const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser');
 const passport = require('passport')
 const router = require('./router/main-router')
-const router2 = require('./router/user-router2')
 const adminRouter = require('./router/admin-router')
 const projectRouter = require('./router/project-router')
-const projectRouter2 = require('./router/project-router2')
 
 dotenv.config();
 
@@ -72,9 +70,7 @@ app.get('/', (req, res) => {
     })
 })
 app.use(router);
-app.use('/api', router2);
-app.use('/project', projectRouter2);
-app.use('/api/projects', projectRouter); // TODO: edit url (/api)
+app.use('/project', projectRouter);
 
 app.get('*', viewController.error_page)
 

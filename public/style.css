@@ -864,9 +864,8 @@ legend{
 }
 .fa:hover{
     transform: scale(110%);
-    transition: all .4s;
 }
-.category_Art{
+.category_Arts{
     background-color:#cd5b9f;
 }
 .category_Painting{
@@ -1151,7 +1150,7 @@ input[type="file"] {
 }
 #progressbarWrapper {
     height: 35px;
-    width: 80%;
+    width: 85%;
     display: block;
     padding: 4px;
     border: 1px solid #03045E;
@@ -1192,4 +1191,46 @@ input[type="file"] {
 .startup_comments{
     font-size: 20px;
     margin-bottom: 20px;
+}
+/* end only demo styles */
+
+.radio-custom {
+    opacity: 0;
+}
+
+.radio-custom, .radio-custom-label {
+    display: inline-block;
+    vertical-align: middle;
+
+    cursor: pointer;
+}
+
+.radio-custom-label {
+
+}
+
+.radio-custom + .radio-custom-label:before {
+    content: '\f006';
+    color: #f5f10a;
+    font-family: 'FontAwesome';
+    background: #fff;
+    vertical-align: middle;
+    height: 20px;
+    text-align: center;
+
+}
+
+
+.radio-custom + .radio-custom-label:before {
+    border-radius: 50%;
+
+}
+
+.radio-custom:checked + .radio-custom-label:before {
+    content: "\f005";
+    font-family: 'FontAwesome';
+    color: #f5f10a;
+}
+.form-check{
+    padding: 0;
 }

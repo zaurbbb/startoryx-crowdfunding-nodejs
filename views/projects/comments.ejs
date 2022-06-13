@@ -23,34 +23,46 @@
                 <div class="col-11 h1 startup_name"><%= project.title %></div>
             </div>
             <div class="row text-xl-start text-center my-2">
-                <div class="col-11 h5 startup_short_description"><%= project.shortly %><br> Date: <%= date(project.dateCreated) %> </div>
+                <div class="col-11 h5 startup_short_description"><%= project.shortly %></div>
 
             </div>
-            <div class="row text-xl-start text-center my-2">
+            <div class="row text-xl-start text-center my-3">
 
                 <div class="col-8">
-                    <a href="/profile/<%= project.user.nickname %>"><img src="<%= project.user.image %>" class="startup_users_photo"> <span class="startup_users_name"><%= project.user.nickname %></span></a>
+                    <a href="/profile/<%= project.user.nickname %>"><img src="<%= project.user.image %>"
+                                                                         class="startup_users_photo"> <span
+                                class="startup_users_name"><%= project.user.nickname %></span></a>
                 </div>
                 <div class="col-3">
-                    <img src="/img/icons/icon_rocket.png" class="startup_users_photo"> <span class="startup_users_name"><%= userProjects %> project('s)</span>
+                    <img src="/img/icons/icon_rocket.png" class="startup_users_photo"> <span
+                            class="startup_users_name"><%= userProjects %> project('s)</span>
                 </div>
             </div>
-            <div class="row text-xl-start text-center my-2">
-                <div class="col-12 my-3">
-                    <div id="progressbarWrapper"  >
-                        <span id="blueBar" style="width: 200px;"><%= project.collected %>$/<%= project.goal %>$</span>
+            <div class="row text-xl-start text-center">
+                <div class="row">
+                    <div class="col-5 ps-4"><%= date(project.dateCreated) %></div>
+                    <div class="col-5 text-end ms-4"><%= project.days %> days left</div>
+                </div>
+                <div class="col-12 my-2">
+                    <div id="progressbarWrapper">
+                        <span id="blueBar" style="width: <%= barWidth %>%;"><%= project.collected %>/<%= project.goal %>$</span>
                     </div>
                 </div>
             </div>
             <div class="row text-xl-start text-center my-2">
-                <div class="col-12 my-2">
-                    <input data-bs-toggle="modal" data-bs-target="#donateModal" class="submit" type="submit" style="float: left" value="Donate">
+                <div class="col-5 my-2">
+                    <input data-bs-toggle="modal" data-bs-target="#donateModal" class="submit" type="submit"
+                           style="float: left" value="Donate">
+                </div>
+                <div class="col-5 my-2">
+                    <span style="float: right">
+                        <i class="fa fa-star text-warning"></i><%= project.avgRate %>/10
+                    </span>
                 </div>
             </div>
 
         </div>
     </div>
-
 </div>
 
 <div class="container">
@@ -80,9 +92,7 @@
             <div class="row">
                 <div class="col-1">
                     <a href="/profile/<%= comment.user.nickname %>">
-                        <div style="background-image: url('<%= comment.user.image %>')" class="startup_comments_users_photo">
-
-                        </div>
+                        <img src="<%= comment.user.image %>" class="startup_comments_users_photo">
                     </a>
                 </div>
                 <div class="col-10">
@@ -98,6 +108,25 @@
         </div>
         <% }) %>
     </div>
+    <form action="/project/<%= project._id %>/comment" method="POST">
+        <div class="row">
+            <div class="col-1">
+                <a href="#">
+                    <img src="<%= user.image %>" class="startup_comments_users_photo">
+                </a>
+            </div>
+            <div class="col-11">
+                <label for="text">Leave a comment</label>
+                <textarea class="form-control border-1 border-dark" id="text" name="text"></textarea>
+                <br>
+                <input type="hidden" name="_method" value="DELETE">
+                <button class="submit" style="float: left">Post Comment</button>
+            </div>
+
+
+        </div>
+
+    </form>
 </div>
 <br>
 <%- include('../partials/footer') %>
