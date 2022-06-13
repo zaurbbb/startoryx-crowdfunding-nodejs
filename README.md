@@ -23,9 +23,9 @@ Startoryx is an analogue of Kickstarter - a site for raising funds for the imple
 
 ## Responsibilities
 
-* Front-End development - Zaur Berdibekov (tg @lagmazavr)
-* Back-End development - Umar Mussa (tg @bioneisme)
-* UI/UX design - Akniet Baybolat (tg @Qolymnan_usta)
+* Front-End development - [Zaur](https://github.com/zaurbbb)
+* Back-End development -[Umar](https://github.com/Bioneisme)
+* UI/UX design - [Akniet](https://github.com/akniet1818)
 
 ## Deployment
 You have access to the project by these links:
