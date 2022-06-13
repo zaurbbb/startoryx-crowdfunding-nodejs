@@ -95,17 +95,20 @@ class ViewController {
                 path: 'comments', model: 'Comment',
                 populate: {path: 'user', model: 'User'}
             }).populate('user')
-            const user = await User.findOne({_id: req.user._id})
             const userProjects = await Project.count({user: project.user})
+            let isUser = false
+            let user = null
             if (req.user != null) {
                 await Project.findOneAndUpdate({_id: req.params.id}, {visits: project.visits + 1})
+                isUser = true
+                user = await User.findOne({_id: req.user._id})
             }
             let barWidth = project.collected / project.goal * 100
             barWidth = barWidth > 100 ? 100 : barWidth
             res.render('projects/comments', {
                 date: formatDate, project: project,
                 userProjects: userProjects, user: user,
-                barWidth: barWidth
+                barWidth: barWidth, isUser: isUser
             })
         } catch (e) {
             next(e)

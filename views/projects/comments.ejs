@@ -108,6 +108,7 @@
         </div>
         <% }) %>
     </div>
+    <% if (isUser) { %>
     <form action="/project/<%= project._id %>/comment" method="POST">
         <div class="row">
             <div class="col-1">
@@ -127,6 +128,7 @@
         </div>
 
     </form>
+    <% } %>
 </div>
 <br>
 <%- include('../partials/footer') %>
