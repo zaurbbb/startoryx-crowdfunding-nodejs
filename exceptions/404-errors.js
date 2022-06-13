@@ -26,6 +26,9 @@ class Errors {
     async NotEnough(req, res) {
         return res.render('pages/404', {isError: true, message: "You don't have enough balance"})
     }
+    async EmptyBody(req, res) {
+        return res.render('pages/404', {isError: true, message: "You filled in something wrong"})
+    }
 }
 
 module.exports = new Errors()

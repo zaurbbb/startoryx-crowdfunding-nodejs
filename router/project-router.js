@@ -1,4 +1,4 @@
-const {ensureAuth, alreadyRated} = require("../middlewares/auth-middleware");
+const {ensureAuth, alreadyRated, emptyBody} = require("../middlewares/auth-middleware");
 const viewController = require("../controllers/view-controller");
 const cloudinary = require('cloudinary').v2
 const {CloudinaryStorage} = require("multer-storage-cloudinary");
@@ -28,7 +28,7 @@ router.get('/create', ensureAuth, (req, res) => {
     res.render('projects/create', {})
 })
 
-router.post('/create', ensureAuth, upload.single('image'), viewController.postProject)
+router.post('/create',ensureAuth, emptyBody, upload.single('image', {width: 960, height: 640, crop: "fill"}), viewController.postProject)
 
 router.get('/edit/:id', ensureAuth, viewController.getEditProject)
 

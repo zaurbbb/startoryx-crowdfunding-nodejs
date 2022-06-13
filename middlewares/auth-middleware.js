@@ -18,6 +18,14 @@ module.exports = {
         }
     },
 
+    emptyBody: function (req, res, next) {
+        if (req.body == null) {
+            return Errors.EmptyBody(req, res)
+        } else {
+            return next()
+        }
+    },
+
     alreadyRated: async function (req, res, next) {
         try {
             let isEqual = false
