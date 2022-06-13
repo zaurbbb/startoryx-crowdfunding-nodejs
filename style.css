@@ -1167,7 +1167,6 @@ input[type="file"] {
     overflow: hidden;
     font-size: 15px;
     text-align: center;
-    transition: all 700ms ease;
     color: white;
     padding-top: 1px;
 }

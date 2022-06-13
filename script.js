@@ -1,3 +1,12 @@
+var num = 9000;
+var max = 10000;
+var progress = document.getElementById("blueBar");
+var width = (num*100)/max;
+var width_in_percent = width + "%";
+progress.style.width = width_in_percent;
+progress.innerHTML = num + "$/" + max + "$" ;
+
+
 var v = document.getElementById('video_background');
 var h = document.getElementById('header').classList;
 
@@ -45,6 +54,7 @@ $('#video__title').animate_Text();
 
 $('#video__slogan').show();
 $('#video__slogan').animate_Text2();
+
 
 
 
