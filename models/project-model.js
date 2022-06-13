@@ -4,15 +4,15 @@ const htmlPurify = domPurify(new JSDOM().window)
 
 const {Schema, model} = require('mongoose')
 
-const projectSchema = new Schema({ // TODO: add required fields
+const projectSchema = new Schema({
     title: {type: String, required: true},
     image: {type: String, default: "https://res.cloudinary.com/dluwizg51/image/upload/v1651747098/PROJECTS/no_image_pp3wpw.png"},
     type: {type: String, required: true},
-    shortly: {type: String, required: true}, // short description
-    body: {type: String, required: true}, // detailed description
-    user: {type: Schema.Types.ObjectId, ref: 'User'}, // creator
+    shortly: {type: String, required: true},
+    body: {type: String, required: true},
+    user: {type: Schema.Types.ObjectId, ref: 'User'},
     dateCreated: {type: Date, default: Date.now},
-    days: {type: Number, required: true}, // number of days before the end of the collection
+    days: {type: Number, required: true},
     goal: {type: Number, default: 100},
     collected: {type: Number, default: 0},
     rates: [{type: Schema.Types.ObjectId, ref: 'Rate'}],

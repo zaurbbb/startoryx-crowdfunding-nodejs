@@ -40,12 +40,12 @@
             </div>
             <div class="row text-xl-start text-center">
                 <div class="row">
-                    <div class="col-5 ps-4"><%= date(project.dateCreated) %></div>
+                    <div class="col-5 ps-4"><%= project.collected %>$/<%= project.goal %>$</div>
                     <div class="col-5 text-end ms-4"><%= project.days %> days left</div>
                 </div>
                 <div class="col-12 my-2">
                     <div id="progressbarWrapper">
-                        <span id="blueBar" style="width: <%= barWidth %>%;"><%= project.collected %>/<%= project.goal %>$</span>
+                        <span id="blueBar" style="width: <%= barWidth %>%;"></span>
                     </div>
                 </div>
             </div>
@@ -79,8 +79,6 @@
                 </button>
             </a>
         </li>
-
-
     </ul>
     <div class="contact-us-line  mb-3"></div>
 </div>

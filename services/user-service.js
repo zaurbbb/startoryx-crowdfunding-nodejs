@@ -24,7 +24,7 @@ class UserService {
             activationLink,
             roles: ["USER"]
         })
-        await mailService.sendActivationMail(email, `${process.env.URL}/api/activate/${activationLink}`)
+        await mailService.sendActivationMail(email, `${process.env.URL}/activate/${activationLink}`)
         const userDto = new UserDto(user)
 
         return {user: userDto}

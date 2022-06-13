@@ -1,3 +1,4 @@
+
 var v = document.getElementById('video_background');
 var h = document.getElementById('header').classList;
 
@@ -45,5 +46,6 @@ $('#video__title').animate_Text();
 
 $('#video__slogan').show();
 $('#video__slogan').animate_Text2();
+
 
 

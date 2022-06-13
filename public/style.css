@@ -1152,7 +1152,7 @@ input[type="file"] {
     height: 35px;
     width: 85%;
     display: block;
-    padding: 4px;
+    padding: 6px;
     border: 1px solid #03045E;
     border-radius: 20px ;
 }
@@ -1167,9 +1167,8 @@ input[type="file"] {
     overflow: hidden;
     font-size: 15px;
     text-align: center;
-    transition: all 700ms ease;
     color: white;
-    padding-top: 1px;
+    padding-top: 0;
 }
 .project_description{
     font-family: 'Inter', sans-serif;
