@@ -108,7 +108,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <span class="tag tag-teal category_technology"><%= project.type %></span>
+                <span class="tag tag-teal category_<%= project.type %>"><%= project.type %></span>
                 <h4 onclick="location.href='/project/<%= project._id %>'" style="cursor: pointer">
                     <%= project.title %>
                 </h4>

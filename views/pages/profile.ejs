@@ -118,7 +118,7 @@
                                         class="col-12 card_profile_text_div "><span
                                             onclick="location.href='/project/<%= project._id %>'"
                                             style="font-weight: 600; cursor: pointer"><%= project.title %> </span><span
-                                            class="tag tag-teal category_arts"><%= project.type %></span>
+                                            class="tag tag-teal category_<%= project.type %>"><%= project.type %></span>
                                     <% if (project.published) { %>
                                         <i data-bs-toggle="tooltip" data-bs-placement="top"
                                            title="This project is published" style="color: green"

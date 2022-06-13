@@ -866,19 +866,19 @@ legend{
     transform: scale(110%);
     transition: all .4s;
 }
-.category_arts{
+.category_Art{
     background-color:#cd5b9f;
 }
-.category_painting{
+.category_Painting{
     background-color: #2E8B57;
 }
-.category_technology{
+.category_Technology{
     background-color: #47bcd4;;
 }
-.category_music{
+.category_Music{
     background-color: #F08080;
 }
-.category_games{
+.category_Games{
     background-color: #5e76bf;
 }
 .card-header:hover .hidden_blocks{
