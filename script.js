@@ -1,9 +1,8 @@
-var num = 9000;
+var num = 5000;
 var max = 10000;
 var progress = document.getElementById("blueBar");
-var width = (num*100)/max;
-var width_in_percent = width + "%";
-progress.style.width = width_in_percent;
+var width = (num*100)/max + "%";
+progress.style.width = width;
 progress.innerHTML = num + "$/" + max + "$" ;
 
 
