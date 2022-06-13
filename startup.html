@@ -50,10 +50,10 @@
                     <div class="col-11 h1 startup_name">Anime Chainsaw Man by MAPPA</div>
             </div>
             <div class="row text-xl-start text-center my-2">
-                    <div class="col-11 h5 startup_short_description">We're big fans of this manga and want to present the animezation of this title! Date: Autumn 2022 </div>
+                    <div class="col-11 h5 startup_short_description">We're big fans of this manga and want to present the animezation of this title!</div>
 
             </div>
-            <div class="row text-xl-start text-center my-2">
+            <div class="row text-xl-start text-center my-3">
 
                 <div class="col-8">
                     <a href="profile.html"><img src="img/photo.png" class="startup_users_photo"> <span class="startup_users_name">aknietbaybolat</span></a>
@@ -62,16 +62,27 @@
                     <img src="img/icons/icon_rocket.png" class="startup_users_photo"> <span class="startup_users_name">1 project</span>
                 </div>
             </div>
-            <div class="row text-xl-start text-center my-2">
-                <div class="col-12 my-3">
+            <div class="row text-xl-start text-center">
+                <div class="row">
+                    <div class="col-5 ps-4">May 26th 2022, 12:51:34 pm</div>
+                    <div class="col-5 text-end ms-4" >92 days left</div>
+                </div>
+                <div class="col-12 my-2">
+
                     <div id="progressbarWrapper"  >
                         <span id="blueBar" style="width: 200px;">3000$/10000$</span>
                     </div>
                 </div>
             </div>
             <div class="row text-xl-start text-center my-2">
-                <div class="col-12 my-2">
+                <div class="col-5 my-2">
                     <a href="profile.html" ><input class="submit" type="submit" style="float: left" value="Donate"></a>
+                </div>
+                <div class="col-5 my-2" >
+                    <span style="float: right">
+                        <i class="fa fa-star text-warning"></i>8/10
+                    </span>
+
                 </div>
             </div>
 
@@ -110,6 +121,53 @@
             Date of release: Autumn 2022
 
             <img class="w-100" src="https://cosmonerd.com.br//uploads/2020/11/cosmonerd-chainsaw-man-1-1024x576.jpg" alt="">
+            <br>
+            <br>
+            <p class="h2">How do you to rate this project?</p>
+            <form action="/api/projects/<%= project._id %>/rate" method="post">
+                <div class="form-check form-check-inline">
+                    <input id="radio-1" class="radio-custom" type="radio" name="rate"  value="1">
+                    <label for="radio-1" class="radio-custom-label"> 1</label>
+                </div>
+                <div class="form-check form-check-inline" >
+                    <input id="radio-2" class="radio-custom" type="radio" name="rate"  value="2">
+                    <label for="radio-2" class="radio-custom-label"> 2</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input id="radio-3" class="radio-custom" type="radio" name="rate"  value="3">
+                    <label for="radio-3" class="radio-custom-label"> 3</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input id="radio-4" class="radio-custom" type="radio" name="rate"  value="4">
+                    <label for="radio-4" class="radio-custom-label"> 4</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input id="radio-5" class="radio-custom" type="radio" name="rate"  value="5">
+                    <label for="radio-5" class="radio-custom-label"> 5</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input id="radio-6" class="radio-custom" type="radio" name="rate"  value="6">
+                    <label for="radio-6" class="radio-custom-label"> 6</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input id="radio-7" class="radio-custom" type="radio" name="rate"  value="7">
+                    <label for="radio-7" class="radio-custom-label"> 7</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input id="radio-8" class="radio-custom" type="radio" name="rate"  value="8">
+                    <label for="radio-8" class="radio-custom-label"> 8</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input id="radio-9" class="radio-custom" type="radio" name="rate"  value="9">
+                    <label for="radio-9" class="radio-custom-label"> 9</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input id="radio-10" class="radio-custom" type="radio" name="rate"  value="10">
+                    <label for="radio-10" class="radio-custom-label"> 10</label>
+                </div>
+                <br>
+                <button class="submit mt-3" type="submit">Rate</button>
+            </form>
         </div>
 
         <div class="col-3">
@@ -120,7 +178,7 @@
 
                 </div>
                 <div class="card-body ">
-                    <span class="tag tag-teal category_technology">Technology</span>
+                    <span class="tag tag-teal category_Technology">Technology</span>
                     <h4>
                         ElectroCar TESLA
                     </h4>
@@ -136,7 +194,7 @@
 
                 </div>
                 <div class="card-body ">
-                    <span class="tag tag-teal category_arts">Arts</span>
+                    <span class="tag tag-teal category_Arts">Arts</span>
 
                     <h4>
                         Refactoring Mono Lisa
