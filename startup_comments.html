@@ -110,7 +110,9 @@
     <div class="contact-us-line  mb-3"></div>
 </div>
 <!--        COMMENTS BLOCK-->
+
 <div class="container">
+
     <div class="row">
         <div class="col-12 startup_comments">
                 <div class="row">
@@ -169,8 +171,27 @@
         </div>
 
     </div>
+    <form action="/api/projects/<%= project._id %>/comment" method="POST">
+        <div class="row">
+            <div class="col-1">
+                <a href="#">
+                    <img src="img/photo.png" class="startup_comments_users_photo">
+                </a>
+            </div>
+            <div class="col-11">
+                <label for="text">Leave a comment</label>
+                <textarea class="form-control border-1 border-dark" id="text" name="text"></textarea>
+                <br>
+                <input type="hidden" name="_method" value="DELETE">
+                <button class="submit" style="float: right">Post Comment</button>
+            </div>
+
+
+        </div>
+
+    </form>
 </div>
-<br>
+<br><br>
 <footer class="container-fluid text-center text-light order border-primary px-5 justify-content-center " style="background-color:
 #03045E">
     <br>
