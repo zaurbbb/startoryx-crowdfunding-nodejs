@@ -11,7 +11,7 @@ paypal.configure({
 class PaymentController{
     async payment(req, res){
         try {
-            const amount = req.body.amount
+            const amount = req.body == null ? 1 : req.body.amount
 
             const create_payment_json = {
                 "intent": "sale",
@@ -42,7 +42,7 @@ class PaymentController{
 
             paypal.payment.create(create_payment_json, function (error, payment) {
                 if (error) {
-                    throw error;
+                    return res.redirect('back')
                 } else {
                     for (let i = 0; i < payment.links.length; i++) {
                         if (payment.links[i].rel === 'approval_url') {
@@ -89,7 +89,8 @@ class PaymentController{
 
     async donatePaypal(req, res){
         try {
-            const amount = req.body.amount
+            const amount = req.body == null ? 1 : req.body.amount
+            console.log(amount)
             const project = req.params.id
 
             const create_payment_json = {
@@ -121,7 +122,7 @@ class PaymentController{
 
             paypal.payment.create(create_payment_json, function (error, payment) {
                 if (error) {
-                    throw error;
+                    return res.redirect('back')
                 } else {
                     for (let i = 0; i < payment.links.length; i++) {
                         if (payment.links[i].rel === 'approval_url') {
