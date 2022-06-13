@@ -234,6 +234,14 @@
     <br>
 </footer>
 <script src="script.js"></script>
+<script>
+    var num = 8000;
+    var max = 10000;
+    var progress = document.getElementById("blueBar");
+    var width = (num*100)/max + "%";
+    progress.style.width = width;
+    progress.innerHTML = num + "$/" + max + "$" ;
+</script>
 
 </body>
 </html>

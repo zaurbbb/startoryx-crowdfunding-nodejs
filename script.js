@@ -1,11 +1,3 @@
-var num = 5000;
-var max = 10000;
-var progress = document.getElementById("blueBar");
-var width = (num*100)/max + "%";
-progress.style.width = width;
-progress.innerHTML = num + "$/" + max + "$" ;
-
-
 var v = document.getElementById('video_background');
 var h = document.getElementById('header').classList;
 
