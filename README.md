@@ -19,12 +19,10 @@ Startoryx is an analogue of Kickstarter - a site for raising funds for the imple
 * ...
 * there will be instructions
 
-
-
 ## Responsibilities
 
 * Front-End development - [Zaur](https://github.com/zaurbbb)
-* Back-End development -[Umar](https://github.com/Bioneisme)
+* Back-End development - [Umar](https://github.com/Bioneisme)
 * UI/UX design - [Akniet](https://github.com/akniet1818)
 
 ## Deployment
