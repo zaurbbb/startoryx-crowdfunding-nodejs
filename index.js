@@ -74,4 +74,10 @@ app.use('/project', projectRouter);
 
 app.get('*', viewController.error_page)
 
+app.use(function(err, req, res, next) {
+    res.status(err.status || 500);
+    res.render('pages/404', {isError: true, message: "Internal Server Error. " + err.message})
+    console.log(err)
+});
+
 start()
