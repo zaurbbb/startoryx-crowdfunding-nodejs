@@ -133,6 +133,32 @@
 <br>
 <%- include('../partials/footer') %>
 
-
+<!-- Modal -->
+<div class="modal fade" id="donateModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Back this start-up</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="post">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="message-text" class="col-form-label">Donation amount:</label>
+                        <input type="number" class="form-control" name="amount">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" formaction="/donate/<%= project._id %>" class="btn btn-success">Donate via
+                        Balance
+                    </button>
+                    <button type="submit" formaction="/donate_paypal/<%= project._id %>" class="btn btn-success">Donate
+                        via PayPal
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 </body>
 </html>
