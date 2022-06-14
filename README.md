@@ -2,27 +2,50 @@
 
 Startoryx is an analogue of Kickstarter - a site for raising funds for the implementation of creative, scientific and industrial projects under the crowdfunding scheme (that is, voluntary donations)
 
-## Goals
-* Creation of a popular and working analogue of Kickstrater in Kazakhstan
+Live Demo: http://startoryx.live/
 
 ## Features:
-* User registration and verification by email
+* Local Two-Factor Authentication using Email and Password
+* OAuth 2.0 Authentication via Google
+* Link OAuth strategies to one account
+* MVC Project Structure
+* Account Management (profile details, change data/password, forgot/reset password)
+* Viewing the profile of other users
+* Project Management (create, read, update, delete projects)
+* Publication of the project by moderation in the admin panel
+* Comments, ratings for projects
+* Project board with sorting and search
+* Topping up the balance and donating to projects via PayPal
+* Admin Panel (/admin)
+* Landing, Contact Us, FAQ, Error etc. pages
 
 ## Getting Started
 ### Prerequisites
 * NodeJS, NPM (https://www.npmjs.com/get-npm)
 * MongoDB server, local or remote (https://www.mongodb.com/)
+* Cloudinary (https://cloudinary.com/)
 * Heroku - optional
-* Cloudinary - optional
 
 ### Installing
-* ...
-* there will be instructions
+```bash
+# Get the latest snapshot
+git clone https://github.com/zaurbbb/startoryx-crowdfunding-nodejs.git
+
+# Change directory
+cd myproject
+
+# Install NPM dependencies
+npm install
+
+# Then simply start your app
+npm run start 
+# or npm run dev
+```
 
 ## Responsibilities
 
 * Front-End development - [Zaur](https://github.com/zaurbbb)
-* Back-End development - [Umar](https://github.com/Bioneisme)
+* Back-End development - [Bioneisme](https://github.com/Bioneisme)
 * UI/UX design - [Akniet](https://github.com/akniet1818)
 
 ## Deployment
