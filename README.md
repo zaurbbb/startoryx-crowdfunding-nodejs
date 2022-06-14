@@ -56,3 +56,6 @@ npm run start
 You have access to the project by these links:
 * Heroku Deployment: http://startoryx.live/
 * GitHub Pages Deployment https://zaurbbb.github.io/startoryx/
+
+## License
+startoryx-crowdfunding-nodejs is available under the [MIT License](https://tldrlegal.com/license/mit-license)
