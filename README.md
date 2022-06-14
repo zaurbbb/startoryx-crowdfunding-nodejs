@@ -30,13 +30,17 @@ Live Demo: http://startoryx.live/
 ```bash
 # Get the latest snapshot
 git clone https://github.com/zaurbbb/startoryx-crowdfunding-nodejs.git
-
+```
+``` bash
 # Change directory
 cd myproject
-
+```
+``` bash
 # Install NPM dependencies
 npm install
-
+```
+Create an .env file locally. You can duplicate .env.example and name the new copy .env. Adapt the variables to your needs.
+``` bash
 # Then simply start your app
 npm run start 
 # or npm run dev
